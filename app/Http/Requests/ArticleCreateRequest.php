@@ -39,6 +39,7 @@ class ArticleCreateRequest extends FormRequest
         ];
     }
 
+    //エラーメッセージの日本語化
     public function messages() {
         return [
             'title.required' => 'タイトルは必須項目です。',
