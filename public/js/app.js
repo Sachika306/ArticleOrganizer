@@ -1978,15 +1978,17 @@ $('#delete').submit(function (e) {
 }); // jQuery UI datepicker
 
 $('.date').datepicker({
-  format: 'yyyy-mm-dd'
+  dateFormat: 'yy-mm-dd'
 }); // オートコンプリート機能を適用
 
 $("#outline_user_name").autocomplete({
-  source: [outlineUserNames],
+  source: outlineUserNames,
   select: function select(event, ui) {
     $(".outline_user_name").val(ui.item.label);
-    $(".outline_user_id").val(ui.item.value);
-  }
+    event.preventDefault();
+    $("#outline_user_id").val(ui.item.value);
+  },
+  autofocus: true
 });
 console.log(outlineUserNames);
 $(".article-user-selector").autocomplete({
