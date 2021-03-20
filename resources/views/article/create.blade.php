@@ -21,10 +21,10 @@
   <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon2">アウトライン担当者</span>
   </div>
-  <label for="outline_user_name"></label>
-  <input type="text" value="{{ old('outline_user_name')}}" class="form-control" placeholder="山田大郎" id="outline_user_name">
-  <input type="hidden" name="outline_user_id" value="">
+  <label for="outline_user_name" class="outline_user_name"></label>
+  <input type="text" value="{{ old('outline_user_name')}}" class="form-control outline_user_name" placeholder="山田大郎" id="outline_user_name">
 </div>
+<input type="hidden" name="outline_user_id" value="" class="outline_user_id">
 
 @error('outline_user_id')
   <p>{{ $message }}</p>
@@ -84,6 +84,6 @@
 @endsection
 
 <script type="text/javascript">
-var outlineUserNames = {!! json_encode($outlineUserNames, JSON_PRETTY_PRINT) !!}
-var articleUserNames = {!! json_encode($articleUserNames) !!}
+var outlineUserNames = @json($outlineUserNames);
+var articleUserNames = @json($articleUserNames);
 </script>
