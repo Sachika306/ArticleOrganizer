@@ -7,5 +7,5 @@ $('#delete').submit(function (e) {
 
 // member.show
 $('.date').datepicker({  
-    format: 'mm-dd-yyyy'
-  });  
+    format: 'yyyy-mm-dd'
+});  

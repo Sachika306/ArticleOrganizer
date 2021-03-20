@@ -31,13 +31,13 @@
     <tr>
     <th scope="row">{{ $article->id }}</th>
       <td>{{ $article->title }}</td>
-      <td>{{ $article->status_id }}</td>
-      <td>{{ $article->find($article->id)->outlineassignment->outline_user_id }}</td>
-      <td>{{ $article->find($article->id)->outlineassignment->outline_url }}</td>
-      <td>{{ $article->find($article->id)->outlineassignment->outline_deadline }}</td>
-      <td>{{ $article->find($article->id)->articleassignment->article_user_id }}</td>
-      <td>{{ $article->find($article->id)->articleassignment->article_url }}</td>
-      <td>{{ $article->find($article->id)->articleassignment->article_deadline }}</td>
+      <td>{{ $article->status->name }}</td>
+      <td>{{ $users->find($article->outlineassignment->outline_user_id)->name }}</td>
+      <td>{{ $article->outlineassignment->outline_url }}</td>
+      <td>{{ $article->outlineassignment->outline_deadline }}</td>
+      <td>{{ $users->find($article->articleassignment->article_user_id)->name }}</td>
+      <td>{{ $article->articleassignment->article_url }}</td>
+      <td>{{ $article->articleassignment->article_deadline }}</td>
       <td><a href="/article/show/{{ $article->id }}">詳細</a></td>
       <td>
         <form action="/article/destroy/{{ $article->id }}" id="delete" method="post">
