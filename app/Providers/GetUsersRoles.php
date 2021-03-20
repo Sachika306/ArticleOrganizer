@@ -7,6 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use App\Models\User;
 use App\Models\Roleuser;
 use App\Models\Article;
+use App\Models\Status;
 
 class GetUsersRoles extends ServiceProvider
 {
@@ -37,7 +38,9 @@ class GetUsersRoles extends ServiceProvider
 
         View::composer ('article.*', function($view) {
             $articles = Article::paginate(15);
+            $users = User::get();
             $view -> with('articles', $articles);
+            $view -> with('users', $users);
         });
 
     }

@@ -45,7 +45,7 @@ class RegisterRequest extends FormRequest
             'last_name.required' => '姓名は必須項目です。',
             'last_name.max:10' => '10文字以内で入力してください。',
             'email.required' => 'メールアドレスは必須項目です。',
-            'email.email:strict,dns,spoof' => 'メールアドレスの形式が間違っています。',
+            'email.email' => 'メールアドレスの形式が間違っています。',
             'email.unique:users' => 'このメールアドレスは既に存在します。',
             'password.required' => 'パスワードは必須項目です。',
             'password.min:8' => '8文字以上で入力してください。',

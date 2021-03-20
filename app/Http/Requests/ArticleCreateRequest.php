@@ -55,7 +55,7 @@ class ArticleCreateRequest extends FormRequest
             'article_user_id.integer' => '担当者のIDは整数で入力してください。',
             'article_url.url' => 'URL形式で入力してください。',
             'article_deadline.required' => '納期は必須項目です。',
-            'article_deadline.date_format:Y-m-d' => '納期は「YYYY-MM-DD」の形式で入力してください。'
+            'article_deadline.date' => '納期は「YYYY-MM-DD」の形式で入力してください。'
         ];
     }
 }

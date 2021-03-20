@@ -76,12 +76,6 @@
 @enderror
 
 <input type="submit" name="submit" class="btn btn-primary">
-  
-<script>
-  $('.date').datepicker({  
-    format: 'yyyy-mm-dd'
-  });  
-</script>
 
 </form>
 @endsection
