@@ -1982,14 +1982,13 @@ $('.date').datepicker({
 }); // オートコンプリート機能を適用
 
 $("#outline_user_name").autocomplete({
-  source: outlineUserNames,
-  // article/create.blade.php から配列を取得
+  source: [outlineUserNames],
   select: function select(event, ui) {
-    $("#outline_user_name")["function"](ui.item.value);
+    $(".outline_user_name").val(ui.item.label);
     $(".outline_user_id").val(ui.item.value);
   }
 });
-console.log(outlineUserNames1);
+console.log(outlineUserNames);
 $(".article-user-selector").autocomplete({
   source: articleUserNames // article/create.blade.php から配列を取得
 
