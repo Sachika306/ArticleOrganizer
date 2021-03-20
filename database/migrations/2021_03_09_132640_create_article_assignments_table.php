@@ -30,6 +30,6 @@ class CreateArticleAssignmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ArticleAssignments');
+        Schema::dropIfExists('article_assignments');
     }
 }

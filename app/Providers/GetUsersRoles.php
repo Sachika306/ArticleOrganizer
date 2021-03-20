@@ -4,8 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use App\Models\RoleUser;
+use App\Models\Role;
 use App\Models\User;
-use App\Models\Roleuser;
 use App\Models\Article;
 use App\Models\Status;
 
@@ -30,8 +31,10 @@ class GetUsersRoles extends ServiceProvider
     {
         // 
         View::composer ('member.*', function($view) {
-            $roles = Roleuser::get();
+            $roleusers = RoleUser::get();
+            $roles = Role::get();
             $users = User::paginate(15);
+            $view -> with('roleusers', $roleusers);
             $view -> with('roles', $roles);
             $view -> with('users', $users);
         });

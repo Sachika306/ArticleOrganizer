@@ -5,8 +5,15 @@
  */
 
 require('./bootstrap');
-
 window.Vue = require('vue').default;
+
+// jQuery UI
+import $ from 'jquery';
+window.$ = window.jQuery = $;
+
+// jQuery UI　Widgets
+import 'jquery-ui/ui/widgets/datepicker.js'; 
+import 'jquery-ui/ui/widgets/autocomplete.js'; 
 
 /**
  * The following block of code may be used to automatically register your

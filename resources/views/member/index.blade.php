@@ -33,7 +33,7 @@
       <td>{{ $user->last_name }}</td>
       <td>{{ $user->first_name }}</td>
       <td>{{ $user->email}}</td>
-      <td>{{ $user->roles()->find($user->id)->name }}</td>
+      <td>{{ $user->roles->first()->name }}</td>
       <td><a href="/member/show/{{ $user->id }}">詳細</a></td>
       <td>
         <form action="/member/destroy/{{ $user->id }}" id="delete" method="post">

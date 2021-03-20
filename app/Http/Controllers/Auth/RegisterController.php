@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
-use App\Models\Roleuser;
+use App\Models\RoleUser;
 use App\Models\Role;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -81,14 +81,13 @@ class RegisterController extends Controller
         ]);
 
 
-        // ユーザーの権限情報をRoleuserテーブルに登録する
+        // ユーザーの権限情報をRoleUserテーブルに登録する
         $userId = $user->id; // 「user_id」カラムに入る値を定義
        
-        Roleuser::create([
+        RoleUser::create([
             'user_id' => $userId,
             'role_id' => $data['role_id']
         ]);
-
 
         // メンバー一覧の画面に遷移する
         return view('member.index');

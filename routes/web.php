@@ -2,8 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Article;
-use App\Models\Roleuser;
+use App\Models\RoleUser;
 use App\Models\User;
+use App\Models\OutlineAssignment;
+use App\Models\ArticleAssignment;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +20,7 @@ use App\Models\User;
 
 // article routes //
 Route::get('/', function() { 
-    return Article::find(1)->outlineassignment->id;
+
 });
 
 Route::get('/article', 'App\Http\Controllers\ArticleController@index')

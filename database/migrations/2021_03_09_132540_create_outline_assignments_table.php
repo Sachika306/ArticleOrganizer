@@ -30,7 +30,7 @@ class CreateOutlineAssignmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('OutlineAssignments');
+        Schema::dropIfExists('outline_assignments');
     }
 }
 
