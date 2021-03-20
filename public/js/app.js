@@ -1970,7 +1970,12 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
   \***************************************/
 /***/ (() => {
 
-// Delete alert
+// Nav Bar
+$(".nav .nav-link").on("click", function () {
+  $(".nav").find(".active").removeClass("active");
+  $(this).addClass("active");
+}); // Delete alert
+
 $('#delete').submit(function (e) {
   if (!confirm('ユーザーを削除しますか？')) {
     return false;
@@ -1979,21 +1984,27 @@ $('#delete').submit(function (e) {
 
 $('.date').datepicker({
   dateFormat: 'yy-mm-dd'
-}); // オートコンプリート機能を適用
+}); // オートコンプリート機能を適用（article.create）
 
 $("#outline_user_name").autocomplete({
   source: outlineUserNames,
   select: function select(event, ui) {
-    $(".outline_user_name").val(ui.item.label);
-    event.preventDefault();
+    $("#outline_user_name").val(ui.item.label);
+    event.preventDefault(); // inputにvalueが流れる（デフォルトの設定）を防ぐ
+
     $("#outline_user_id").val(ui.item.value);
   },
   autofocus: true
 });
-console.log(outlineUserNames);
-$(".article-user-selector").autocomplete({
-  source: articleUserNames // article/create.blade.php から配列を取得
+$("#article_user_name").autocomplete({
+  source: articleUserNames,
+  select: function select(event, ui) {
+    $("#article_user_name").val(ui.item.label);
+    event.preventDefault(); // inputにvalueが流れる（デフォルトの設定）を防ぐ
 
+    $("#article_user_id").val(ui.item.value);
+  },
+  autofocus: true
 });
 
 /***/ }),

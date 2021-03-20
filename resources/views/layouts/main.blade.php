@@ -13,17 +13,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
 </head>
 <body>
-
+<div id="app"></div>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="{{ url('/article') }}">記事管理アプリ</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    @if(Auth::check())
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
+  <a class="navbar-brand" href="{{ url('/article') }}">記事管理アプリ</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  @if(Auth::check())
+  <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
           <a class="nav-link" href="{{ url('/member') }}">メンバー一覧</a>
         </li>
         <li class="nav-item">
@@ -32,17 +31,16 @@
         <li class="nav-item">
           <a class="nav-link" href="{{ url('/logout') }}">ログアウト</a>
         </li>
+        <li class="nav-item">
+          <p class="nav-link">{{ Auth::user()->name }}</p>
+        </li>
       </ul>
-      <span class="navbar-text">
-        こんにちは！{{ Auth::user()->last_name }}さん
-      </span>
-    </div>
-    @endif
   </div>
+  @endif
 </nav>
 
-
 <h1>@yield('title')</h1>
+
 @yield('content')
 
 @yield('footer')

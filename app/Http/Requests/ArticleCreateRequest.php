@@ -44,15 +44,11 @@ class ArticleCreateRequest extends FormRequest
         return [
             'title.required' => 'タイトルは必須項目です。',
             'title.max' => '40文字以内で入力してください。',
-            'outline_user_id.required' => '担当者のIDは必須項目です。',
-            'outline_user_id.digits' => '担当者のIDは3桁以内で入力してください。',
-            'outline_user_id.integer' => '担当者のIDは整数で入力してください。',
+            'outline_user_id.required' => '担当者は必須項目です。',
             'outline_url.url' => 'URL形式で入力してください。',
             'outline_deadline.required' => '納期は必須項目です。',
             'outline_deadline.date_format' => '納期は「YYYY-MM-DD」の形式で入力してください。',
-            'article_user_id.required' => '担当者のIDは必須項目です。',
-            'article_user_id.digits' => '担当者のIDは3桁以内で入力してください。',
-            'article_user_id.integer' => '担当者のIDは整数で入力してください。',
+            'article_user_id.required' => '担当者は必須項目です。',
             'article_url.url' => 'URL形式で入力してください。',
             'article_deadline.required' => '納期は必須項目です。',
             'article_deadline.date_format' => '納期は「YYYY-MM-DD」の形式で入力してください。'
