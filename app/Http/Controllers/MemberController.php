@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
-use App\Models\Roleuser;
+use App\Models\RoleUser;
 use Illuminate\Http\Request;
 
 class MemberController extends Controller
@@ -37,7 +37,7 @@ class MemberController extends Controller
     {
         // return view('member.store');
         User::create($request->all());
-        Roleuser::create($request->all());
+        RoleUser::create($request->all());
     }
 
     /**
