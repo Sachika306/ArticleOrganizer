@@ -38,7 +38,11 @@ class ArticleController extends Controller
         //アウトライン権限のユーザーを探す
         $outlineUsers = $roles->find(2)->user;
         if (count($outlineUsers) > 0) {
-            $outlineUserNames = array();
+            $outlineUserNames = array([
+                $outlineUserNames1[] = array([
+
+                ])
+            ]);
             //アウトライン権限のユーザー名を配列に入れる
             foreach ($outlineUsers as $user) {
                 $outlineUserNames['label'] = $user->name;

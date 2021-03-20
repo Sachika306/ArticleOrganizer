@@ -10,7 +10,7 @@
   <div class="input-group-prepend">
     <span class="input-group-text" id="title">タイトル</span>
   </div>
-  <input type="text" name="title" value="{{ old('title')}}" class="form-control" placeholder="記事タイトル">
+  <input type="text" name="title" value="{{ old('title')}}" class="form-control" placeholder="40文字以内">
 </div>
 
 @error('title')
@@ -21,10 +21,9 @@
   <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon2">アウトライン担当者</span>
   </div>
-  <label for="outline_user_name" class="outline_user_name"></label>
   <input type="text" value="{{ old('outline_user_name')}}" class="form-control outline_user_name" placeholder="山田大郎" id="outline_user_name">
+  <input type="hidden" name="outline_user_id" value="{{ old('outline_user_id')}}" id="outline_user_id">
 </div>
-<input type="hidden" name="outline_user_id" value="" class="outline_user_id">
 
 @error('outline_user_id')
   <p>{{ $message }}</p>
@@ -53,7 +52,7 @@
     <span class="input-group-text" id="basic-addon1">記事担当者</span>
   </div>
   <input type="search" value="{{ old('article_user_name')}}" class="form-control article_user_name" placeholder="山田大郎">
-  <input type="hidden" name="article_user_id" value="{{ old('article_user_id')}}">
+  <input type="hidden" name="outline_user_id" value="{{ old('outline_user_id')}}" id="outline_user_id">
 </div>
 
 @error('article_user_id')

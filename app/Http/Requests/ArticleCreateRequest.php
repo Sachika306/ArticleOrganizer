@@ -30,10 +30,10 @@ class ArticleCreateRequest extends FormRequest
     {
         return [
             'title' => ['required', 'max:40'],
-            'outline_user_id' => ['required', 'max:3', 'integer'],
+            'outline_user_id' => ['required',  'integer'],
             'outline_url' => ['url'],
             'outline_deadline' => ['required', 'date_format:Y-m-d'],
-            'article_user_id' => ['required', 'max:3', 'integer'],
+            'article_user_id' => ['required', 'integer'],
             'article_url' => ['url'],
             'article_deadline' => ['required', 'date_format:Y-m-d']
         ];
@@ -43,19 +43,19 @@ class ArticleCreateRequest extends FormRequest
     public function messages() {
         return [
             'title.required' => 'タイトルは必須項目です。',
-            'title.max:40' => '40文字以内で入力してください。',
+            'title.max' => '40文字以内で入力してください。',
             'outline_user_id.required' => '担当者のIDは必須項目です。',
-            'outline_user_id.max:3' => '担当者のIDは3桁以内で入力してください。',
+            'outline_user_id.digits' => '担当者のIDは3桁以内で入力してください。',
             'outline_user_id.integer' => '担当者のIDは整数で入力してください。',
             'outline_url.url' => 'URL形式で入力してください。',
             'outline_deadline.required' => '納期は必須項目です。',
-            'outline_deadline.date' => '納期は「YYYY-MM-DD」の形式で入力してください。',
+            'outline_deadline.date_format' => '納期は「YYYY-MM-DD」の形式で入力してください。',
             'article_user_id.required' => '担当者のIDは必須項目です。',
-            'article_user_id.max:3' => '担当者のIDは3桁以内で入力してください。',
+            'article_user_id.digits' => '担当者のIDは3桁以内で入力してください。',
             'article_user_id.integer' => '担当者のIDは整数で入力してください。',
             'article_url.url' => 'URL形式で入力してください。',
             'article_deadline.required' => '納期は必須項目です。',
-            'article_deadline.date' => '納期は「YYYY-MM-DD」の形式で入力してください。'
+            'article_deadline.date_format' => '納期は「YYYY-MM-DD」の形式で入力してください。'
         ];
     }
 }
