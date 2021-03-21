@@ -32,13 +32,16 @@ class ArticleController extends Controller
      */
     public function create()
     {
+        
         // jQuery-UI autocomplete で使うためアウトライン・記事担当者の名前を配列にする
         $roles = Role::get();
-
+        
         //アウトライン権限のユーザーを探す
         $outlineUsers = $roles->find(2)->user;
         if (count($outlineUsers) > 0) {
-            $outlineUserNames = array([]);
+            $outlineUserNames = array(
+
+            );
             //アウトライン権限のユーザー名を配列に入れる
             foreach ($outlineUsers as $user) {
                 $outlineUserNames[]['label'] = $user->name;
