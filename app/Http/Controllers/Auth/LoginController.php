@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use App\Http\Requests\LoginRequest;
+
 
 class LoginController extends Controller
 {
@@ -50,14 +52,14 @@ class LoginController extends Controller
     {
         $email = $request->email;
         $password = $request->password;
-       // $credentials = $request->only('email', 'password');
 
         if (Auth::attempt(['email'=>$email, 'password'=>$password])) {
             $request->session()->regenerate();
             return redirect()->intended('/article');
         } else {
-            
+           
         }
+
     }
 
     public function logout(Request $request)

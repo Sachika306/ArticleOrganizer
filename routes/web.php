@@ -66,9 +66,7 @@ Route::post('/register', 'App\Http\Controllers\Auth\RegisterController@postRegis
 
 
 //　ログイン //
-Route::get('/login', 'App\Http\Controllers\Auth\LoginController@getAuth')
-    ->name('login');
-
+Route::get('/login', 'App\Http\Controllers\Auth\LoginController@getAuth');
 Route::post('/login', 'App\Http\Controllers\Auth\LoginController@postAuth');
 
 Route::get('/logout', 'App\Http\Controllers\Auth\LoginController@logout');
