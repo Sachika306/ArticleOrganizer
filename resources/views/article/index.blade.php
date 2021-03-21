@@ -27,6 +27,7 @@
       <th scope="col">削除</th>
     </tr>
   </thead>
+
   <tbody>
     @foreach($articles as $article)
     <tr>
@@ -49,6 +50,7 @@
     </tr>
     @endforeach
   </tbody>
+
 </table>
 </div>
 {{ $articles->links() }}

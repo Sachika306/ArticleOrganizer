@@ -46,7 +46,7 @@
   <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1">パスワード</span>
   </div>
-  <input type="password" name="password" value="{{ old('password')}}" class="form-control" placeholder="password">
+  <input type="password" name="password" value="{{ old('password') }}" class="form-control" placeholder="password">
 </div>
 
 @error('password')
@@ -55,7 +55,7 @@
 
 
 <select class="custom-select" name="role_id">
-        <option value="0">付与する権限</option>
+        <option value="">付与する権限</option>
             @foreach($roles as $role => $value)
                 <option value="{{ $value->id }}">{{ $value->name }}</option>
             @endforeach
