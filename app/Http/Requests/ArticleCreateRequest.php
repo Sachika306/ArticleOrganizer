@@ -29,7 +29,7 @@ class ArticleCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required', 'max:40'],
+            'title' => ['required', 'max:200'],
             'outline_user_id' => ['required',  'integer'],
             'outline_url' => ['url'],
             'outline_deadline' => ['required', 'date_format:Y-m-d'],
