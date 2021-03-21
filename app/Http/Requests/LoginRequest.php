@@ -31,16 +31,14 @@ class LoginRequest extends FormRequest
         ];
     }
 
-    public function messages()
-    {
-        return [
-            'email.required' => 'メールアドレスを入力してください',
-            'email.email' => 'メールアドレスの形式が正しくありません',
-            'email.unique' => 'このメールアドレスは登録されていません。',
-            'password.required' => 'パスワードを入力してください',
-            'password.min' => '8文字以上で入力してください。',
-            'password.max' => '16文字以内で入力してください。',
-            'password.unique' => 'パスワードが間違っています。',
-        ];
-    }
+    // public function messages()
+    // {
+    //     return [
+    //         'email.required' => 'メールアドレスを入力してください',
+    //         'email.email' => 'メールアドレスの形式が正しくありません',
+    //         'password.required' => 'パスワードを入力してください',
+    //         'password.min' => '8文字以上で入力してください。',
+    //         'password.max' => '16文字以内で入力してください。',
+    //     ];
+    // }
 }

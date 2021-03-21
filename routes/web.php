@@ -6,6 +6,10 @@ use App\Models\RoleUser;
 use App\Models\User;
 use App\Models\OutlineAssignment;
 use App\Models\ArticleAssignment;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +24,13 @@ use App\Models\ArticleAssignment;
 
 // article routes //
 Route::get('/', function() { 
-
+    // $data = [
+    //     'title' => 'Hi',
+    //     'content' => 'This is content'
+    // ];
+    // Mail::send('emails.auth.test', $data, function($message){
+    //     $message->to('jessica56fr@gmail.com', 'Sachika')->subject('Hi');
+    // });
 });
 
 Route::get('/article', 'App\Http\Controllers\ArticleController@index')
@@ -72,3 +82,21 @@ Route::get('/login', 'App\Http\Controllers\Auth\LoginController@getAuth')
 Route::post('/login', 'App\Http\Controllers\Auth\LoginController@postAuth');
 
 Route::get('/logout', 'App\Http\Controllers\Auth\LoginController@logout');
+
+
+// verification
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/home');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');

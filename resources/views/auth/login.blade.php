@@ -1,54 +1,71 @@
 @extends('layouts.main')
 
-@section('title', 'ログイン')
-
 @section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header">{{ __('ログイン') }}</div>
 
-<form class="container" method="post" action="/login" novalidate>
-@csrf
-  <div class="row mb-3">
-    <label for="inputEmail3" class="col-sm-2 col-form-label">メールアドレス</label>
-    <div class="col-sm-10">
-      <input type="email" value="{{ old('email') }}" name="email" class="form-control" id="inputEmail3">
-      @error('email')
-            <p>{{$message}}</p>
-      @enderror
+                <div class="card-body">
+                    <form method="POST" action="/login" novalidate>
+                        @csrf
+                        <div class="form-group row">
+                            <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('メールアドレス') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+
+                                @if ($errors->has('email'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('パスワード') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+
+                                @if ($errors->has('password'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-6 offset-md-4">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('ログイン情報を記憶する') }}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-4">
+                            <div class="col-md-8 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('ログイン') }}
+                                </button>
+
+                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    {{ __('パスワードを忘れた場合はこちらから') }}
+                                </a>
+                            </div>
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-
-  <div class="row mb-3">
-    <label for="inputPassword3" class="col-sm-2 col-form-label">パスワード</label>
-    <div class="col-sm-10">
-      <input type="password" name="password" class="form-control" id="inputPassword3">
-      @error('password')
-            <p>{{$message}}</p>
-      @enderror
-      @error('message')
-            <p>{{$message}}</p>
-      @enderror
-    </div>
-  </div>
-
-  <div class="row mb-3">
-    <div class="col-sm-10 offset-sm-2">
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="gridCheck1">
-        <label class="form-check-label" for="gridCheck1">
-          ログイン情報を保存する
-        </label>
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-3">
-        @if (Route::has('password.request'))
-            <a class="btn btn-link" href="{{ route('password.request') }}">
-                    {{ __('パスワードを忘れた場合はこちらから') }}
-            </a>
-        @endif
-  </div>
-  <button type="submit" value="send" name="submit" class="btn btn-primary">送信</button>
-
-</form>
-
+</div>
 @endsection
+
