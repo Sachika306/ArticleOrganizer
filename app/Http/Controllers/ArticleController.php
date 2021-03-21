@@ -38,32 +38,26 @@ class ArticleController extends Controller
         
         //アウトライン権限のユーザーを探す
         $outlineUsers = $roles->find(2)->user;
+        $outlineUserNames = array();
         if (count($outlineUsers) > 0) {
-            $outlineUserNames = array(
-
-            );
-            //アウトライン権限のユーザー名を配列に入れる
             foreach ($outlineUsers as $user) {
-                $outlineUserNames[]['label'] = $user->name;
-                $outlineUserNames[]['value'] = $user->id;
+                $outlineUserNames[] = array(
+                    'label' => $user->name,
+                    'value' => $user->id
+                );
             }
-        //アウトライン権限のユーザーがいない場合
-        } else {
-            $outlineUserNames[] = [null, null]; 
         }
       
         //記事権限のユーザーを探す
         $articleUsers = $roles->find(3)->user;
+        $articleUserNames = array();
         if (count($articleUsers) > 0) {
-            $articleUserNames = array([]);
-            //アウトライン権限のユーザー名を配列に入れる
             foreach ($articleUsers as $user) {
-                $articleUserNames[]['label'] = $user->name;
-                $articleUserNames[]['value'] = $user->id;
+                $articleUserNames[] = array(
+                    'label' => $user->name,
+                    'value' => $user->id
+                );
             }
-        //記事権限のユーザーがいない場合
-        } else {
-            $articleUserNames[] = [null, null];
         }
 
        return view('article.create', compact('outlineUserNames', 'articleUserNames'));
