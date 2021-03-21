@@ -13,12 +13,9 @@ class LoginRequest extends FormRequest
      */
     public function authorize()
     {
-        if ($this->path() == 'login')
-        {
+
             return true;
-        } else {
-            return false;
-        }
+
     }
 
     /**
@@ -29,8 +26,8 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required',
-            'password' => 'required'
+            'email' => ['required', 'email'],
+            'password' => ['required', 'min:8', 'max:16']
         ];
     }
 
@@ -38,7 +35,12 @@ class LoginRequest extends FormRequest
     {
         return [
             'email.required' => 'メールアドレスを入力してください',
+            'email.email' => 'メールアドレスの形式が正しくありません',
+            'email.unique' => 'このメールアドレスは登録されていません。',
             'password.required' => 'パスワードを入力してください',
+            'password.min' => '8文字以上で入力してください。',
+            'password.max' => '16文字以内で入力してください。',
+            'password.unique' => 'パスワードが間違っています。',
         ];
     }
 }

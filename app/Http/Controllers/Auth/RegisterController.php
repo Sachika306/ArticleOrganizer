@@ -90,7 +90,7 @@ class RegisterController extends Controller
         ]);
 
         // メンバー一覧の画面に遷移する
-        return view('member.index');
+        return redirect('/login');
 
     }
 }

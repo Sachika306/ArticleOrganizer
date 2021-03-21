@@ -48,7 +48,7 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    public function postAuth(Request $request)
+    public function postAuth(LoginRequest $request)
     {
         $email = $request->email;
         $password = $request->password;
@@ -56,10 +56,11 @@ class LoginController extends Controller
         if (Auth::attempt(['email'=>$email, 'password'=>$password])) {
             $request->session()->regenerate();
             return redirect()->intended('/article');
-        } else {
-           
         }
 
+        return back()->withErrors([
+            'message' => 'ログインに失敗しました。',
+        ]);
     }
 
     public function logout(Request $request)
