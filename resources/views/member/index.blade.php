@@ -9,10 +9,6 @@
 </button>
 </a>
 
-@isset($message)
-<p>{{ $message }}</p>
-@endisset
-
 <div class="table-responsive-sm">
 <table class="table table-hover">
   <thead>
@@ -29,6 +25,7 @@
   <tbody>
     
     @foreach($users as $user)
+  
     <tr>
       <th scope="row">{{ $user->id }}</th>
       <td>{{ $user->last_name }}</td>
@@ -37,10 +34,12 @@
       <td>{{ $user->roles->first()->name }}</td>
       <td><a href="/member/show/{{ $user->id }}">詳細</a></td>
       <td>
-        <form action="/member/destroy/{{ $user->id }}" id="delete" method="post">
-        @csrf
-        <button type="submit" id="delete">削除</button>
-        </form>
+        @if($user->id !=  Auth::user()->id )
+          <form action="/member/destroy/{{ $user->id }}" id="delete" method="post">
+          @csrf
+          <button type="submit" id="delete">削除</button>
+          </form>
+        @endif
       </td>
     </tr>
     @endforeach

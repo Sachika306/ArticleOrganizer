@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\RegisterRequest;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -82,15 +83,17 @@ class RegisterController extends Controller
 
 
         // ユーザーの権限情報をRoleUserテーブルに登録する
-        $userId = $user->id; // 「user_id」カラムに入る値を定義
-       
+        $userId = $user->id; // 「user_id」カラムに入る値
         RoleUser::create([
             'user_id' => $userId,
             'role_id' => $data['role_id']
         ]);
 
-        // メンバー一覧の画面に遷移する
-        return redirect('/login');
+        $message = 'メンバーのメールアドレス宛にログイン情報が通知されました。';
 
+        // メンバー一覧のページにリダイレクト
+        event(new Registered($user));
+        
+        return view('member.index', compact('message'));
     }
 }

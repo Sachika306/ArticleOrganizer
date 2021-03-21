@@ -13,18 +13,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
 </head>
 <body>
-<div id="app"></div>
+<div id="app"></div> 
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="{{ url('/article') }}">記事管理アプリ</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+
   @if(Auth::check())
   <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
+      @if (Auth::user()->roles->first()->pivot->role_id == 1) 
         <li class="nav-item">
           <a class="nav-link" href="{{ url('/member') }}">メンバー一覧<span class="sr-only">(current)</span></a>
         </li>
+      @endif
         <li class="nav-item">
           <a class="nav-link" href="{{ url('/article') }}">記事一覧</a>
         </li>
@@ -32,14 +36,24 @@
           <a class="nav-link" href="{{ url('/logout') }}">ログアウト</a>
         </li>
         <li class="nav-item">
-          <p class="nav-link">{{ Auth::user()->name }}</p>
+          <a class="nav-link" href="{{ url('') }}">設定</a>
         </li>
       </ul>
+  </div>
+
+  <div>
+    <p class="navbar-brand">{{ Auth::user()->name }}</a>
   </div>
   @endif
 </nav>
 
 <h1>@yield('title')</h1>
+
+@isset($message)
+  <div class="alert alert-success" role="alert">
+    <p>{{ $message }}</p>
+  </div>
+@endisset
 
 @yield('content')
 

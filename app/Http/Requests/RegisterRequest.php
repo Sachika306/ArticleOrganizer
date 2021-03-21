@@ -37,20 +37,20 @@ class RegisterRequest extends FormRequest
         ];
     }
 
-    //エラーメッセージの日本語化
-    public function messages() {
-        return [
-            'first_name.required' => '姓名は必須項目です。',
-            'first_name.max:10' => '10文字以内で入力してください。',
-            'last_name.required' => '姓名は必須項目です。',
-            'last_name.max:10' => '10文字以内で入力してください。',
-            'email.required' => 'メールアドレスは必須項目です。',
-            'email.email' => 'メールアドレスの形式が間違っています。',
-            'email.unique' => 'このメールアドレスは既に存在します。',
-            'password.required' => 'パスワードは必須項目です。',
-            'password.min:8' => '8文字以上で入力してください。',
-            'password.max:16' => '16文字以内で入力してください。',
-            'role_id.required' => '権限は必須項目です。'
-        ];
-    }
+    // //エラーメッセージの日本語化
+    // public function messages() {
+    //     return [
+    //         'first_name.required' => '姓名は必須項目です。',
+    //         'first_name.max' => '10文字以内で入力してください。',
+    //         'last_name.required' => '姓名は必須項目です。',
+    //         'last_name.max' => '10文字以内で入力してください。',
+    //         'email.required' => 'メールアドレスは必須項目です。',
+    //         'email.email' => 'メールアドレスの形式が間違っています。',
+    //         'email.unique' => 'このメールアドレスは既に存在します。',
+    //         'password.required' => 'パスワードは必須項目です。',
+    //         'password.min:8' => '8文字以上で入力してください。',
+    //         'password.max:16' => '16文字以内で入力してください。',
+    //         'role_id.required' => '権限は必須項目です。'
+    //     ];
+    // }
 }
