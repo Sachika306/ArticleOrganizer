@@ -11,24 +11,22 @@
     <div class="col-sm-10">
       <input type="email" name="email" class="form-control" id="inputEmail3">
     </div>
-    @error('email')
-            <span class="invalid-feedback" role="alert">
-                <p><strong>{{ $message }}</strong></p>
-            </span>
-    @enderror
   </div>
+
+  @error('email')
+            <p>{{$message}}</p>
+  @enderror
 
   <div class="row mb-3">
     <label for="inputPassword3" class="col-sm-2 col-form-label">パスワード</label>
     <div class="col-sm-10">
       <input type="password" name="password" class="form-control" id="inputPassword3">
     </div>
-    @error('password')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-    @enderror
   </div>
+
+  @error('password')
+            <p>{{$message}}</p>
+  @enderror
 
   <div class="row mb-3">
     <div class="col-sm-10 offset-sm-2">
@@ -48,7 +46,7 @@
             </a>
         @endif
   </div>
-  <button type="submit" value="send" class="btn btn-primary">ログイン</button>
+  <button type="button" value="send" name="submitBtn" class="btn btn-primary" onclick="submit();">送信</button>
 
 </form>
 

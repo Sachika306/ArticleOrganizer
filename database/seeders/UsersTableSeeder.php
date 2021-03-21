@@ -14,9 +14,6 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $param = [
-
-        ];  
-        DB::table('users')->insert($param); 
+        \App\Models\User::factory()->count(5)->create();
     }
 }
