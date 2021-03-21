@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Roles;
+use Illuminate\Support\Facades\DB;
 
 class RolesTableSeeder extends Seeder
 {
@@ -17,15 +17,16 @@ class RolesTableSeeder extends Seeder
         $param = [
             'name' => '管理者'
         ];
+        DB::table('roles')->insert($param);
 
         $param = [
             'name' => 'アウトライン担当者'
         ];
+        DB::table('roles')->insert($param);
 
         $param = [
             'name' => '記事担当者'
         ];
-
-        DB::table('statuses')->insert($param);
+        DB::table('roles')->insert($param);
     }
 }
