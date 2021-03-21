@@ -21,8 +21,8 @@
   <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon2">アウトライン担当者</span>
   </div>
-  <input type="text" value="{{ old('outline_user_name')}}" class="form-control" placeholder="山田大郎" id="outline_user_name">
-  <input type="hidden" name="outline_user_id" value="{{ old('outline_user_id')}}" id="outline_user_id">
+  <input type="text" value="" class="form-control" placeholder="山田大郎" id="outline_user_name">
+  <input type="hidden" name="outline_user_id" value="" id="outline_user_id">
 </div>
 
 @error('outline_user_id')
@@ -51,8 +51,8 @@
   <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1">記事担当者</span>
   </div>
-  <input type="text" value="{{ old('article_user_name')}}" class="form-control" placeholder="山田大郎" id="article_user_name">
-  <input type="hidden" name="article_user_id" value="{{ old('article_user_id')}}" id="article_user_id">
+  <input type="text" value="" class="form-control" placeholder="山田大郎" id="article_user_name">
+  <input type="hidden" name="article_user_id" value="" id="article_user_id">
 </div>
 
 @error('article_user_id')

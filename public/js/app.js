@@ -1970,12 +1970,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
   \***************************************/
 /***/ (() => {
 
-// Nav Bar
-$(".nav .nav-link").on("click", function () {
-  $(".nav").find(".active").removeClass("active");
-  $(this).addClass("active");
-}); // Delete alert
-
+// Delete alert
 $('#delete').submit(function (e) {
   if (!confirm('ユーザーを削除しますか？')) {
     return false;
@@ -1990,12 +1985,12 @@ $("#outline_user_name").autocomplete({
   source: outlineUserNames,
   select: function select(event, ui) {
     $("#outline_user_name").val(ui.item.label);
-    event.preventDefault(); // inputにvalueが流れる（デフォルトの設定）を防ぐ
-
     $("#outline_user_id").val(ui.item.value);
+    return false; //event.preventDefault(); // inputにvalueが流れる（デフォルトの設定）を防ぐ
   },
   autofocus: true
 });
+console.log(outlineUserNames);
 $("#article_user_name").autocomplete({
   source: articleUserNames,
   select: function select(event, ui) {

@@ -10,6 +10,7 @@
 </button>
 </a>
 
+<div class="table-responsive-sm">
 <table class="table table-hover">
   <thead>
     <tr>
@@ -49,5 +50,6 @@
     @endforeach
   </tbody>
 </table>
+</div>
 {{ $articles->links() }}
 @endsection

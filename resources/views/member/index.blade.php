@@ -13,6 +13,7 @@
 <p>{{ $message }}</p>
 @endisset
 
+<div class="table-responsive-sm">
 <table class="table table-hover">
   <thead>
     <tr>
@@ -46,5 +47,7 @@
     
   </tbody>
 </table>
+</div>
+
 {{ $users->links() }}
 @endsection
