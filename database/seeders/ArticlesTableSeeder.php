@@ -44,6 +44,5 @@ class ArticlesTableSeeder extends Seeder
             'status_id' => 9
         ];
         DB::table('articles')->insert($param);
-
     }
 }

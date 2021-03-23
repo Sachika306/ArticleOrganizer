@@ -14,9 +14,6 @@ class OutlineAssignmentsTableSeeder extends Seeder
      */
     public function run()
     {      
-        $param = [
-
-        ];  
-        DB::table('outline_assignments')->insert($param);   
+        \App\Models\OutlineAssignment::factory()->count(5)->create();
     }
 }

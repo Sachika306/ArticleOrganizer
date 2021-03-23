@@ -38,18 +38,4 @@ class ArticleCreateRequest extends FormRequest
             'article_user_id' => ['required']
         ];
     }
-
-    //エラーメッセージの日本語化
-    // public function messages() {
-    //     return [
-    //         'title.required' => 'タイトルは必須項目です。',
-    //         'title.max' => '40文字以内で入力してください。',
-    //         'outline_url.url' => 'URL形式で入力してください。',
-    //         'outline_deadline.required' => '納期は必須項目です。',
-    //         'outline_deadline.date_format' => '納期は「YYYY-MM-DD」の形式で入力してください。',
-    //         'article_url.url' => 'URL形式で入力してください。',
-    //         'article_deadline.required' => '納期は必須項目です。',
-    //         'article_deadline.date_format' => '納期は「YYYY-MM-DD」の形式で入力してください。'
-    //     ];
-    // }
 }
