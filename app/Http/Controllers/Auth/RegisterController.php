@@ -93,7 +93,6 @@ class RegisterController extends Controller
 
         // メンバー一覧のページにリダイレクト
         event(new Registered($user));
-        
-        return view('member.index', compact('message'));
+        return redirect('/member')->with('message');
     }
 }

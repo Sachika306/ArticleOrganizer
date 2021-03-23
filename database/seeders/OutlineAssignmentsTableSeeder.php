@@ -14,6 +14,7 @@ class OutlineAssignmentsTableSeeder extends Seeder
      */
     public function run()
     {      
-        \App\Models\OutlineAssignment::factory()->count(5)->create();
+       // \App\Models\OutlineAssignment::factory()->count(5)->create();
+        
     }
 }

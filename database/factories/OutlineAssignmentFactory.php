@@ -26,7 +26,7 @@ class OutlineAssignmentFactory extends Factory
     public function definition()
     {
         return [
-            'article_id'=> Article::all()->random()->id,
+            // 'article_id'はArticleTableSeederで生成
             'outline_user_id' => RoleUser::where('role_id', '=', '2')->pluck('user_id')->random(),
             'outline_url' => $this->faker->url,
             'outline_deadline' => $this->faker->date($format = 'Y-m-d')
