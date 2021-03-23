@@ -14,9 +14,6 @@ class RoleUsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $param = [
-
-        ];  
-        DB::table('role_users')->insert($param);    
+        \App\Models\RoleUser::factory()->count(10)->create(); 
     }
 }

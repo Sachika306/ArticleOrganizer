@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\RoleUser;
+use App\Models\User;
+use App\Models\Role;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class RoleUserFactory extends Factory
@@ -21,6 +23,9 @@ class RoleUserFactory extends Factory
      */
     public function definition()
     {
-
+        return [
+            'user_id' => User::factory(),
+            'role_id' => Role::all()->random()->id
+        ];
     }
 }

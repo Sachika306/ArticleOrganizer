@@ -14,10 +14,7 @@ class ArticleAssignmentsTableSeeder extends Seeder
      */
     public function run()
     {
-        $param = [
-
-        ];  
-        DB::table('article_assignments')->insert($param);      
+        \App\Models\ArticleAssignment::factory()->count(5)->create();   
     }
 }
 

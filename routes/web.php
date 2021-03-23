@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Article;
+use App\Models\Role;
 use App\Models\RoleUser;
 use App\Models\User;
 use App\Models\OutlineAssignment;
@@ -9,6 +10,8 @@ use App\Models\ArticleAssignment;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Arr;
 
 
 /*
@@ -23,14 +26,8 @@ use Illuminate\Http\Request;
 */
 
 // article routes //
-Route::get('/', function() { 
-    // $data = [
-    //     'title' => 'Hi',
-    //     'content' => 'This is content'
-    // ];
-    // Mail::send('emails.auth.test', $data, function($message){
-    //     $message->to('jessica56fr@gmail.com', 'Sachika')->subject('Hi');
-    // });
+Route::get('/', function() {
+    echo Roleuser::where('role_id', '=', '2')->pluck('user_id')->random();
 });
 
 Route::get('/article', 'App\Http\Controllers\ArticleController@index')
