@@ -26,7 +26,7 @@ class ArticleAssignmentFactory extends Factory
     public function definition()
     {
         return [
-            'article_id'=> Article::all()->random()->id,
+            // 'article_id'はArticleTableSeederで生成
             'article_user_id' => RoleUser::where('role_id', '=', '1')->pluck('user_id')->random(),
             'article_url' => $this->faker->url,
             'article_deadline' => $this->faker->date($format = 'Y-m-d')
