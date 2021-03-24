@@ -16,7 +16,7 @@
 <div id="app"></div> 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="{{ url('/article') }}">記事管理アプリ</a>
+  <a class="navbar-brand" href="{{ url('/home') }}">記事管理アプリ</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -36,7 +36,7 @@
           <a class="nav-link" href="{{ url('/logout') }}">ログアウト</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ url('') }}">設定</a>
+          <a class="nav-link" href="{{ url('/member/setting') }}">設定</a>
         </li>
       </ul>
   </div>

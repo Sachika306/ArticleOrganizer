@@ -26,12 +26,16 @@ use Illuminate\Support\Arr;
 */
 
 // article routes //
+Route::get('/home', 'App\Http\Controllers\HomeController@index')
+    ->name('home');
+
 Route::get('/', function() {
     echo Roleuser::where('role_id', '=', '2')->pluck('user_id')->random();
 });
 
 Route::get('/article', 'App\Http\Controllers\ArticleController@index')
-    ->middleware('auth');
+    ->middleware('auth')
+    ->name('article');
 
 Route::get('/article/show/{id}', 'App\Http\Controllers\ArticleController@show')
     ->middleware('auth');
@@ -56,13 +60,17 @@ Route::get('/member/show/{id}', 'App\Http\Controllers\MemberController@show')
 Route::get('/member/edit/{id}', 'App\Http\Controllers\MemberController@edit')
     ->middleware('auth');
 
+Route::get('/member/setting', 'App\Http\Controllers\MemberController@setting')
+    ->middleware('auth');
+
 Route::post('/member/destroy/{id}', 'App\Http\Controllers\MemberController@destroy')
     ->middleware('auth');
 
 
 //　会員登録 //
 Auth::routes([
-    'register' => false // ユーザ登録機能をオフに切替
+    'register' => false, // ユーザ登録機能をオフに切替
+    'verify' => true
 ]);
 
 Route::get('/register', 'App\Http\Controllers\Auth\RegisterController@getRegister')
@@ -88,10 +96,9 @@ Route::get('/email/verify', function () {
 
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
-
-    return redirect('/home');
+    return redirect()->route('home');
 })->middleware(['auth', 'signed'])->name('verification.verify');
-
+    
 Route::post('/email/verification-notification', function (Request $request) {
     $request->user()->sendEmailVerificationNotification();
 

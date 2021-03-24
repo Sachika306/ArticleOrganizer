@@ -155,6 +155,8 @@ return [
         'outline_deadline' => 'アウトライン納期',
         'article_user_id' => '記事担当者',
         'article_url' => '記事URL',
-        'article_deadline' => '記事納期'
+        'article_deadline' => '記事納期',
+        'first_name' => '名前',
+        'last_name' => '名前'
     ],
 ];

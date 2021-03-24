@@ -66,6 +66,19 @@ class MemberController extends Controller
     }
 
     /**
+     * Show the form for editing the logged in user.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function setting()
+    {
+        //
+        return view('member.setting');
+
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
