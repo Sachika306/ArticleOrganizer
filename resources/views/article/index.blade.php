@@ -6,7 +6,7 @@
 
 
 <a href="{{ url('/article/create') }}">
-<button type="button" class="btn btn-secondary">新規登録
+<button type="button" class="btn btn-primary">新規登録
 </button>
 </a>
 
@@ -34,7 +34,7 @@
     <th scope="row">{{ $article->id }}</th>
       <td>{{ $article->title }}</td>
       <td>{{ $article->status->name }}</td>
-      <td>{{ $users->find($article->outlineassignment) }}</td> 
+      <td>{{ $users->find($article->outlineassignment->outline_user_id)->name }}</td> 
       <td>{{ $article->outlineassignment->outline_url }}</td>
       <td>{{ $article->outlineassignment->outline_deadline }}</td>
       <td>{{ $users->find($article->articleassignment->article_user_id)->name }}</td>
