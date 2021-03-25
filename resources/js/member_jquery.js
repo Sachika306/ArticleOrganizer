@@ -12,7 +12,7 @@ $('.date').datepicker({
 });  
 
 
-// オートコンプリート機能を適用（article.create）
+// オートコンプリート機能を適用（article.assign）
 $( "#outline_user_name" ).autocomplete({
   source: outlineUserNames,
   select: function(event, ui) {

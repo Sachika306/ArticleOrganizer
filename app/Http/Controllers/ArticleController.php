@@ -30,7 +30,7 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function assign()
     {
         
         // jQuery-UI autocomplete で使うためアウトライン・記事担当者の名前を配列にする
@@ -60,7 +60,7 @@ class ArticleController extends Controller
             }
         }
 
-       return view('article.create', compact('outlineUserNames', 'articleUserNames'));
+       return view('article.assign', compact('outlineUserNames', 'articleUserNames'));
     }
 
     /**

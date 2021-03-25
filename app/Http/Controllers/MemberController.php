@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\RoleUser;
 use Illuminate\Http\Request;
+use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\MemberEditRequest;
+use Illuminate\Support\Facades\Auth;
 
 class MemberController extends Controller
 {
@@ -33,11 +36,13 @@ class MemberController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        // return view('member.store');
-        User::create($request->all());
-        RoleUser::create($request->all());
+    public function store(MemberEditRequest $request)
+    { 
+        $form = $request->all();
+        $form['name'] = $form['last_name'].' '.$form['first_name'];
+        User::find(Auth::user()->id)->fill($form)->save();
+        $message = '設定変更が完了しました。';
+        return view('member.setting')->with('message', $message);
     }
 
     /**
@@ -66,15 +71,15 @@ class MemberController extends Controller
     }
 
     /**
-     * Show the form for editing the logged in user.
+     * Edit the information of logged in user
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  
+     * @return 
      */
     public function setting()
     {
         //
-        return view('member.setting');
+        return view('member.setting')->with('message', );
 
     }
 

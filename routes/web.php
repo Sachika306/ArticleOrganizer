@@ -40,11 +40,13 @@ Route::get('/article', 'App\Http\Controllers\ArticleController@index')
 Route::get('/article/show/{id}', 'App\Http\Controllers\ArticleController@show')
     ->middleware('auth');
 
+Route::get('/article/assign', 'App\Http\Controllers\ArticleController@assign')
+    ->middleware('auth');
+
 Route::get('/article/create', 'App\Http\Controllers\ArticleController@create')
     ->middleware('auth');
 
-Route::post('/article/store', 'App\Http\Controllers\ArticleController@store')
-    ->middleware('auth');
+Route::post('/article/store', 'App\Http\Controllers\ArticleController@store');
 
 Route::post('/article/destroy/{id}', 'App\Http\Controllers\ArticleController@destroy')
     ->middleware('auth');
@@ -55,6 +57,9 @@ Route::get('/member', 'App\Http\Controllers\MemberController@index')
     ->middleware('auth');
 
 Route::get('/member/show/{id}', 'App\Http\Controllers\MemberController@show')
+    ->middleware('auth');
+
+Route::post('/member/store', 'App\Http\Controllers\MemberController@store')
     ->middleware('auth');
 
 Route::get('/member/edit/{id}', 'App\Http\Controllers\MemberController@edit')
@@ -101,6 +106,5 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
     
 Route::post('/email/verification-notification', function (Request $request) {
     $request->user()->sendEmailVerificationNotification();
-
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');

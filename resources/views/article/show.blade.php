@@ -1,14 +1,17 @@
 @extends('layouts.main')
 
-@section('title', '記事詳細')
-
 @section('content')
 
-<a href="{{ url('/article/create') }}">
-<button type="button" class="btn btn-secondary">新規登録
-</button>
-</a>
+<div class="card w-75 mx-auto">
 
+  <div class="card-header d-flex justify-content-between">
+    <div>{{ __('記事詳細') }}</div>
+    <a href="{{ url('/article/create') }}">
+      <button type="button" class="btn btn-primary">記事作成</button>
+    </a>
+  </div>
+
+  
 <table class="table table-hover">
   <thead>
     <tr>
@@ -44,7 +47,13 @@
         </form>
       </td>
     </tr>
-  </tbody>
-</table>
+      </tbody>
 
+    </table>
+
+    <a href="{{ url('/article') }}">
+      <button type="button" class="btn btn-secondary">一覧に戻る</button>
+    </a>
+  </div>
+</div>
 @endsection
