@@ -16,7 +16,7 @@ class ArticlesTableSeeder extends Seeder
      */
     public function run()
     {
-       \App\Models\Article::factory()->count(5)->create()->each(
+       \App\Models\Article::factory()->count(10)->create()->each(
             function($article) {
                 ArticleAssignment::factory()->create(['article_id' => $article->id]);
                 OutlineAssignment::factory()->create(['article_id' => $article->id]);

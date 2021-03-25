@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOutlineAssignmentsTable extends Migration
+class CreateThumbnailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateOutlineAssignmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('outline_assignments', function (Blueprint $table) {
+        Schema::create('thumbnails', function (Blueprint $table) {
             $table->id();
-            $table->integer('article_id');
-            $table->integer('outline_user_id');
-            $table->string('outline_url')->nullable();
-            $table->date('outline_deadline');
+            $table->string('thumbnail')->nullable();
+            $table->string('name')->nullable();
             $table->timestamps();
         });
     }
@@ -30,8 +28,6 @@ class CreateOutlineAssignmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('outline_assignments');
+        Schema::dropIfExists('thumbnails');
     }
 }
-
-
