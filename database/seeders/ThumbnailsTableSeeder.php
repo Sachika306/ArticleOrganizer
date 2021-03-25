@@ -3,9 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
-class OutlineAssignmentsTableSeeder extends Seeder
+class ThumbnailsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,7 +12,8 @@ class OutlineAssignmentsTableSeeder extends Seeder
      * @return void
      */
     public function run()
-    {      
-
+    {
+        //
+        \App\Models\Thumbnail::factory()->count(5)->create(); 
     }
 }

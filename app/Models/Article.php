@@ -21,10 +21,15 @@ class Article extends Model
         return $this->hasOne(ArticleAssignment::class);
     }
 
+    public function thumbnail() {
+        return $this->hasOne(thumbnail::class);
+    }
+
     public function getData() {
         return Article::with('status')->get();
         return Article::with('outlineassignment')->get();
         return Article::with('articleassignment')->get();
+        return Article::with('thumbnail')->get();
     }
 
     /**

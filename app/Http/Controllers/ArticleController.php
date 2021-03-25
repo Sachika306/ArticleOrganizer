@@ -26,7 +26,7 @@ class ArticleController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new assignment.
      *
      * @return \Illuminate\Http\Response
      */
@@ -61,6 +61,16 @@ class ArticleController extends Controller
         }
 
        return view('article.assign', compact('outlineUserNames', 'articleUserNames'));
+    }
+
+    /**
+     * Show the form for creating a new assignment.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('article.create');
     }
 
     /**
