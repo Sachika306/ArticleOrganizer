@@ -50,9 +50,17 @@
 <h1>@yield('title')</h1>
 
 @isset($message)
-  <div class="alert alert-success" role="alert">
-    <p>{{ $message }}</p>
-  </div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            
+            <div class="alert alert-success container mx-auto" role="alert">
+              <p>{{ $message }}</p>
+            
+            </div>
+        </div>
+    </div>
+</div>
 @endisset
 
 @yield('content')

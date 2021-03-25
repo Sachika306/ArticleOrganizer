@@ -1979,7 +1979,7 @@ $('#delete').submit(function (e) {
 
 $('.date').datepicker({
   dateFormat: 'yy-mm-dd'
-}); // オートコンプリート機能を適用（article.create）
+}); // オートコンプリート機能を適用（article.assign）
 
 $("#outline_user_name").autocomplete({
   source: outlineUserNames,

@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class ArticleCreateRequest extends FormRequest
+class MemberEditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +14,7 @@ class ArticleCreateRequest extends FormRequest
      */
     public function authorize()
     {
-        if ($this->path() == 'article/store')
+        if ($this->path() == 'member/setting' || 'member/edit/{id}')
         {
             return true;
         } else {
@@ -29,11 +30,9 @@ class ArticleCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required', 'max:200'],
-            'outline_user_id' => ['required'],
-            'outline_deadline' => ['required', 'date_format:Y-m-d'],
-            'article_deadline' => ['required', 'date_format:Y-m-d'],
-            'article_user_id' => ['required']
+            'first_name' => ['max:10'],
+            'last_name' => ['max:10'],
+            'email' => ['email:strict,dns,spoof', 'unique:users,email,'.$this->id],
         ];
     }
 }

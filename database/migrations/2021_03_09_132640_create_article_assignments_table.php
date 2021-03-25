@@ -17,7 +17,7 @@ class CreateArticleAssignmentsTable extends Migration
             $table->id();
             $table->integer('article_id');
             $table->integer('article_user_id');
-            $table->string('article_url');
+            $table->string('article_url')->default('DEFAULT');
             $table->date('article_deadline');
             $table->timestamps();
         });

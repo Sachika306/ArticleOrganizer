@@ -17,7 +17,7 @@ class CreateOutlineAssignmentsTable extends Migration
             $table->id();
             $table->integer('article_id');
             $table->integer('outline_user_id');
-            $table->string('outline_url');
+            $table->string('outline_url')->default('DEFAULT');
             $table->date('outline_deadline');
             $table->timestamps();
         });
