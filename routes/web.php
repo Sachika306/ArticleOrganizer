@@ -33,44 +33,27 @@ Route::get('/', function() {
     echo Roleuser::where('role_id', '=', '2')->pluck('user_id')->random();
 });
 
-Route::get('/article', 'App\Http\Controllers\ArticleController@index')
-    ->middleware('auth')
-    ->name('article');
-
-Route::get('/article/show/{id}', 'App\Http\Controllers\ArticleController@show')
-    ->middleware('auth');
-
-Route::get('/article/assign', 'App\Http\Controllers\ArticleController@assign')
-    ->middleware('auth');
-
-Route::get('/article/create', 'App\Http\Controllers\ArticleController@create')
-    ->middleware('auth');
-
-Route::post('/article/store', 'App\Http\Controllers\ArticleController@store');
-
-Route::post('/article/destroy/{id}', 'App\Http\Controllers\ArticleController@destroy')
-    ->middleware('auth');
-
+// article routes //
+Route::middleware('auth')->group(function () {
+    Route::get('/article', 'App\Http\Controllers\ArticleController@index')
+        ->name('article');
+    Route::get('/article/show/{id}', 'App\Http\Controllers\ArticleController@show');
+    Route::get('/article/edit/{id}', 'App\Http\Controllers\ArticleController@edit');
+    Route::get('/article/assign', 'App\Http\Controllers\ArticleController@assign');
+    Route::get('/article/create', 'App\Http\Controllers\ArticleController@create');
+    Route::post('/article/store', 'App\Http\Controllers\ArticleController@store');
+    Route::post('/article/destroy/{id}', 'App\Http\Controllers\ArticleController@destroy');
+});
 
 // member routes //
-Route::get('/member', 'App\Http\Controllers\MemberController@index')
-    ->middleware('auth');
-
-Route::get('/member/show/{id}', 'App\Http\Controllers\MemberController@show')
-    ->middleware('auth');
-
-Route::post('/member/store', 'App\Http\Controllers\MemberController@store')
-    ->middleware('auth');
-
-Route::get('/member/edit/{id}', 'App\Http\Controllers\MemberController@edit')
-    ->middleware('auth');
-
-Route::get('/member/setting', 'App\Http\Controllers\MemberController@setting')
-    ->middleware('auth');
-
-Route::post('/member/destroy/{id}', 'App\Http\Controllers\MemberController@destroy')
-    ->middleware('auth');
-
+Route::middleware('auth')->group(function () {
+    Route::get('/member', 'App\Http\Controllers\MemberController@index');
+    Route::get('/member/show/{id}', 'App\Http\Controllers\MemberController@show');
+    Route::post('/member/store', 'App\Http\Controllers\MemberController@store');
+    Route::get('/member/edit/{id}', 'App\Http\Controllers\MemberController@edit');
+    Route::get('/member/setting', 'App\Http\Controllers\MemberController@setting');
+    Route::post('/member/destroy/{id}', 'App\Http\Controllers\MemberController@destroy');
+});
 
 //　会員登録 //
 Auth::routes([

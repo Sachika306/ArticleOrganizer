@@ -40,10 +40,6 @@
         </li>
       </ul>
   </div>
-
-  <div>
-    <p class="navbar-brand">{{ Auth::user()->name }}</a>
-  </div>
   @endif
 </nav>
 

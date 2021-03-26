@@ -4,56 +4,49 @@
 
 <div class="card w-75 mx-auto">
 
-  <div class="card-header d-flex justify-content-between">
-    <div>{{ __('記事詳細') }}</div>
-    <a href="{{ url('/article/create') }}">
-      <button type="button" class="btn btn-primary">記事作成</button>
-    </a>
-  </div>
+  <div class="card-body">
+    
+    <div class="card-body d-flex justify-content-between">
+      <div>
+        <a href="/article/edit/{{ $article->id }}">
+          <button type="button" class="btn btn-primary">記事編集</button>
+        </a>
+        <a href="{{ url('/article/update') }}">
+          <button type="button" class="btn btn-success">記事申請</button>
+        </a>
+        <a href="{{ url('/article/preview') }}">
+          <button type="button" class="btn btn-secondary">プレビュー</button>
+        </a>
+      </div>
+      <div>{{ $article->status->name }}</div>
+    </div>
+    <div>
+      <h2 class="display-6">（ID:{{ $article->id }}） {{ $article->title }}</h2>
+      <hr>
+    </div>
+    
+      <div>
+        <h3 class="display-6">アウトライン</h3>
+      </div>
 
-  
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">タイトル</th>
-      <th scope="col">ステータス</th>
-      <th scope="col">アウトライン担当者</th>
-      <th scope="col">アウトラインURL</th>
-      <th scope="col">アウトライン納期</th>
-      <th scope="col">記事担当</th>
-      <th scope="col">記事URL</th>
-      <th scope="col">記事納期</th>
-      <th scope="col">編集</th>
-      <th scope="col">削除</th>
-    </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <th scope="row">{{ $article->id }}</th>
-      <td>{{ $article->title }}</td>
-      <td></td>
-      <td>{{ $article->getData()->find($article->id)->outlineassignment->user_id }}</td>
-      <td>{{ $article->getData()->find($article->id)->outlineassignment->outline_url }}</td>
-      <td>{{ $article->getData()->find($article->id)->outlineassignment->outline_deadline }}</td>
-      <td>{{ $article->getData()->find($article->id)->articleassignment->user_id }}</td>
-      <td>{{ $article->getData()->find($article->id)->articleassignment->article_url }}</td>
-      <td>{{ $article->getData()->find($article->id)->articleassignment->article_deadline }}</td>
-      <td><a href="/article/show/{{ $article->id }}">詳細</a></td>
-      <td>
-        <form action="/article/destroy/{{ $article->id }}" id="delete" method="post">
-        @csrf
-        <button type="submit" id="delete">削除</button>
-        </form>
-      </td>
-    </tr>
-      </tbody>
+      <div>
+        <h3 class="display-6">画像</h3>
+      </div>
 
-    </table>
+      <div>
+        <h3 class="display-6">記事本文</h3>
+        <p>daufheuwhguirehguiehuihowiljpoqwopdkopwkdopwkorueiowhruejnjkfdnkfdn</p>
+      </div>
+    
 
-    <a href="{{ url('/article') }}">
-      <button type="button" class="btn btn-secondary">一覧に戻る</button>
-    </a>
+        <div class="card-body">
+          <a href="{{ url('/article') }}">
+            <button type="button" class="btn btn-secondary">一覧に戻る</button>
+          </a>
+        </div>
+    
+      </div>
+    </div>
   </div>
 </div>
 @endsection
