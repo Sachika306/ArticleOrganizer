@@ -19,6 +19,5 @@ class DatabaseSeeder extends Seeder
         $this->call(ArticlesTableSeeder::class); //済
         $this->call(ArticleAssignmentsTableSeeder::class);
         $this->call(OutlineAssignmentsTableSeeder::class);
-        $this->call(ThumbnailsTableSeeder::class); //済
     }
 }

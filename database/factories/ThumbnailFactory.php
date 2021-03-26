@@ -23,8 +23,7 @@ class ThumbnailFactory extends Factory
     public function definition()
     {
         return [
-            'file_name' => $this->faker->url,
-            'article_id' => Article::pluck('id')->random()
+            'file_name' => $this->faker->url
         ];
     }
 }
