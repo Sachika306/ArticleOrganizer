@@ -21,7 +21,7 @@
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">アイキャッチ画像</label>
-            <input type="file" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            <input type="file" name="file_name" class="form-control" id="exampleInputPassword1" placeholder="Password">
         </div>
 
 
@@ -42,10 +42,8 @@
 
 
         <div class="card-body">
-          <a href="/article/show/{{ $article->id }}">
-            <button type="button" class="btn btn-primary">記事を保存する</button>
-          </a>
-          <a href="/article/show/{{ $article->id }}">
+          <button type="button" submit class="btn btn-primary">記事を保存する</button>
+          <a href="{{ $_SERVER['HTTP_REFERER'] }}">
             <button type="button" class="btn btn-secondary">記事詳細に戻る</button>
           </a>
         </div>

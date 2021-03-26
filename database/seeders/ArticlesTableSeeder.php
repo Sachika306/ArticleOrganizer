@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\ArticleAssignment;
 use App\Models\OutlineAssignment;
+use App\Models\Thumbnail;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -20,6 +21,7 @@ class ArticlesTableSeeder extends Seeder
             function($article) {
                 ArticleAssignment::factory()->create(['article_id' => $article->id]);
                 OutlineAssignment::factory()->create(['article_id' => $article->id]);
+                Thumbnail::factory()->create(['article_id' => $article->id]);
             }
         );
     }
