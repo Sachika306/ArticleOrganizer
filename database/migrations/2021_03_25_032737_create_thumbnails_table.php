@@ -15,8 +15,8 @@ class CreateThumbnailsTable extends Migration
     {
         Schema::create('thumbnails', function (Blueprint $table) {
             $table->id();
-            $table->string('thumbnail')->nullable();
-            $table->string('name')->nullable();
+            $table->integer('article_id')->nullable();
+            $table->string('file_name')->nullable();
             $table->timestamps();
         });
     }

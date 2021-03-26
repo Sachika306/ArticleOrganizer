@@ -32,8 +32,7 @@ class ArticleFactory extends Factory
                 'リベンジ消費とは／中国ではすでに消費拡大！インバウンド対策もアフターコロナに向けて始動',
                 'AISASモデルとは | 消費者の購買活動を喚起するネット広告の認知プロセス'
             ]),
-            'status_id' => Status::pluck('id')->random(),
-            'thumbnail_id' => Thumbnail::pluck('id')->random()
-        ];
-    }
+            'status_id' => Status::pluck('id')->random()
+            ];
+        }
 }

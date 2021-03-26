@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Thumbnail;
+use App\Models\Article;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ThumbnailFactory extends Factory
@@ -22,8 +23,8 @@ class ThumbnailFactory extends Factory
     public function definition()
     {
         return [
-            'thumbnail' => $this->faker->url,
-            'name' => $this->faker->name
+            'file_name' => $this->faker->url,
+            'article_id' => Article::pluck('id')->random()
         ];
     }
 }
