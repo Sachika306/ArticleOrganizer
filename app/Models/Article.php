@@ -22,7 +22,7 @@ class Article extends Model
     }
 
     public function thumbnail() {
-        return $this->hasOne(thumbnail::class);
+        return $this->hasOne(Thumbnail::class);
     }
 
     public function getData() {
