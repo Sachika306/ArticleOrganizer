@@ -114,8 +114,8 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        //
-        return view('');
+        $article = Article::find($id);
+        return view('article.edit', compact('article'));
     }
 
     /**
