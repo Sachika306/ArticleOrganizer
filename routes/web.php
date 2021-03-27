@@ -46,6 +46,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/article/update/{id}', 'App\Http\Controllers\ArticleController@update');
 });
 
+// outline routes //
+Route::middleware('auth')->group(function () {
+    Route::get('/outline/edit/{id}', 'App\Http\Controllers\OutlineController@edit');
+    Route::post('/outline/update/{id}', 'App\Http\Controllers\OutlineController@update');
+});
+
 // member routes //
 Route::middleware('auth')->group(function () {
     Route::get('/member', 'App\Http\Controllers\MemberController@index');
@@ -56,25 +62,21 @@ Route::middleware('auth')->group(function () {
     Route::post('/member/destroy/{id}', 'App\Http\Controllers\MemberController@destroy');
 });
 
-//　会員登録 //
+//　member auth //
 Auth::routes([
     'register' => false, // ユーザ登録機能をオフに切替
     'verify' => true
 ]);
-
 Route::get('/register', 'App\Http\Controllers\Auth\RegisterController@getRegister')
     ->name('register');
    // ->middleware('auth');
-
 Route::post('/register', 'App\Http\Controllers\Auth\RegisterController@postRegister');
 
 
-//　ログイン //
+//　Login //
 Route::get('/login', 'App\Http\Controllers\Auth\LoginController@getAuth')
     ->name('login');
-    
 Route::post('/login', 'App\Http\Controllers\Auth\LoginController@postAuth');
-
 Route::get('/logout', 'App\Http\Controllers\Auth\LoginController@logout');
 
 

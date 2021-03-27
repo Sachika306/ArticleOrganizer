@@ -6,25 +6,30 @@
   <div class="card-body">
     
       <div class="card-body">
-        <div class="d-flex justify-content-between">
+        <div class="">
           <div>
             <a href="/article/edit/{{ $article->id }}">
               <button type="button" class="btn btn-primary">記事編集</button>
             </a>
-            <a href="/article/edit/{{ $article->id }}">
+            <a href="/outline/edit/{{ $article->id }}">
               <button type="button" class="btn btn-secondary">アウトライン</button>
             </a>
             <a href="{{ url('/article/preview') }}">
               <button type="button" class="btn btn-secondary">プレビュー</button>
             </a>
           </div>
-          <div>{{ $article->status->name }}</div>
         </div>
       </div>
     
         <div class="card-body">
           <div>
-            <h2 class="display-6">（ID:{{ $article->id }}） {{ $article->title }}</h2>
+            <h2 class="display-6 d-inline-block">（ID:{{ $article->id }}） {{ $article->title }}</h2>
+              <span class="text-light ml-3">
+                  @include('layouts.article.status')
+                      {{ $article->status->name }}
+                  </div>
+              </span>
+          
             <hr>
           </div>
         
