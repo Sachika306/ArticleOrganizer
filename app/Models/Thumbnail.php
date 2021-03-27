@@ -11,4 +11,8 @@ class Thumbnail extends Model
     public function article() {
         return $this->belongsTo(Article::class);
     }
+
+    protected $fillable = [
+        'file_name'
+    ];
 }

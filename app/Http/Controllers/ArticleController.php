@@ -8,10 +8,12 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Article;
 use App\Models\Role;
+use App\Models\Thumbnail;
 use App\Models\RoleUser;
 use App\Models\OutlineAssignment;
 use App\Models\ArticleAssignment;
 use App\Http\Requests\ArticleCreateRequest;
+use App\Http\Requests\ArticleUpdateRequest;
 
 class ArticleController extends Controller
 {
@@ -89,6 +91,9 @@ class ArticleController extends Controller
 
         // ArticleAssignmentにデータを作る
         $article->articleassignment()->create($request->all());
+        
+        // Thumbnailにデータを作る
+        $article->thumbnail()->create($request->all());
 
         return redirect('/article');
     }
@@ -125,10 +130,28 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ArticleUpdateRequest $request, $id)
     {
         //
-        return view('');
+        return redirect()->back()->with('message', '内容が保存されました！');
+        $article = Article::find($id);
+        $thumbnail = Thumbnail::where('article_id', '=', $id);
+        $path = $request->file('file_name')->store('public/thumbnails'); //画像をpublic/thumbnailsに保存
+
+        $update = [
+            'content' => $request->content,
+            'title' => $request->title
+        ];
+
+        $update2 = [
+            'file_name' => basename($path)
+        ];
+
+        $article->update($update);
+        $thumbnail->update($update2);
+
+        
+        
     }
 
     /**

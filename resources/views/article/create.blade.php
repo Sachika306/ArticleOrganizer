@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card">
-                <div class="card-header">{{ __('新規記事作成') }}</div>
+                <div class="card-header">{{ __('新規アサイン作成') }}</div>
 
                 <div class="card-body">
                     <form method="post" action="/article/store" class="container">
@@ -67,7 +67,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="atcile_deadline" class="col-sm-4 col-form-label text-md-right">{{ __('アウトライン納期') }}</label>
+                            <label for="atcile_deadline" class="col-sm-4 col-form-label text-md-right">{{ __('記事納期') }}</label>
                             <div class="col-md-6">
                                 <input id="basic-datepicker2" type="text" class="date form-control{{ $errors->has('article_deadline') ? ' is-invalid' : '' }}" placeholder="2020-01-01" name="article_deadline" value="{{ old('article_deadline') }}">
                                 @if ($errors->has('article_deadline'))

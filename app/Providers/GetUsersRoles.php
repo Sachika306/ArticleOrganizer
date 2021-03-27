@@ -45,8 +45,6 @@ class GetUsersRoles extends ServiceProvider
             $view -> with('articles', $articles);
             $view -> with('users', $users);
         });
-
-
     }
 
 }
