@@ -26,7 +26,7 @@ class ArticleUpdateRequest extends FormRequest
         return [
             //
             'title' => ['required', 'max:200'],
-            'file_name' => ['required', 'image', 'dimensions:min_width=640, min_height=480']
+            'file_name' => ['image', 'dimensions:min_width=640, min_height=480']
         ];
     }
 }
