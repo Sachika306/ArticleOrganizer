@@ -37,14 +37,18 @@
         @foreach($articles as $article)
           <tr>
             <th scope="row">{{ $article->id }}</th>
-              <td><a href="#" class="btn btn-primary d-flex align-items-center" style="height: 40px; width: 100px; text-align: center;"><p class="h6">{{ $article->status->name }}</p></a></td>
+              <td>
+                <span class="text-light">
+                    @include('layouts.article.status')
+                        {{ $article->status->name }}
+                    </div>
+                </span>
+              </td>
               <td>{{ $article->title }}</td>
               <td>{{ $article->outlineassignment->outline_deadline }}</td>
               <td>{{ $users->find($article->outlineassignment->outline_user_id)->name }}</td> 
-              <!-- <td><a href="{{ $article->outlineassignment->outline_url }}">詳細</a></td> -->
               <td>{{ $article->articleassignment->article_deadline }}</td>
               <td>{{ $users->find($article->articleassignment->article_user_id)->name }}</td>
-              <!-- <td><a href="{{ $article->articleassignment->article_url }}">編集</a></td> -->
               <td><a href="/article/show/{{ $article->id }}">詳細</a></td>
               <td>
                 <form action="/article/destroy/{{ $article->id }}" id="delete" method="post">
