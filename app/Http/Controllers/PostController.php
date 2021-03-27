@@ -8,6 +8,13 @@ use App\Models\Article;
 class PostController extends Controller
 {
     //
+    public function index()
+    {
+        //
+        $articles = Article::paginate(15);
+        return view('post.index', compact('articles'));
+    }
+    
     public function show($id)
     {
         //

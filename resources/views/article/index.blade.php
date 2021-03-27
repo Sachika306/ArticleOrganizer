@@ -20,8 +20,8 @@
       <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">タイトル</th>
           <th scope="col">ステータス</th>
+          <th scope="col">タイトル</th>
           <th scope="col">アウトライン納期</th>
           <th scope="col">アウトライン担当者</th>
           <!-- <th scope="col">アウトラインURL</th> -->
@@ -37,7 +37,7 @@
         @foreach($articles as $article)
           <tr>
             <th scope="row">{{ $article->id }}</th>
-              <td>{{ $article->status->name }}</td>
+              <td><a href="#" class="btn btn-primary d-flex align-items-center" style="height: 40px; width: 100px; text-align: center;"><p class="h6">{{ $article->status->name }}</p></a></td>
               <td>{{ $article->title }}</td>
               <td>{{ $article->outlineassignment->outline_deadline }}</td>
               <td>{{ $users->find($article->outlineassignment->outline_user_id)->name }}</td> 
