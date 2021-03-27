@@ -24,12 +24,12 @@ use Illuminate\Support\Arr;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// post routes //
+Route::get('/', 'App\Http\Controllers\PostController@index');
+Route::get('/post/{id}', 'App\Http\Controllers\PostController@show');
+
 
 // dashboard routes //
-Route::get('/', function() {
-    echo 1;
-});
-
 Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')
     ->name('dashboard');
 
@@ -55,9 +55,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/member/setting', 'App\Http\Controllers\MemberController@setting');
     Route::post('/member/destroy/{id}', 'App\Http\Controllers\MemberController@destroy');
 });
-
-// post routes //
-Route::get('/post/{id}', 'App\Http\Controllers\PostController@show');
 
 //　会員登録 //
 Auth::routes([
