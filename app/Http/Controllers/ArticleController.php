@@ -132,26 +132,20 @@ class ArticleController extends Controller
      */
     public function update(ArticleUpdateRequest $request, $id)
     {
-        //
-        return redirect()->back()->with('message', '内容が保存されました！');
         $article = Article::find($id);
         $thumbnail = Thumbnail::where('article_id', '=', $id);
         $path = $request->file('file_name')->store('public/thumbnails'); //画像をpublic/thumbnailsに保存
 
-        $update = [
+        $article->update([
             'content' => $request->content,
             'title' => $request->title
-        ];
+        ]);
 
-        $update2 = [
+        $thumbnail->update([
             'file_name' => basename($path)
-        ];
+        ]);
 
-        $article->update($update);
-        $thumbnail->update($update2);
-
-        
-        
+        return redirect()->back()->with('message', '内容が保存されました！');
     }
 
     /**
