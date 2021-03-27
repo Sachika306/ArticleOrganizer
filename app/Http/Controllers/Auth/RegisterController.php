@@ -81,7 +81,6 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
         ]);
 
-
         // ユーザーの権限情報をRoleUserテーブルに登録する
         $userId = $user->id; // 「user_id」カラムに入る値
         RoleUser::create([
@@ -89,10 +88,8 @@ class RegisterController extends Controller
             'role_id' => $data['role_id']
         ]);
 
-        $message = 'メンバーのメールアドレス宛にログイン情報が通知されました。';
-
         // メンバー一覧のページにリダイレクト
         event(new Registered($user));
-        return redirect('/member')->with('message');
+        return redirect('/member')->with('message', 'メンバーのメールアドレス宛にログイン情報が通知されました。');
     }
 }

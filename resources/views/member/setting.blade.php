@@ -1,14 +1,17 @@
 @extends('layouts.main')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-10">
-            <div class="card">
-            <div class="card-header">{{ __('設定') }}</div>
 
-                <div class="card-body">
-                  <form method="post" action="/member/store" class="container" novalidate>
+
+<div class="card w-75 mx-auto">
+
+  <div class="card-header">
+    <div>{{ __('設定') }}</div>
+  </div>
+  
+      <div class="card-body">
+
+      <form method="post" action="/member/store" class="container" novalidate>
                         @csrf
                         <input type="hidden" name="id" value="{{ Auth::user()->id }}"></input>
 
@@ -62,10 +65,11 @@
 
 
                     </form>
-                </div>
-            </div>
-        </div>
-    </div>
+      </div>
+  </div>
 </div>
+
 @endsection
+
+
 

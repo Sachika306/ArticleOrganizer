@@ -45,19 +45,15 @@
 
 <h1>@yield('title')</h1>
 
-@isset($message)
-<div class="container">
+@if(session('message'))
+<div class="card-body mx-auto">
     <div class="row justify-content-center">
-        <div class="col-md-10">
-            
-            <div class="alert alert-success container mx-auto" role="alert">
-              <p>{{ $message }}</p>
-            
+            <div class="alert alert-success w-75 mx-auto" role="alert">
+              <p>{{session('message')}}</p>
             </div>
-        </div>
     </div>
 </div>
-@endisset
+@endif
 
 @yield('content')
 

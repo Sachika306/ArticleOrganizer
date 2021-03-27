@@ -41,8 +41,7 @@ class MemberController extends Controller
         $form = $request->all();
         $form['name'] = $form['last_name'].' '.$form['first_name'];
         User::find(Auth::user()->id)->fill($form)->save();
-        $message = '設定変更が完了しました。';
-        return view('member.setting')->with('message', $message);
+        return redirect('/member/setting')->with('message', '設定変更が完了しました。');
     }
 
     /**
@@ -79,7 +78,7 @@ class MemberController extends Controller
     public function setting()
     {
         //
-        return view('member.setting')->with('message', );
+        return view('member.setting');
 
     }
 
