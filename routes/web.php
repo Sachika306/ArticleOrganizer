@@ -38,18 +38,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/article', 'App\Http\Controllers\ArticleController@index')
         ->name('article');
     Route::get('/article/show/{id}', 'App\Http\Controllers\ArticleController@show');
-    Route::get('/article/edit/{id}', 'App\Http\Controllers\ArticleController@edit');
     Route::get('/article/create', 'App\Http\Controllers\ArticleController@create');
     Route::post('/article/store', 'App\Http\Controllers\ArticleController@store');
     Route::post('/article/destroy/{id}', 'App\Http\Controllers\ArticleController@destroy');
     Route::get('/article/create', 'App\Http\Controllers\ArticleController@assign');
-    Route::post('/article/update/{id}', 'App\Http\Controllers\ArticleController@update');
-});
-
-// outline routes //
-Route::middleware('auth')->group(function () {
-    Route::get('/outline/edit/{id}', 'App\Http\Controllers\OutlineController@edit');
-    Route::post('/outline/update/{id}', 'App\Http\Controllers\OutlineController@update');
+    Route::get('/article/content/edit/{id}', 'App\Http\Controllers\ArticleController@contentEdit');
+    Route::post('/article/content/update/{id}', 'App\Http\Controllers\ArticleController@contentUpdate');
+    Route::get('/article/outline/edit/{id}', 'App\Http\Controllers\ArticleController@outlineEdit');
+    Route::post('/article/outline/update/{id}', 'App\Http\Controllers\ArticleController@outlineUpdate');
 });
 
 // member routes //

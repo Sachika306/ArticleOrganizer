@@ -17,32 +17,36 @@
                 @endif
         </div>
 
+        1to1 (article->outline)
+        ペルソナ　persona
+        共起語（これらを理解し、本文中で言及する）keyword
+
+        リード文　文字数
+
+        見出し2　文字数
+        概要
+
+        見出し2　文字数
+        概要
+
+        見出し2　文字数
+        概要
+
+        見出し2　文字数
+
+        total
+        参考文献
+
+        まとめ
+
         <div class="form-group">
-            <label for="file_name">アイキャッチ画像</label>
-            <input type="file" name="file_name" class="form-control {{ $errors->has('file_name') ? ' is-invalid' : '' }}" value="">
-                @if ($errors->has('file_name'))
+            <label for="title">リード文</label>
+            <input type="text" class="form-control {{ $errors->has('title') ? ' is-invalid' : '' }}" id="title" name="title" value="{{ $article->title }}">
+                @if ($errors->has('title'))
                     <span class="invalid-feedback">
-                        <strong>{{ $errors->first('file_name') }}</strong>
+                        <strong>{{ $errors->first('title') }}</strong>
                     </span>
                 @endif
-        </div>
-
-        @isset($article->thumbnail->file_name)
-        <div class="form-group">
-            <img style="max-height: 300px; max-width: 100%; border-radius: 0.25rem; border: 1px solid #ced4da;" src="{{ asset('/storage/thumbnails/'.$article->thumbnail->file_name) }}"> 
-        </div>
-        @endisset
-
-        <div class="form-group">
-            <label for="exampleFormControlTextarea1">記事本文</label>
-            <textarea class="description" name="content">{{ $article->content }}</textarea>
-            <script src="{{ asset('node_modules/tinymce/tinymce.js') }}"></script>
-            <script>
-                tinymce.init({
-                    selector:'textarea.description',
-                    height: 300
-                });
-            </script>
         </div>
 
         

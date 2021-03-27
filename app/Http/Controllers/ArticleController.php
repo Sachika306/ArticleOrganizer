@@ -3,17 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\View;
-use Illuminate\Support\Facades\Auth;
-use App\Models\User;
-use App\Models\Article;
-use App\Models\Role;
-use App\Models\Thumbnail;
-use App\Models\RoleUser;
-use App\Models\OutlineAssignment;
-use App\Models\ArticleAssignment;
-use App\Http\Requests\ArticleCreateRequest;
-use App\Http\Requests\ArticleUpdateRequest;
+use Illuminate\Support\Facades\{View, Auth};
+use App\Models\{User, Article, Role, Thumbnail, RoleUser, OutlineAssignment, ArticleAssignment};
+use App\Http\Requests\{ArticleCreateRequest, ArticleUpdateRequest};
 
 class ArticleController extends Controller
 {
@@ -34,7 +26,6 @@ class ArticleController extends Controller
      */
     public function assign()
     {
-        
         // jQuery-UI autocomplete で使うためアウトライン・記事担当者の名前を配列にする
         $roles = Role::get();
         
@@ -83,18 +74,10 @@ class ArticleController extends Controller
      */
     public function store(ArticleCreateRequest $request)
     {
-        // Articleにデータを作る
-        $article = Article::create($request->all());
-        
-        // OutlineAssignmentにデータを作る
-        $article->outlineassignment()->create($request->all());
-
-        // ArticleAssignmentにデータを作る
-        $article->articleassignment()->create($request->all());
-        
-        // Thumbnailにデータを作る
-        $article->thumbnail()->create($request->all());
-
+        $article = Article::create($request->all()); // Articleにデータを作る
+        $article->outlineassignment()->create($request->all()); // OutlineAssignmentにデータを作る
+        $article->articleassignment()->create($request->all()); // ArticleAssignmentにデータを作る
+        $article->thumbnail()->create($request->all()); // Thumbnailにデータを作る
         return redirect('/article');
     }
 
@@ -106,7 +89,6 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        //
         $article = Article::find($id);
         return view('article.show', compact('article'));
     }
@@ -117,10 +99,16 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function contentEdit($id)
     {
         $article = Article::find($id);
-        return view('article.edit', compact('article'));
+        return view('article.contentEdit', compact('article'));
+    }
+
+    public function outlineEdit($id)
+    {
+        $article = Article::find($id);
+        return view('article.outlineEdit', compact('article'));
     }
 
     /**
@@ -130,7 +118,7 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ArticleUpdateRequest $request, $id)
+    public function contentUpdate(ArticleUpdateRequest $request, $id)
     {
         $article = Article::find($id);
         $thumbnail = Thumbnail::where('article_id', '=', $id);
@@ -159,8 +147,7 @@ class ArticleController extends Controller
     public function destroy($id)
     {
         //
-        $article = Article::find($id);
-        $article->delete();
+        $article = Article::find($id)->delete();
         return back();
     }
 
