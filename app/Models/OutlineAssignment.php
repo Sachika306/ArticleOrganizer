@@ -20,7 +20,6 @@ class OutlineAssignment extends Model
     protected $fillable = [
         'article_id',
         'outline_user_id',
-        'outline_url',
         'outline_deadline'
     ];
 }

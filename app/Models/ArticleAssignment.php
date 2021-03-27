@@ -19,7 +19,6 @@ class ArticleAssignment extends Model
 
     protected $fillable = [
         'article_user_id',
-        'article_url',
         'article_deadline'
     ];
 }

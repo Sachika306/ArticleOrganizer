@@ -5,7 +5,7 @@
 <div class="card w-75 mx-auto">
 
   <div class="card-body">
-    <form method="post" action="/article/update/{{ $article->id }}" enctype="multipart/form-data" class="w-75 mx-auto">
+    <form method="post" action="/article/content/update/{{ $article->id }}" enctype="multipart/form-data" class="w-75 mx-auto">
     @csrf
         <div class="form-group">
             <label for="title">タイトル</label>

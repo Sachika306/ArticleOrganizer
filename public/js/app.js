@@ -1972,7 +1972,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 // Delete alert
 $('#delete').submit(function (e) {
-  if (!confirm('ユーザーを削除しますか？')) {
+  if (!confirm('削除したデータは元に戻せません。本当に削除しますか？')) {
     return false;
   }
 }); // jQuery UI datepicker

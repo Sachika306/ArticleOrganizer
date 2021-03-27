@@ -8,11 +8,11 @@
       <div class="card-body">
         <div class="">
           <div>
-            <a href="/article/edit/{{ $article->id }}">
+            <a href="/article/content/edit/{{ $article->id }}">
               <button type="button" class="btn btn-primary">記事編集</button>
             </a>
-            <a href="/outline/edit/{{ $article->id }}">
-              <button type="button" class="btn btn-secondary">アウトライン</button>
+            <a href="/article/outline/edit/{{ $article->id }}">
+              <button type="button" class="btn btn-secondary">アウトライン作成</button>
             </a>
             <a href="{{ url('/article/preview') }}">
               <button type="button" class="btn btn-secondary">プレビュー</button>
@@ -56,7 +56,7 @@
           <a href="{{ url('/article') }}">
             <button type="button" class="btn btn-secondary">一覧に戻る</button>
           </a>
-          <a href="{{ url('/article/update') }}">
+          <a href="{{ url('/article/content/update') }}">
             <button type="button" class="btn btn-success">記事申請</button>
           </a>
         </div>

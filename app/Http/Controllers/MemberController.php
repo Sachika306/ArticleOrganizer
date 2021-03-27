@@ -1,11 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\User;
-use App\Models\RoleUser;
+use App\Models\{User, RoleUser};
 use Illuminate\Http\Request;
-use App\Http\Requests\RegisterRequest;
-use App\Http\Requests\MemberEditRequest;
+use App\Http\Requests\{RegisterRequest, MemberEditRequest};
 use Illuminate\Support\Facades\Auth;
 
 class MemberController extends Controller
