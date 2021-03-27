@@ -19,7 +19,7 @@
 
         <div class="form-group">
             <label for="exampleInputPassword1">アイキャッチ画像</label>
-            <input type="file" name="file_name" class="form-control {{ $errors->has('title') ? ' is-invalid' : '' }}" id="exampleInputPassword1" placeholder="Password">
+            <input type="file" name="file_name" class="form-control {{ $errors->has('file_name') ? ' is-invalid' : '' }}" id="exampleInputPassword1" placeholder="Password">
                 @if ($errors->has('file_name'))
                     <span class="invalid-feedback">
                         <strong>{{ $errors->first('file_name') }}</strong>
@@ -44,7 +44,7 @@
                 });
             </script>
         </div>
-        
+
         <div class="card-body">
           <button type="submit" name="submit" class="btn btn-primary">記事を保存する</button>
           <a href="{{ url('article') }}">

@@ -24,13 +24,15 @@
       <h2 class="display-6">（ID:{{ $article->id }}） {{ $article->title }}</h2>
       <hr>
     </div>
-    
+
+    @isset($article->thumbnail->file_name)
+    <div class="form-group mx-auto">
+        <img style="max-height: 300px; max-width: 100%; border-radius: 0.25rem; border: 1px solid #ced4da;" src="{{ asset('/storage/thumbnails/'.$article->thumbnail->file_name) }}"> 
+    </div>
+    @endisset
+  
       <div>
         <h3 class="display-6">アウトライン</h3>
-      </div>
-
-      <div>
-        <h3 class="display-6">画像</h3>
       </div>
 
       <div>

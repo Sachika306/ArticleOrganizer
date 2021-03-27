@@ -25,13 +25,13 @@ use Illuminate\Support\Arr;
 |
 */
 
-// article routes //
-Route::get('/home', 'App\Http\Controllers\HomeController@index')
-    ->name('home');
-
+// dashboard routes //
 Route::get('/', function() {
-    echo Roleuser::where('role_id', '=', '2')->pluck('user_id')->random();
+    echo 1;
 });
+
+Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')
+    ->name('dashboard');
 
 // article routes //
 Route::middleware('auth')->group(function () {
@@ -55,6 +55,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/member/setting', 'App\Http\Controllers\MemberController@setting');
     Route::post('/member/destroy/{id}', 'App\Http\Controllers\MemberController@destroy');
 });
+
+// post routes //
+Route::get('/post/{id}', 'App\Http\Controllers\PostController@show');
 
 //　会員登録 //
 Auth::routes([
@@ -85,7 +88,7 @@ Route::get('/email/verify', function () {
 
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
-    return redirect()->route('home');
+    return redirect()->route('dashboard');
 })->middleware(['auth', 'signed'])->name('verification.verify');
     
 Route::post('/email/verification-notification', function (Request $request) {
