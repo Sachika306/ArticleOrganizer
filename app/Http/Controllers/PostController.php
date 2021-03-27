@@ -12,6 +12,6 @@ class PostController extends Controller
     {
         //
         $article = Article::find($id);
-        return view('article.show', compact('article'));
+        return view('post.show', compact('article'));
     }
 }

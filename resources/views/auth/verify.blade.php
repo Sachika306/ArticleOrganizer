@@ -28,7 +28,7 @@
 @endsection
 
 
-@extends('layouts.main')
+@extends('layouts.mainheader')
 
 @section('title', 'ログイン')
 

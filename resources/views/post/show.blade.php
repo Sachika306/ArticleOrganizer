@@ -5,23 +5,6 @@
 <div class="card w-75 mx-auto">
   <div class="card-body">
     
-      <div class="card-body">
-        <div class="d-flex justify-content-between">
-          <div>
-            <a href="/article/edit/{{ $article->id }}">
-              <button type="button" class="btn btn-primary">記事編集</button>
-            </a>
-            <a href="/article/edit/{{ $article->id }}">
-              <button type="button" class="btn btn-secondary">アウトライン</button>
-            </a>
-            <a href="{{ url('/article/preview') }}">
-              <button type="button" class="btn btn-secondary">プレビュー</button>
-            </a>
-          </div>
-          <div>{{ $article->status->name }}</div>
-        </div>
-      </div>
-    
         <div class="card-body">
           <div>
             <h2 class="display-6">（ID:{{ $article->id }}） {{ $article->title }}</h2>
