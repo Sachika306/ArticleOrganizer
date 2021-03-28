@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -13,7 +14,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        'App\Models\Model' => 'App\Policies\ModelPolicy',
     ];
 
     /**
@@ -25,6 +26,25 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
-    }
+        // 管理権限のみ許可
+        Gate::define('admin-only', function ($user) {
+            return ($user->roles->first()->id == 1);
+        });
+
+        // 記事担当者（または管理権限）にのみ許可
+        Gate::define('article-user', function (User $user) {
+            return ($user->roles->first()->id == 4 || $user->roles->first()->id == 1);
+            });
+
+        // アウトライン担当者（または管理権限）にのみ許可
+        Gate::define('outline-user', function (User $user) {
+            return ($user->roles->first()->id == 7 || $user->roles->first()->id == 1);
+        });
+
+        //　全ユーザーに許可
+        Gate::define('all-users', function (User $user) {
+            return ($user->roles->first()->id > 0);
+          });
+      }
+    
 }

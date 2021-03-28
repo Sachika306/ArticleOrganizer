@@ -10,7 +10,7 @@
   </div>
 
   <div class="card-body">
-    <a href="{{ url('/article/create') }}">
+    <a href="{{ url('/article/assign') }}">
         <button type="button" class="btn btn-primary pull-right">新規登録</button>
     </a>
   </div>

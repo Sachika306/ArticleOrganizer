@@ -1,17 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Models\Article;
-use App\Models\Role;
-use App\Models\RoleUser;
-use App\Models\User;
-use App\Models\OutlineAssignment;
-use App\Models\ArticleAssignment;
-use Illuminate\Support\Facades\Mail;
+use App\Models\{Article, Role, RoleUser, User, OutlineAssignment, ArticleAssignment};
+use Illuminate\Support\Facades\{Mail, DB};
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Arr;
+use App\Http\Providers\AuthServiceProvider;
 
 
 /*
@@ -24,56 +19,69 @@ use Illuminate\Support\Arr;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// post routes //
-Route::get('/', 'App\Http\Controllers\PostController@index');
-Route::get('/post/{id}', 'App\Http\Controllers\PostController@show');
 
-
-// dashboard routes //
-Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')
-    ->name('dashboard');
-
-// article routes //
-Route::middleware('auth')->group(function () {
-    Route::get('/article', 'App\Http\Controllers\ArticleController@index')
-        ->name('article');
-    Route::get('/article/show/{id}', 'App\Http\Controllers\ArticleController@show');
-    Route::get('/article/create', 'App\Http\Controllers\ArticleController@create');
+// ログイン必要・管理者権限でアクセス可能
+Route::middleware('auth', 'can:admin-only')->group(function () {
+    // article
+    Route::get('/article/assign', 'App\Http\Controllers\ArticleController@assign');
     Route::post('/article/store', 'App\Http\Controllers\ArticleController@store');
     Route::post('/article/destroy/{id}', 'App\Http\Controllers\ArticleController@destroy');
-    Route::get('/article/create', 'App\Http\Controllers\ArticleController@assign');
+    // member
+    Route::get('/member', 'App\Http\Controllers\MemberController@index');
+    Route::get('/member/show/{id}', 'App\Http\Controllers\MemberController@show');
+    Route::get('/member/edit/{id}', 'App\Http\Controllers\MemberController@edit');
+    Route::post('/member/destroy/{id}', 'App\Http\Controllers\MemberController@destroy');
+});
+Route::middleware('can:admin-only')->group(function () {
+    Route::get('/register', 'App\Http\Controllers\Auth\RegisterController@getRegister')
+        ->name('register');
+    Route::post('/register', 'App\Http\Controllers\Auth\RegisterController@postRegister');
+});
+
+
+// ログイン必要・記事担当者権限でアクセス可能
+Route::middleware('auth', 'can:article-user')->group(function () {
     Route::get('/article/content/edit/{id}', 'App\Http\Controllers\ArticleController@contentEdit');
     Route::post('/article/content/update/{id}', 'App\Http\Controllers\ArticleController@contentUpdate');
+});
+
+
+// ログイン必要・アウトライン担当者権限でアクセス可能
+Route::middleware('auth', 'can:outline-user')->group(function () {
     Route::get('/article/outline/edit/{id}', 'App\Http\Controllers\ArticleController@outlineEdit');
     Route::post('/article/outline/update/{id}', 'App\Http\Controllers\ArticleController@outlineUpdate');
 });
 
-// member routes //
-Route::middleware('auth')->group(function () {
-    Route::get('/member', 'App\Http\Controllers\MemberController@index');
-    Route::get('/member/show/{id}', 'App\Http\Controllers\MemberController@show');
-    Route::post('/member/store', 'App\Http\Controllers\MemberController@store');
-    Route::get('/member/edit/{id}', 'App\Http\Controllers\MemberController@edit');
+// ログイン必要・すべての権限でアクセス可能
+Route::middleware('auth', 'can:all-users')->group(function () {
+    Route::get('/article', 'App\Http\Controllers\ArticleController@index')->name('article');
+    Route::get('/article/show/{id}', 'App\Http\Controllers\ArticleController@show');
+    Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
     Route::get('/member/setting', 'App\Http\Controllers\MemberController@setting');
-    Route::post('/member/destroy/{id}', 'App\Http\Controllers\MemberController@destroy');
+    Route::post('/member/setting/update', 'App\Http\Controllers\MemberController@settingupdate');
 });
 
-//　member auth //
-Auth::routes([
-    'register' => false, // ユーザ登録機能をオフに切替
-    'verify' => true
-]);
-Route::get('/register', 'App\Http\Controllers\Auth\RegisterController@getRegister')
-    ->name('register');
-   // ->middleware('auth');
-Route::post('/register', 'App\Http\Controllers\Auth\RegisterController@postRegister');
+
+// 記事表示用ルート
+Route::get('/aaa', function ($user) {
+    return ($this->$user->roles);
+});
+Route::get('/', 'App\Http\Controllers\PostController@index');
+Route::get('/post/{id}', 'App\Http\Controllers\PostController@show');
 
 
-//　Login //
+//　ログインページ
 Route::get('/login', 'App\Http\Controllers\Auth\LoginController@getAuth')
     ->name('login');
 Route::post('/login', 'App\Http\Controllers\Auth\LoginController@postAuth');
 Route::get('/logout', 'App\Http\Controllers\Auth\LoginController@logout');
+
+
+//　member auth
+Auth::routes([
+    'register' => false,
+    'verify' => true
+]);
 
 
 // verification

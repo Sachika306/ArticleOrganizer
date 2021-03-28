@@ -12,7 +12,7 @@
 
                 <div class="card-body">
 
-<form method="post" action="/member/store">
+<form method="post" action="/member/setting/update">
 @csrf
 
 <div class="input-group mb-3">

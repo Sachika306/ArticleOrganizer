@@ -27,7 +27,7 @@ class OutlineAssignmentFactory extends Factory
     {
         return [
             // 'article_id'はArticleTableSeederで生成
-            'outline_user_id' => RoleUser::where('role_id', '=', '2')->pluck('user_id')->random(),
+            'outline_user_id' => RoleUser::where('role_id', '=', '4')->pluck('user_id')->random(),
             'outline_deadline' => $this->faker->date($format = 'Y-m-d')
         ];
     }

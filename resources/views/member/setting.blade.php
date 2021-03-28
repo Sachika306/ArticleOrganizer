@@ -11,7 +11,7 @@
   
       <div class="card-body">
 
-      <form method="post" action="/member/store" class="container" novalidate>
+      <form method="post" action="/member/setting/update" class="container" novalidate>
                         @csrf
                         <input type="hidden" name="id" value="{{ Auth::user()->id }}"></input>
 

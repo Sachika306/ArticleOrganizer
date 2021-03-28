@@ -20,12 +20,30 @@ class RolesTableSeeder extends Seeder
         DB::table('roles')->insert($param);
 
         $param = [
-            'name' => 'アウトライン担当者'
+            'name' => ''
         ];
         DB::table('roles')->insert($param);
 
         $param = [
+            'name' => ''
+        ];
+        DB::table('roles')->insert($param);
+        $param = [
             'name' => '記事担当者'
+        ];
+        DB::table('roles')->insert($param);
+        $param = [
+            'name' => ''
+        ];
+        DB::table('roles')->insert($param);
+
+        $param = [
+            'name' => ''
+        ];
+        DB::table('roles')->insert($param);
+
+        $param = [
+            'name' => 'アウトライン担当者'
         ];
         DB::table('roles')->insert($param);
     }
