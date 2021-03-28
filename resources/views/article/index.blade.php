@@ -23,14 +23,14 @@
         </li>
       </ul>
     </div>
-        
+    
     @can('admin-user')
-        <div>
-          <a href="{{ url('/article/assign') }}">
-              <button type="button" class="btn btn-primary pull-right">新規登録</button>
-          </a>
-        </div>
-      @endcan
+    <div>
+        <a href="/article/assign">
+            <button type="button" class="classbtn btn-primary pull-right">新規登録</button>
+        </a>
+    </div>
+    @endcan
   </div>
 
   <div class="table-responsive-sm card-body">
