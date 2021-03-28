@@ -25,12 +25,12 @@ class StatusesTableSeeder extends Seeder
         DB::table('statuses')->insert($param);
 
         $param = [
-            'name' => 'アウトライン確認中'
+            'name' => 'アウトライン修正中'
         ];
         DB::table('statuses')->insert($param);
 
         $param = [
-            'name' => 'アウトライン修正中'
+            'name' => 'アウトライン確認中'
         ];
         DB::table('statuses')->insert($param);
 
@@ -40,12 +40,12 @@ class StatusesTableSeeder extends Seeder
         DB::table('statuses')->insert($param);
 
         $param = [
-            'name' => '記事確認中'
+            'name' => '記事修正中'
         ];
         DB::table('statuses')->insert($param);
 
         $param = [
-            'name' => '記事修正中'
+            'name' => '記事確認中'
         ];
         DB::table('statuses')->insert($param);
 

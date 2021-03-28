@@ -24,20 +24,22 @@
   @if(Auth::check())
   <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-      @if (Auth::user()->roles->first()->pivot->role_id == 1) 
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url('/member') }}">メンバー一覧<span class="sr-only">(current)</span></a>
-        </li>
-      @endif
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url('/article') }}">記事一覧</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url('/logout') }}">ログアウト</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url('/member/setting') }}">設定</a>
-        </li>
+        @can('admin-user') 
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('/member') }}">メンバー一覧<span class="sr-only">(current)</span></a>
+          </li>
+        @endcan
+        @can('all-users')
+          <li class="nav-item">
+              <a class="nav-link" href="{{ url('/article') }}">記事一覧</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('/member/setting') }}">設定</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('/logout') }}">ログアウト</a>
+          </li>
+        @endcan
       </ul>
   </div>
   @endif

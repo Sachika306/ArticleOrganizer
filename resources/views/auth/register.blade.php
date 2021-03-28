@@ -75,7 +75,9 @@
                                <select class="custom-select{{ $errors->has('role_id') ? ' is-invalid' : '' }}" name="role_id">
                                      <option value="">付与する権限</option>
                                         @foreach($roles as $role => $value)
-                                            <option value="{{ $value->id }}">{{ $value->name }}</option>
+                                            @if($value->name !== "")
+                                                <option value="{{ $value->id }}">{{ $value->name }}</option>
+                                            @endif
                                         @endforeach
                                 </select>
 

@@ -21,7 +21,7 @@ use App\Http\Providers\AuthServiceProvider;
 */
 
 // ログイン必要・管理者権限でアクセス可能
-Route::middleware('auth', 'can:admin-only')->group(function () {
+Route::middleware('auth', 'can:admin-user')->group(function () {
     // article
     Route::get('/article/assign', 'App\Http\Controllers\ArticleController@assign');
     Route::post('/article/store', 'App\Http\Controllers\ArticleController@store');
@@ -32,17 +32,18 @@ Route::middleware('auth', 'can:admin-only')->group(function () {
     Route::get('/member/edit/{id}', 'App\Http\Controllers\MemberController@edit');
     Route::post('/member/destroy/{id}', 'App\Http\Controllers\MemberController@destroy');
 });
-Route::middleware('can:admin-only')->group(function () {
+//Route::middleware('can:admin-user')->group(function () {
     Route::get('/register', 'App\Http\Controllers\Auth\RegisterController@getRegister')
         ->name('register');
     Route::post('/register', 'App\Http\Controllers\Auth\RegisterController@postRegister');
-});
+//});
 
 
 // ログイン必要・記事担当者権限でアクセス可能
 Route::middleware('auth', 'can:article-user')->group(function () {
     Route::get('/article/content/edit/{id}', 'App\Http\Controllers\ArticleController@contentEdit');
     Route::post('/article/content/update/{id}', 'App\Http\Controllers\ArticleController@contentUpdate');
+    Route::post('/article/submit/{id}', 'App\Http\Controllers\Status\ArticleStatusController@submit');
 });
 
 
@@ -50,6 +51,7 @@ Route::middleware('auth', 'can:article-user')->group(function () {
 Route::middleware('auth', 'can:outline-user')->group(function () {
     Route::get('/article/outline/edit/{id}', 'App\Http\Controllers\ArticleController@outlineEdit');
     Route::post('/article/outline/update/{id}', 'App\Http\Controllers\ArticleController@outlineUpdate');
+    Route::post('/article/submit/{id}', 'App\Http\Controllers\Status\OutlineStatusController@submit');
 });
 
 // ログイン必要・すべての権限でアクセス可能
