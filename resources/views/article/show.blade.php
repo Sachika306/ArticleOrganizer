@@ -44,7 +44,6 @@
             <hr>
             <div class="form-control" style="height:auto;">
             {{ Str::limit(($article->content), 300) }}
-            
             </div>
           </div>
         

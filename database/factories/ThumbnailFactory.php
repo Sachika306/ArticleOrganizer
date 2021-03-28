@@ -23,7 +23,6 @@ class ThumbnailFactory extends Factory
     public function definition()
     {
         return [
-            'file_name' => $this->faker->url
         ];
     }
 }

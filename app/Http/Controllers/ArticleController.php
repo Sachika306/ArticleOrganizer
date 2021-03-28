@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{View, Auth};
-use App\Models\{User, Article, Role, Thumbnail, RoleUser, OutlineAssignment, ArticleAssignment};
-use App\Http\Requests\{ArticleCreateRequest, ArticleUpdateRequest};
+use App\Models\{User, Article, Role, Thumbnail, RoleUser, OutlineAssignment, ArticleAssignment, Outline};
+use App\Http\Requests\{ArticleCreateRequest, ArticleUpdateRequest, OutlineUpdateRequest};
 
 class ArticleController extends Controller
 {
@@ -138,6 +138,21 @@ class ArticleController extends Controller
         return redirect()->back()->with('message', '内容が保存されました！');
     }
 
+    public function outlineUpdate(OutlineUpdateRequest $request, $id)
+    {
+        $article = Article::find($id);
+        $outline = Outline::where('article_id', '=', $id);
+
+
+        $article->update([
+            'title' => $request->title
+        ]);
+
+        $outline->update($request->except(['_token', 'title', 'submit']));
+
+        return redirect()->back()->with('message', '内容が保存されました！');
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -148,6 +163,8 @@ class ArticleController extends Controller
     {
         //
         $article = Article::find($id)->delete();
+        $outline = OutlineAssignment::where('article_id', '=', $id)->delete();
+        $article = OutlineAssignment::where('article_id', '=', $id)->delete();
         return back();
     }
 

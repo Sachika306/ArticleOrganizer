@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\{User, RoleUser};
+use App\Models\{User, RoleUser, OutlineAssignment, ArticleAssignment};
 use Illuminate\Http\Request;
 use App\Http\Requests\{RegisterRequest, MemberEditRequest};
 use Illuminate\Support\Facades\Auth;
