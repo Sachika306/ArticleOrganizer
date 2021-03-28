@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\{User, RoleUser, OutlineAssignment, ArticleAssignment};
 use Illuminate\Http\Request;
-use App\Http\Requests\{RegisterRequest, MemberEditRequest};
+use App\Http\Requests\{RegisterRequest, MemberSettingRequest};
 use Illuminate\Support\Facades\Auth;
 
 class MemberController extends Controller
@@ -34,12 +34,8 @@ class MemberController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MemberEditRequest $request)
+    public function store()
     { 
-        $form = $request->all();
-        $form['name'] = $form['last_name'].' '.$form['first_name'];
-        User::find(Auth::user()->id)->fill($form)->save();
-        return redirect('/member/setting')->with('message', '設定変更が完了しました。');
     }
 
     /**
@@ -77,7 +73,15 @@ class MemberController extends Controller
     {
         //
         return view('member.setting');
+    }
 
+    public function settingupdate(MemberSettingRequest $request)
+    {
+        //
+        $form = $request->all();
+        $form['name'] = $form['last_name'].' '.$form['first_name'];
+        User::find(Auth::user()->id)->fill($form)->save();
+        return redirect('/member/setting')->with('message', '設定変更が完了しました。');
     }
 
     /**

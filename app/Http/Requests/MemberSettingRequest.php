@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class MemberEditRequest extends FormRequest
+class MemberSettingRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,12 +14,7 @@ class MemberEditRequest extends FormRequest
      */
     public function authorize()
     {
-        if ($this->path() == 'member/store')
-        {
-            return true;
-        } else {
-            return false;
-        }
+        return true;
     }
 
     /**

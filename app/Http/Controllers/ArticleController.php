@@ -30,7 +30,7 @@ class ArticleController extends Controller
         $roles = Role::get();
         
         //アウトライン権限のユーザーを探す
-        $outlineUsers = $roles->find(2)->user;
+        $outlineUsers = $roles->find(4)->user;
         $outlineUserNames = array();
         if (count($outlineUsers) > 0) {
             foreach ($outlineUsers as $user) {
@@ -42,7 +42,7 @@ class ArticleController extends Controller
         }
       
         //記事権限のユーザーを探す
-        $articleUsers = $roles->find(3)->user;
+        $articleUsers = $roles->find(7)->user;
         $articleUserNames = array();
         if (count($articleUsers) > 0) {
             foreach ($articleUsers as $user) {
@@ -61,10 +61,10 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view('article.create');
-    }
+    // public function create()
+    // {
+    //     return view('article.create');
+    // }
 
     /**
      * Store a newly created resource in storage.

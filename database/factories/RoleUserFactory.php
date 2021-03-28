@@ -25,7 +25,7 @@ class RoleUserFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
-            'role_id' => Role::all()->random()->id
+            'role_id' => Role::get()->where('name', '!=', '')->random()->id
         ];
     }
 }
