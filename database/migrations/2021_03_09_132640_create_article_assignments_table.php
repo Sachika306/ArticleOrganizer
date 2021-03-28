@@ -16,7 +16,7 @@ class CreateArticleAssignmentsTable extends Migration
         Schema::create('article_assignments', function (Blueprint $table) {
             $table->id();
             $table->integer('article_id');
-            $table->integer('article_user_id');
+            $table->integer('article_user_id')->nullable();
             $table->date('article_deadline');
             $table->timestamps();
         });
