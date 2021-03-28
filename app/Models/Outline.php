@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Outline extends Model
 {
     use HasFactory;
+    public function article() {
+        return $this->belongsTo()->Article::class;
+    }
 }
