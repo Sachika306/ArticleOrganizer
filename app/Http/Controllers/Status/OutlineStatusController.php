@@ -19,11 +19,17 @@ class OutlineStatusController extends Controller
 
     public function decline($id)
     {
-
+        $article = Article::find($id)->update([
+            'status_id' => 3
+        ]);
+        return redirect()->back()->with('message', '修正依頼が完了しました。');
     }
 
     public function approve($id)
     {
-
+        $article = Article::find($id)->update([
+            'status_id' => 5
+        ]);
+        return redirect()->back()->with('message', '承認が完了しました。');
     }
 }

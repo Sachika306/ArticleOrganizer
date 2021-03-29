@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{View, Auth};
-use App\Models\{User, Article, Role, Thumbnail, RoleUser, OutlineAssignment, ArticleAssignment, Outline};
+use App\Models\{User, Article, Role, Status, Thumbnail, RoleUser, OutlineAssignment, ArticleAssignment, Outline};
 use App\Http\Requests\{ArticleCreateRequest, ArticleUpdateRequest, OutlineUpdateRequest};
 
 class ArticleController extends Controller
@@ -16,7 +16,8 @@ class ArticleController extends Controller
      */
     public function index(Request $request)
     { 
-        return view ('article.index');
+        $statuses = Status::get();
+        return view ('article.index', compact('statuses'));
     }
 
     /**

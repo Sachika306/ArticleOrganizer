@@ -9,25 +9,35 @@
         <div>
           <div class="d-flex">
             @can('admin-user')
-              @if($article->status_id == 4 || $article->status_id == 7)
-              <form method="post" action="/article/submit/{{ $article->id }}">
+              @if($article->status_id == 4)
+              <form method="post" action="/outline/approve/{{ $article->id }}">
                 @csrf
-                <button type="button" class="btn btn-success">承認する</button>
+                <button type="submit" class="btn btn-success">承認する</button>
               </form>
-              <form method="post" action="/article/submit/{{ $article->id }}">
+              <form method="post" action="/outline/decline/{{ $article->id }}">
                 @csrf
-                <button type="button" class="btn btn-danger">修正依頼</button>
+                <button type="submit" class="btn btn-danger">修正依頼</button>
+              </form>
+              @endif
+              @if($article->status_id == 7)
+              <form method="post" action="/article/approve/{{ $article->id }}">
+                @csrf
+                <button type="submit" class="btn btn-success">承認する</button>
+              </form>
+              <form method="post" action="/article/decline/{{ $article->id }}">
+                @csrf
+                <button type="submit" class="btn btn-danger">修正依頼</button>
               </form>
               @endif
             @elsecan('article-user')
               @if($article->status_id == 5 || $article->status_id == 6)
-                <a href="/article/content/edit/{{ $article->id }}">
+                <a href="/article/edit/{{ $article->id }}">
                   <button type="button" class="btn btn-primary">記事編集</button>
                 </a>
               @endif
             @elsecan('outline-user')
               @if($article->status_id < 1)
-                <a href="/article/outline/edit/{{ $article->id }}">
+                <a href="/outline/edit/{{ $article->id }}">
                   <button type="button" class="btn btn-primary">アウトライン作成</button>
                 </a>
               @endif

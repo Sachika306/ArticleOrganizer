@@ -5,7 +5,7 @@
 <div class="card w-75 mx-auto">
 
   <div class="card-body">
-    <form method="post" action="/article/outline/update/{{ $article->id }}" enctype="multipart/form-data" class="w-75 mx-auto">
+    <form method="post" action="/outline/update/{{ $article->id }}" enctype="multipart/form-data" class="w-75 mx-auto">
     @csrf
 
         <h2>基本情報</h2>
@@ -140,7 +140,7 @@
 
         
           <button type="submit" name="submit" class="btn btn-primary">アウトラインを保存する</button>
-          <a href="{{ url('/article/content/update') }}">
+          <a href="{{ url('/article/update') }}">
             <button type="button" class="btn btn-success">アウトライン申請</button>
           </a>
           <a href="/article/show/{{ $article->id }}">
