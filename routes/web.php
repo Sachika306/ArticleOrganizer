@@ -65,6 +65,7 @@ Route::middleware('auth', 'can:all-users')->group(function () {
     Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
     Route::get('/member/setting', 'App\Http\Controllers\MemberController@setting');
     Route::post('/member/setting/update', 'App\Http\Controllers\MemberController@settingupdate');
+    Route::get('/article/sort', 'App\Http\Controllers\ArticleFilterController@sort')->name('sortarticle');
 });
 
 

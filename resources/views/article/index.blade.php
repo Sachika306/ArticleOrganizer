@@ -12,19 +12,20 @@
   </div>
 
   <div class="d-flex card-body justify-content-between w-100 mx-auto">
-    <div class="w-50 d-flex">
-      <select class="col-8 mr-3 custom-select {{ $errors->has('role_id') ? ' is-invalid' : '' }}" name="role_id">
-          <option value="">記事のステータス</option>
+    <form method="GET" action="{{ url('article/sort') }}" class="w-50 d-flex">
+      <select class="col-8 mr-3 custom-select" name="status_id">
+              <option value="0">すべての記事</option>
             @foreach($statuses as $status)
-              <option value="{{ $status->id }}">{{ $status->name }}</option>
+              <option name="{{ $status->id }}" value="{{ $status->id }}">{{ $status->name }}</option>
             @endforeach
       </select>
       <div class="">
         <a href="/article/assign">
-            <button type="button" class="btn btn-secondary">表示</button>
+            <button type="submit" class="btn btn-secondary">表示</button>
         </a>
       </div>
-    </div>
+    </form>
+    
     @can('admin-user')
     <div>
         <a href="/article/assign">
@@ -77,14 +78,18 @@
                   </form>
                 </td>
               @endcan
-          </tr>
 
-          {{ $articles->links() }}
+        
+          </tr>
+          
+
+         
           
         @endforeach
+        
       </tbody>
     </table>
-
+    {{ $articles->links() }}
   </div>
 </div>
 

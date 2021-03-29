@@ -16,8 +16,8 @@ class ArticleController extends Controller
      */
     public function index(Request $request)
     { 
-        $statuses = Status::get();
-        return view ('article.index', compact('statuses'));
+        $articles = Article::paginate(15);
+        return view ('article.index')->with('articles', $articles);
     }
 
     /**
