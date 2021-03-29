@@ -11,26 +11,24 @@
     </div>
   </div>
 
-  <div class="mt-3 container d-flex">
-    <div class="col-6 d-flex">
-      <select class="custom-select{{ $errors->has('role_id') ? ' is-invalid' : '' }}" name="role_id">
+  <div class="d-flex card-body justify-content-between w-100 mx-auto">
+    <div class="w-50 d-flex">
+      <select class="col-8 mr-3 custom-select {{ $errors->has('role_id') ? ' is-invalid' : '' }}" name="role_id">
           <option value="">記事のステータス</option>
             @foreach($statuses as $status)
               <option value="{{ $status->id }}">{{ $status->name }}</option>
             @endforeach
       </select>
-
       <div class="">
         <a href="/article/assign">
-            <button type="button" class="btn btn-primary pull-right">表示</button>
+            <button type="button" class="btn btn-secondary">表示</button>
         </a>
       </div>
     </div>
-
     @can('admin-user')
     <div>
         <a href="/article/assign">
-            <button type="button" class="btn btn-primary pull-right">新規登録</button>
+            <button type="button" class="btn btn-primary">新規登録</button>
         </a>
     </div>
     @endcan
