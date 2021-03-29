@@ -14,16 +14,22 @@ class ArticleStatusController extends Controller
         $article = Article::find($id)->update([
             'status_id' => 7
         ]);
-        return redirect()->back()->with('message', '申請が完了しました');
+        return redirect()->back()->with('message', '申請が完了しました。');
     }
 
     public function decline($id)
     {
-
+        $article = Article::find($id)->update([
+            'status_id' => 6
+        ]);
+        return redirect()->back()->with('message', '修正依頼が完了しました。'); 
     }
 
     public function approve($id)
     {
-
+        $article = Article::find($id)->update([
+            'status_id' => 8
+        ]);
+        return redirect()->back()->with('message', '承認が完了しました。'); 
     }
 }

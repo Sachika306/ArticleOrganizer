@@ -5,29 +5,32 @@
 
 <div class="card w-100 mx-auto">
 
-  <div class="card-header d-flex justify-content-between">
+  <div class="card-header">
     <div>
     {{ __('記事一覧') }}
-      <ul class="nav nav-tabs card-header-tabs">
-        <li class="nav-item">
-          <a class="nav-link active" href="#">すべて</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">アウトライン確認待ち</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">記事確認待ち</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">遅延</a>
-        </li>
-      </ul>
     </div>
-    
+  </div>
+
+  <div class="mt-3 container d-flex">
+    <div class="col-6 d-flex">
+      <select class="custom-select{{ $errors->has('role_id') ? ' is-invalid' : '' }}" name="role_id">
+          <option value="">記事のステータス</option>
+            @foreach($statuses as $status)
+              <option value="{{ $status->id }}">{{ $status->name }}</option>
+            @endforeach
+      </select>
+
+      <div class="">
+        <a href="/article/assign">
+            <button type="button" class="btn btn-primary pull-right">表示</button>
+        </a>
+      </div>
+    </div>
+
     @can('admin-user')
     <div>
         <a href="/article/assign">
-            <button type="button" class="classbtn btn-primary pull-right">新規登録</button>
+            <button type="button" class="btn btn-primary pull-right">新規登録</button>
         </a>
     </div>
     @endcan

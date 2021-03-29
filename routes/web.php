@@ -26,6 +26,10 @@ Route::middleware('auth', 'can:admin-user')->group(function () {
     Route::get('/article/assign', 'App\Http\Controllers\ArticleController@assign');
     Route::post('/article/store', 'App\Http\Controllers\ArticleController@store');
     Route::post('/article/destroy/{id}', 'App\Http\Controllers\ArticleController@destroy');
+    Route::post('/outline/decline/{id}', 'App\Http\Controllers\Status\OutlineStatusController@decline');
+    Route::post('/outline/approve/{id}', 'App\Http\Controllers\Status\OutlineStatusController@approve');
+    Route::post('/article/decline/{id}', 'App\Http\Controllers\Status\ArticleStatusController@decline');
+    Route::post('/article/approve/{id}', 'App\Http\Controllers\Status\ArticleStatusController@approve');
     // member
     Route::get('/member', 'App\Http\Controllers\MemberController@index');
     Route::get('/member/show/{id}', 'App\Http\Controllers\MemberController@show');
@@ -41,16 +45,16 @@ Route::middleware('auth', 'can:admin-user')->group(function () {
 
 // ログイン必要・記事担当者権限でアクセス可能
 Route::middleware('auth', 'can:article-user')->group(function () {
-    Route::get('/article/content/edit/{id}', 'App\Http\Controllers\ArticleController@contentEdit');
-    Route::post('/article/content/update/{id}', 'App\Http\Controllers\ArticleController@contentUpdate');
+    Route::get('/article/edit/{id}', 'App\Http\Controllers\ArticleController@contentEdit');
+    Route::post('/article/update/{id}', 'App\Http\Controllers\ArticleController@contentUpdate');
     Route::post('/article/submit/{id}', 'App\Http\Controllers\Status\ArticleStatusController@submit');
 });
 
 
 // ログイン必要・アウトライン担当者権限でアクセス可能
 Route::middleware('auth', 'can:outline-user')->group(function () {
-    Route::get('/article/outline/edit/{id}', 'App\Http\Controllers\ArticleController@outlineEdit');
-    Route::post('/article/outline/update/{id}', 'App\Http\Controllers\ArticleController@outlineUpdate');
+    Route::get('/outline/edit/{id}', 'App\Http\Controllers\ArticleController@outlineEdit');
+    Route::post('/outline/update/{id}', 'App\Http\Controllers\ArticleController@outlineUpdate');
     Route::post('/article/submit/{id}', 'App\Http\Controllers\Status\OutlineStatusController@submit');
 });
 
