@@ -1977,11 +1977,21 @@ $('#delete').submit(function (e) {
   }
 }); // jQuery UI datepicker
 
-$('.date').datepicker({
+$('#outline_deadline').datepicker({
+  dateFormat: 'yy-mm-dd',
+  minDate: '+0',
+  // アウトライン納期で選択された日付を取得し、記事納期の日付選択に反映
+  onSelect: function onSelect(dateStr) {
+    var min = $(this).datepicker('getDate');
+    $('#article_deadline').datepicker('option', {
+      minDate: min
+    });
+  }
+});
+$('#article_deadline').datepicker({
   dateFormat: 'yy-mm-dd'
 }); // オートコンプリート機能を適用（article.assign）
 
-$("#outline_user_name").on("autocompletefocus", function (event, ui) {});
 $("#outline_user_name").autocomplete({
   source: outlineUserNames,
   minLength: 0,
