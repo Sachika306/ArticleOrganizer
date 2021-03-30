@@ -43,7 +43,7 @@
                         <div class="form-group row">
                             <label for="outline_deadline" class="col-sm-4 col-form-label text-md-right">{{ __('アウトライン納期') }}</label>
                             <div class="col-md-6">
-                                <input id="basic-datepicker1" type="text" class="date form-control{{ $errors->has('outline_deadline') ? ' is-invalid' : '' }}" placeholder="2020-01-01" name="outline_deadline" value="{{ old('outline_deadline') }}">
+                                <input id="outline_deadline" type="text" class="date form-control{{ $errors->has('outline_deadline') ? ' is-invalid' : '' }}" placeholder="2020-01-01" name="outline_deadline" value="{{ old('outline_deadline') }}">
                                 @if ($errors->has('outline_deadline'))
                                     <span class="invalid-feedback">
                                         <strong>{{ $errors->first('outline_deadline') }}</strong>
@@ -69,7 +69,7 @@
                         <div class="form-group row">
                             <label for="atcile_deadline" class="col-sm-4 col-form-label text-md-right">{{ __('アウトライン納期') }}</label>
                             <div class="col-md-6">
-                                <input id="basic-datepicker2" type="text" class="date form-control{{ $errors->has('article_deadline') ? ' is-invalid' : '' }}" placeholder="2020-01-01" name="article_deadline" value="{{ old('article_deadline') }}">
+                                <input id="article_deadline" type="text" class="date form-control{{ $errors->has('article_deadline') ? ' is-invalid' : '' }}" placeholder="2020-01-01" name="article_deadline" value="{{ old('article_deadline') }}">
                                 @if ($errors->has('article_deadline'))
                                     <span class="invalid-feedback">
                                         <strong>{{ $errors->first('article_deadline') }}</strong>
