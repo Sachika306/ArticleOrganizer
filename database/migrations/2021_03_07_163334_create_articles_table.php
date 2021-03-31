@@ -17,6 +17,7 @@ class CreateArticlesTable extends Migration
             $table->id();
             $table->string('title');
             $table->integer('status_id')->nullable()->default(1);
+            $table->integer('publish_flg')->default(0);
             $table->string('content')->nullable();
             $table->timestamps();
         });

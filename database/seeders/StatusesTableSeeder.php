@@ -50,12 +50,7 @@ class StatusesTableSeeder extends Seeder
         DB::table('statuses')->insert($param);
 
         $param = [
-            'name' => '公開待ち'
-        ];
-        DB::table('statuses')->insert($param);
-
-        $param = [
-            'name' => '公開済み'
+            'name' => '納品完了'
         ];
         DB::table('statuses')->insert($param);
     }

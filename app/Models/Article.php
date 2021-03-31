@@ -45,6 +45,7 @@ class Article extends Model
     protected $fillable = [
         'title',
         'content',
-        'status_id'
+        'status_id',
+        'publish_flg'
     ];
 }

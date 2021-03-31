@@ -13,8 +13,5 @@ class ThumbnailsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
-       // \App\Models\Thumbnail::factory()->count(5)->create()->each(
-
     }
 }

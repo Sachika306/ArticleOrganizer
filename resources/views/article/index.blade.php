@@ -60,7 +60,7 @@
               <td>
                 <span class="text-light">
                     @include('layouts.article.status')
-                        {{ $article->status->name }}
+                    {{ $article->status->name }}
                     </div>
                 </span>
               </td>
@@ -81,10 +81,7 @@
 
         
           </tr>
-          
 
-         
-          
         @endforeach
         
       </tbody>
