@@ -54,9 +54,9 @@
               <td><a href="/member/show/{{ $user->id }}">詳細</a></td>
               <td>
                 @if($user->id !=  Auth::user()->id )
-                  <form action="/member/destroy/{{ $user->id }}" id="delete" method="post">
+                  <form action="/member/destroy/{{ $user->id }}" class="delete" method="post">
                   @csrf
-                  <button type="submit" id="delete">削除</button>
+                  <button type="submit">削除</button>
                   </form>
                 @endif
               </td>

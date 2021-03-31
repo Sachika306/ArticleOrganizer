@@ -1971,7 +1971,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /***/ (() => {
 
 // メンバー・記事を削除する際のアラート
-$('#delete').submit(function (e) {
+$('.delete').submit(function (e) {
   if (!confirm('削除したデータは元に戻せません。本当に削除しますか？')) {
     return false;
   }

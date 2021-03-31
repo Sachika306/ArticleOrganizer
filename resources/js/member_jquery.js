@@ -1,10 +1,9 @@
 // メンバー・記事を削除する際のアラート
-$('#delete').submit(function (e) {
+$('.delete').submit(function (e) {
     if (!confirm('削除したデータは元に戻せません。本当に削除しますか？')) {
         return false;
     }
 });
-
 
 // アウトライン・記事を承認する際のアラート
 $('#publish').submit(function (e) {

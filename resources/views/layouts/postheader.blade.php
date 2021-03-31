@@ -19,6 +19,16 @@
   <a class="navbar-brand" href="{{ url('/') }}">ニュースサイト</a>
 </nav>
 
+@if(session('message'))
+<div class="card-body mx-auto">
+    <div class="row justify-content-center">
+            <div class="alert alert-success w-75 mx-auto" role="alert">
+              <p>{{session('message')}}</p>
+            </div>
+    </div>
+</div>
+@endif
+
 @yield('content')
 
 @yield('footer')

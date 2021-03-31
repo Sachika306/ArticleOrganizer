@@ -12,20 +12,20 @@
               @if($article->status_id == 4)
               <form method="post" action="/outline/approve/{{ $article->id }}" class="approve">
                 @csrf
-                <button type="submit" class="btn btn-success">承認する</button>
+                <button type="submit" class="btn btn-success mr-1">承認する</button>
               </form>
               <form method="post" action="/outline/decline/{{ $article->id }}" class="decline">
                 @csrf
-                <button type="submit" class="btn btn-danger">修正依頼</button>
+                <button type="submit" class="btn btn-danger mr-1">修正依頼</button>
               </form>
               @elseif($article->status_id == 7)
               <form method="post" action="/article/approve/{{ $article->id }}" class="approve">
                 @csrf
-                <button type="submit" class="btn btn-success">承認する</button>
+                <button type="submit" class="btn btn-success mr-1">承認する</button>
               </form>
               <form method="post" action="/article/decline/{{ $article->id }}" class="decline">
                 @csrf
-                <button type="submit" class="btn btn-danger">修正依頼</button>
+                <button type="submit" class="btn btn-danger mr-1">修正依頼</button>
               </form>
               @elseif($article->status_id == 8)
                 @if($article->publish_flg == 0)
@@ -54,7 +54,7 @@
                 </a>
               @endif
             @endcan
-            <a href="{{ url('/article/preview') }}">
+            <a href="/article/preview/{{ $article->id }}">
               <button type="button" class="btn btn-secondary">プレビュー</button>
             </a>
           </div>
@@ -91,7 +91,7 @@
             <h3 class="display-6">アウトライン</h3>
             <div class="form-control" style="height:auto;">
             @isset($article->outline->persona)
-             {{ $article->outline->persona }}<a class="pull-right">アウトラインプレビュー</a>
+             {{ $article->outline->persona }}<a href="/article/outline/{{ $article->id }}">アウトラインプレビュー</a>
             @else
               <p>アウトラインはまだ設定されていません。</p>
             @endisset
