@@ -11,7 +11,7 @@ class PostController extends Controller
     public function index()
     {
         //
-        $articles = Article::paginate(15);
+        $articles = Article::where('publish_flg', 1)->paginate(15);
         return view('post.index', compact('articles'));
     }
     
@@ -19,6 +19,11 @@ class PostController extends Controller
     {
         //
         $article = Article::find($id);
-        return view('post.show', compact('article'));
+        if ($article->publish_flg == 1) {
+            return view('post.show', compact('article'));
+        } else {
+            return redirect('/');
+        }
+        
     }
 }

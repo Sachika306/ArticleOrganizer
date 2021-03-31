@@ -10,25 +10,37 @@
           <div class="d-flex">
             @can('admin-user')
               @if($article->status_id == 4)
-              <form method="post" action="/outline/approve/{{ $article->id }}">
+              <form method="post" action="/outline/approve/{{ $article->id }}" class="approve">
                 @csrf
                 <button type="submit" class="btn btn-success">承認する</button>
               </form>
-              <form method="post" action="/outline/decline/{{ $article->id }}">
+              <form method="post" action="/outline/decline/{{ $article->id }}" class="decline">
                 @csrf
                 <button type="submit" class="btn btn-danger">修正依頼</button>
               </form>
-              @endif
-              @if($article->status_id == 7)
-              <form method="post" action="/article/approve/{{ $article->id }}">
+              @elseif($article->status_id == 7)
+              <form method="post" action="/article/approve/{{ $article->id }}" class="approve">
                 @csrf
                 <button type="submit" class="btn btn-success">承認する</button>
               </form>
-              <form method="post" action="/article/decline/{{ $article->id }}">
+              <form method="post" action="/article/decline/{{ $article->id }}" class="decline">
                 @csrf
                 <button type="submit" class="btn btn-danger">修正依頼</button>
               </form>
+              @elseif($article->status_id == 8)
+                @if($article->publish_flg == 0)
+                <form method="post" action="/article/publish/{{ $article->id }}" id="publish">
+                  @csrf
+                  <button type="submit"  class="btn btn-success">公開する</button>
+                </form>
+                @elseif($article->publish_flg == 1)
+                <form method="post" action="/article/withhold/{{ $article->id }}" id="withhold">
+                  @csrf
+                  <button type="submit" class="btn btn-secondary">非公開にする</button>
+                </form>
+                @endif
               @endif
+
             @elsecan('article-user')
               @if($article->status_id == 5 || $article->status_id == 6)
                 <a href="/article/edit/{{ $article->id }}">
@@ -81,8 +93,7 @@
             @isset($article->outline->persona)
              {{ $article->outline->persona }}<a class="pull-right">アウトラインプレビュー</a>
             @else
-              <p>ペルソナがまだありません。</p>
-              <a href="">アウトラインプレビュー</a>
+              <p>アウトラインはまだ設定されていません。</p>
             @endisset
             </div>
           </div>
@@ -107,13 +118,13 @@
           @can('admin-user')
           @elsecan('article-user')
             @if($article->status_id < 7)
-            <form method="post" action="/article/submit/{{ $article->id }}">
+            <form method="post" action="/article/submit/{{ $article->id }}" class="submit">
               <button type="button" class="btn btn-success">記事申請</button>
             </form>
             @endif
           @elsecan('outline-user')
             @if($article->status_id < 4)
-            <form method="post" action="/article/submit/{{ $article->id }}">
+            <form method="post" action="/article/submit/{{ $article->id }}" class="submit">
               @csrf
               <button type="submit" class="btn btn-success">アウトライン申請</button>
             </form>

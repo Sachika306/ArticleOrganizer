@@ -30,6 +30,8 @@ Route::middleware('auth', 'can:admin-user')->group(function () {
     Route::post('/outline/approve/{id}', 'App\Http\Controllers\Status\OutlineStatusController@approve');
     Route::post('/article/decline/{id}', 'App\Http\Controllers\Status\ArticleStatusController@decline');
     Route::post('/article/approve/{id}', 'App\Http\Controllers\Status\ArticleStatusController@approve');
+    Route::post('/article/publish/{id}', 'App\Http\Controllers\ArticlePublishController@publish');
+    Route::post('/article/withhold/{id}', 'App\Http\Controllers\ArticlePublishController@withhold');
     // member
     Route::get('/member', 'App\Http\Controllers\MemberController@index');
     Route::get('/member/show/{id}', 'App\Http\Controllers\MemberController@show');
@@ -69,9 +71,10 @@ Route::middleware('auth', 'can:all-users')->group(function () {
 });
 
 
-// 記事表示用ルート
-Route::get('/aaa', function ($user) {
-    return ($this->$user->roles);
+// ログイン不要・公開済みの記事表示用
+Route::get('/aaa', function () {
+    $article = Article::find(1);
+    return $article->status->id;
 });
 Route::get('/', 'App\Http\Controllers\PostController@index');
 Route::get('/post/{id}', 'App\Http\Controllers\PostController@show');

@@ -19,7 +19,7 @@ class ArticleFilterController extends Controller
         if ($statusId > 0) {
             $articles = Article::where('status_id', $statusId)->paginate(15);
             $articles->withPath('?status_id='.$statusId);
-            return redirect('/article')->with('articles', $articles);
+            return view('article.index')->with('articles', $articles);
         } else {
             return redirect('/article');
         }
