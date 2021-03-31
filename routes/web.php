@@ -64,6 +64,8 @@ Route::middleware('auth', 'can:outline-user')->group(function () {
 Route::middleware('auth', 'can:all-users')->group(function () {
     Route::get('/article', 'App\Http\Controllers\ArticleController@index')->name('article');
     Route::get('/article/show/{id}', 'App\Http\Controllers\ArticleController@show');
+    Route::get('/article/preview/{id}', 'App\Http\Controllers\ArticleController@preview');
+    Route::get('/article/outline/{id}', 'App\Http\Controllers\ArticleController@outline');
     Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
     Route::get('/member/setting', 'App\Http\Controllers\MemberController@setting');
     Route::post('/member/setting/update', 'App\Http\Controllers\MemberController@settingupdate');

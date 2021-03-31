@@ -58,16 +58,6 @@ class ArticleController extends Controller
     }
 
     /**
-     * Show the form for creating a new assignment.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    // public function create()
-    // {
-    //     return view('article.create');
-    // }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -144,13 +134,11 @@ class ArticleController extends Controller
         $article = Article::find($id);
         $outline = Outline::where('article_id', '=', $id);
 
-
         $article->update([
             'title' => $request->title
         ]);
 
         $outline->update($request->except(['_token', 'title', 'submit']));
-
         return redirect()->back()->with('message', '内容が保存されました！');
     }
 
@@ -169,5 +157,23 @@ class ArticleController extends Controller
         return back();
     }
 
+    /**
+     * 
+     * Preview article
+     * 
+     */
+    public function preview($id){
+        $article = Article::find($id);
+        return view('post.show', compact('article'));
+    }
 
+    /**
+     * 
+     * Preview Outline
+     * 
+     */
+    public function outline($id){
+        $article = Outline::find($id);
+        return view('article.outline', compact('article')); 
+    }
 }

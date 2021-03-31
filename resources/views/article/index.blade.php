@@ -72,9 +72,9 @@
               <td><a href="/article/show/{{ $article->id }}">詳細</a></td>
               @can('admin-user')
                 <td>
-                  <form action="/article/destroy/{{ $article->id }}" id="delete" method="post">
+                  <form action="/article/destroy/{{ $article->id }}" class="delete" method="post">
                   @csrf
-                  <button type="submit" id="delete">削除</button>
+                  <button type="submit">削除</button>
                   </form>
                 </td>
               @endcan

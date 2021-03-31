@@ -5,6 +5,12 @@
 <div class="card w-75 mx-auto">
   <div class="card-body">
     
+    @if(url('/article/preview/'.$article->id))
+    <div class="alert alert-success" role="alert">
+      <p>これはプレビュー画面です。<a href="/article/show/{{ $article->id }}">戻る</a></p>
+    </div>
+    @endif
+
         <div class="card-body title-wrapper">
           <div>
             <h2 class="display-6">{{ $article->title }}</h2>
