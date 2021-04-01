@@ -173,7 +173,8 @@ class ArticleController extends Controller
      * 
      */
     public function outline($id){
-        $article = Outline::find($id);
-        return view('article.outline', compact('article')); 
+        $article = Article::find($id);
+        $outline = Outline::find($id);
+        return view('article.outline', compact('article', 'outline')); 
     }
 }

@@ -48,9 +48,9 @@
                 </a>
               @endif
             @elsecan('outline-user')
-              @if($article->status_id < 1)
+              @if($article->status_id < 4)
                 <a href="/outline/edit/{{ $article->id }}">
-                  <button type="button" class="btn btn-primary">アウトライン作成</button>
+                  <button type="button" class="btn btn-primary">アウトライン編集</button>
                 </a>
               @endif
             @endcan
