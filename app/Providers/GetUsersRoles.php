@@ -44,6 +44,7 @@ class GetUsersRoles extends ServiceProvider
             $statuses = Status::get();
             $view -> with('statuses', $statuses);
         });
+
     }
 
 }

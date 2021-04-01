@@ -57,7 +57,18 @@
 </div>
 @endif
 
+@if(session('message_error'))
+<div class="card-body mx-auto">
+    <div class="row justify-content-center">
+            <div class="alert alert-danger w-75 mx-auto" role="alert">
+              <p>{{session('message_error')}}</p>
+            </div>
+    </div>
+</div>
+@endif
+
 @yield('content')
+
 
 @yield('footer')
 
