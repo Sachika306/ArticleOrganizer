@@ -6,29 +6,17 @@
 <div class="card w-100 mx-auto">
   <div class="card-header d-flex justify-content-between">
     <div>{{ __('メンバー一覧') }}
-      <ul class="nav nav-tabs card-header-tabs">
-        <li class="nav-item">
-          <a class="nav-link active" href="#">管理者</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">アウトライン担当者</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">記事担当者</a>
-        </li>
-      </ul>
     </div>
-        
-      @can('admin-user')
-      <div>
-        <a href="{{ url('/register') }}">
-          <button type="button" class="btn btn-primary">新規登録</button>
-        </a>
-      </div>
-      @endcan
   </div>
 
       <div class="table-responsive-sm card-body">
+        @can('admin-user')
+        <div>
+          <a href="{{ url('/register') }}">
+            <button type="button" class="btn btn-primary float-right mb-3">新規登録</button>
+          </a>
+        </div>
+        @endcan
         <table class="table table-hover">
 
           <thead>

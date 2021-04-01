@@ -69,9 +69,9 @@
 
 @yield('content')
 
-
+<div class="w-100 p-3 fixed-bottom" style="background-color: #eee;">
 @yield('footer')
-
+</div>
 
 </body>
 </html>
