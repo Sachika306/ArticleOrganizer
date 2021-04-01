@@ -24,7 +24,13 @@ class OutlineUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'lead_chars' => ['required'],
+            'part1_chars' => ['required'],
+            'part2_chars' => ['required'],
+            'part3_chars' => ['required'],
+            // 'part4_chars' => ['required'],
+            // 'part5_chars' => ['required'],
+            // 'part6_chars' => ['required'],
         ];
     }
 }

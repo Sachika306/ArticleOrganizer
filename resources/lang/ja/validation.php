@@ -157,5 +157,13 @@ return [
         'first_name' => '名前',
         'last_name' => '名前',
         'file_name' => 'ファイル',
+        'lead_chars' => '文字数',
+        'part1_chars' => '文字数',
+        'part2_chars' => '文字数',
+        'part3_chars' => '文字数',
+        'part4_chars' => '文字数',
+        'part5_chars' => '文字数',
+        'part6_chars' => '文字数',
+        'conclusion_chars' => '文字数'
     ],
 ];
