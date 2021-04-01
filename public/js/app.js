@@ -1970,7 +1970,20 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
   \***************************************/
 /***/ (() => {
 
-// メンバー・記事を削除する際のアラート
+function calculateAverage() {
+  $('#MyOutline').each(function () {
+    var totalPoints = 0;
+    $(this).find('.txtCal').each(function () {
+      totalPoints += parseInt($(this).val()); //<==== a catch  in here !! read below
+    });
+    $('.totalchars').val(totalPoints);
+  });
+}
+
+$(".txtCal").on("keyup", function () {
+  calculateAverage();
+}); // メンバー・記事を削除する際のアラート
+
 $('.delete').submit(function (e) {
   if (!confirm('削除したデータは元に戻せません。本当に削除しますか？')) {
     return false;
@@ -1979,6 +1992,11 @@ $('.delete').submit(function (e) {
 
 $('#publish').submit(function (e) {
   if (!confirm('記事を公開しますか？')) {
+    return false;
+  }
+});
+$('#withhold').submit(function (e) {
+  if (!confirm('記事を非公開にしますか？')) {
     return false;
   }
 });

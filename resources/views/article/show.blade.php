@@ -31,12 +31,12 @@
                 @if($article->publish_flg == 0)
                 <form method="post" action="/article/publish/{{ $article->id }}" id="publish">
                   @csrf
-                  <button type="submit"  class="btn btn-success">公開する</button>
+                  <button type="submit" class="btn btn-success mr-1">公開する</button>
                 </form>
                 @elseif($article->publish_flg == 1)
                 <form method="post" action="/article/withhold/{{ $article->id }}" id="withhold">
                   @csrf
-                  <button type="submit" class="btn btn-secondary">非公開にする</button>
+                  <button type="submit" class="btn btn-secondary mr-1">非公開にする</button>
                 </form>
                 @endif
               @endif
@@ -44,18 +44,18 @@
             @elsecan('article-user')
               @if($article->status_id == 5 || $article->status_id == 6)
                 <a href="/article/edit/{{ $article->id }}">
-                  <button type="button" class="btn btn-primary">記事編集</button>
+                  <button type="button" class="btn btn-primary mr-1">記事編集</button>
                 </a>
               @endif
             @elsecan('outline-user')
               @if($article->status_id < 4)
                 <a href="/outline/edit/{{ $article->id }}">
-                  <button type="button" class="btn btn-primary">アウトライン編集</button>
+                  <button type="button" class="btn btn-primary mr-1">アウトライン編集</button>
                 </a>
               @endif
             @endcan
             <a href="/article/preview/{{ $article->id }}">
-              <button type="button" class="btn btn-secondary">プレビュー</button>
+              <button type="button" class="btn btn-secondary mr-1">プレビュー</button>
             </a>
           </div>
         </div>
@@ -113,20 +113,20 @@
 
         <div class="card-body d-flex">
           <a href="{{ url('/article') }}">
-            <button type="button" class="btn btn-secondary">一覧に戻る</button>
+            <button type="button" class="btn btn-secondary mr-1">一覧に戻る</button>
           </a>
           @can('admin-user')
           @elsecan('article-user')
             @if($article->status_id < 7)
             <form method="post" action="/article/submit/{{ $article->id }}" class="submit">
-              <button type="button" class="btn btn-success">記事申請</button>
+              <button type="button" class="btn btn-success mr-1">記事申請</button>
             </form>
             @endif
           @elsecan('outline-user')
             @if($article->status_id < 4)
             <form method="post" action="/article/submit/{{ $article->id }}" class="submit">
               @csrf
-              <button type="submit" class="btn btn-success">アウトライン申請</button>
+              <button type="submit" class="btn btn-success mr-1">アウトライン申請</button>
             </form>
             @endif
           @endcan
