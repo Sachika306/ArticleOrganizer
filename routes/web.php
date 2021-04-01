@@ -75,8 +75,10 @@ Route::middleware('auth', 'can:all-users')->group(function () {
 
 // ログイン不要・公開済みの記事表示用
 Route::get('/aaa', function () {
-    $article = Article::find(1);
-    return $article->status->id;
+    $user = User::find(3);
+    $outlineAssignment = OutlineAssignment::all();
+    $articleAssignment = ArticleAssignment::all();
+echo $user->roles;
 });
 Route::get('/', 'App\Http\Controllers\PostController@index');
 Route::get('/post/{id}', 'App\Http\Controllers\PostController@show');

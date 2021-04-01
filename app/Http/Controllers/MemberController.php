@@ -5,6 +5,7 @@ use App\Models\{User, RoleUser, OutlineAssignment, ArticleAssignment};
 use Illuminate\Http\Request;
 use App\Http\Requests\{RegisterRequest, MemberSettingRequest};
 use Illuminate\Support\Facades\Auth;
+use App\Requests\MemberDestroyRequest;
 
 class MemberController extends Controller
 {
@@ -107,7 +108,21 @@ class MemberController extends Controller
     {
         //
         $user = User::find($id);
-        $user->delete();
-        return back();
+        $roleuser = RoleUser::where('user_id', '=', $id);
+        $outlineAssignment = OutlineAssignment::all();
+        $articleAssignment = ArticleAssignment::all();
+
+        if ($user->roles->first->id->pivot->role_id == 4 || $user->roles->first->id->pivot->role_id == 7) {
+            if ($articleAssignment->where('article_user_id', $user->id)->count() > 0 ) {
+                return redirect('/article')->with('message_error', '担当中のタスクがあるため、メンバーは削除できません。メンバー詳細画面で進行中のタスクを確認して、他の担当者に割り当ててから削除してください。');
+            } else if ($outlineAssignment->where('article_user_id', $user->id)->count() > 0 ) {
+                return redirect('/article')->with('message_error', '担当中のタスクがあるため、メンバーは削除できません。メンバー詳細画面で進行中のタスクを確認して、他の担当者に割り当ててから削除してください。');
+            } else {
+                $user->delete();
+                $roleuser->delete();
+                return back()->with('message', 'メンバーは削除されました。');     
+            }
+        } 
+
     }
 }
