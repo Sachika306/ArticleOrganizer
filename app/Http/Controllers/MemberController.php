@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\{User, RoleUser, OutlineAssignment, ArticleAssignment};
+use App\Models\{User, RoleUser, Article, OutlineAssignment, ArticleAssignment};
 use Illuminate\Http\Request;
 use App\Http\Requests\{RegisterRequest, MemberSettingRequest};
 use Illuminate\Support\Facades\Auth;
@@ -49,7 +49,10 @@ class MemberController extends Controller
     {
         //
         $user = User::find($id);
-        return view('member.show', $user);
+        $articles = Article::all();
+        $outlineAssignments = OutlineAssignment::all()->where('outline_user_id', '=', $id);
+        $articleAssignments = ArticleAssignment::all()->where('article_user_id', '=', $id);
+        return view('member.show', compact('user', 'outlineAssignments', 'articleAssignments', 'articles'));
     }
 
     /**
@@ -113,16 +116,18 @@ class MemberController extends Controller
         $articleAssignment = ArticleAssignment::all();
 
         if ($user->roles->first->id->pivot->role_id == 4 || $user->roles->first->id->pivot->role_id == 7) {
-            if ($articleAssignment->where('article_user_id', $user->id)->count() > 0 ) {
-                return redirect('/article')->with('message_error', '担当中のタスクがあるため、メンバーは削除できません。メンバー詳細画面で進行中のタスクを確認して、他の担当者に割り当ててから削除してください。');
-            } else if ($outlineAssignment->where('article_user_id', $user->id)->count() > 0 ) {
-                return redirect('/article')->with('message_error', '担当中のタスクがあるため、メンバーは削除できません。メンバー詳細画面で進行中のタスクを確認して、他の担当者に割り当ててから削除してください。');
+            if ($articleAssignment->where('article_user_id', $user->id)->count() > 0  || $outlineAssignment->where('outline_user_id', $user->id)->count() > 0 ) {
+                return back()->with('message_error', '担当中のタスクがあるため、メンバーは削除できません。メンバー詳細画面で進行中のタスクを確認して、他の担当者に割り当ててから削除してください。');
             } else {
                 $user->delete();
                 $roleuser->delete();
-                return back()->with('message', 'メンバーは削除されました。');     
+                return redirect('/member')->with('message', 'メンバーは削除されました。'); 
             }
-        } 
+        } else {
+            $user->delete();
+            $roleuser->delete();
+            return redirect('/member')->with('message', 'メンバーは削除されました。'); 
+        }
 
     }
 }

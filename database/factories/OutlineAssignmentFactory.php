@@ -26,7 +26,7 @@ class OutlineAssignmentFactory extends Factory
     public function definition()
     {
         return [
-            'outline_user_id' => RoleUser::where('role_id', '=', '4')->pluck('user_id')->random(),
+            'outline_user_id' => RoleUser::where('role_id', '=', '7')->pluck('user_id')->random(),
             'outline_deadline' => $this->faker->date($format = 'Y-m-d')
         ];
     }
