@@ -71,6 +71,7 @@
 @yield('content')
 </div>
 
+@isset(Auth::user()->email)
 @if(Auth::user()->email == 'guest@example.com' && Auth::user()->name =='山田 大郎')
 <div class="" style="position: absolute; position:fixed; bottom: 5%; right: 5%; opacity: 0.9;">
   <div class="d-flex">
@@ -79,6 +80,7 @@
     </form>
   </div>
 </div>
+@endisset
 @endif
 
 
