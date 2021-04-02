@@ -73,8 +73,13 @@
 @yield('footer')
 </div>
 
+<script type="text/javascript">
+  var outlineUserNames = @json($outlineUserNames);
+  var articleUserNames = @json($articleUserNames);
+</script>
 </body>
 </html>
+
 
 
     

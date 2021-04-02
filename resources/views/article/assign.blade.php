@@ -67,9 +67,11 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="atcile_deadline" class="col-sm-4 col-form-label text-md-right">{{ __('アウトライン納期') }}</label>
+                            <label for="atcile_deadline" class="col-sm-4 col-form-label text-md-right">{{ __('記事納期') }}</label>
+                            
                             <div class="col-md-6">
                                 <input id="article_deadline" type="text" class="date form-control{{ $errors->has('article_deadline') ? ' is-invalid' : '' }}" placeholder="2020-01-01" name="article_deadline" value="{{ old('article_deadline') }}">
+                                <small>※記事納期はアウトライン納期よりあとの日付を選択してください。</small>
                                 @if ($errors->has('article_deadline'))
                                     <span class="invalid-feedback">
                                         <strong>{{ $errors->first('article_deadline') }}</strong>
@@ -79,7 +81,7 @@
                         </div>
 
                       <button type="button" name="submitBtn" class="btn btn-primary" onclick="submit();">送信</button>
-
+                      <a href="/article"><button type="button" class="btn btn-secondary" onclick="submit();">一覧に戻る</button></a>
                   </form>
                 </div>
             </div>

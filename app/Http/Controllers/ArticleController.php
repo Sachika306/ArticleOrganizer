@@ -27,34 +27,7 @@ class ArticleController extends Controller
      */
     public function assign()
     {
-        // jQuery-UI autocomplete で使うためアウトライン・記事担当者の名前を配列にする
-        $roles = Role::get();
-        
-        //アウトライン権限のユーザーを探す
-        $outlineUsers = $roles->find(4)->user;
-        $outlineUserNames = array();
-        if (count($outlineUsers) > 0) {
-            foreach ($outlineUsers as $user) {
-                $outlineUserNames[] = array(
-                    'label' => $user->name,
-                    'value' => $user->id
-                );
-            }
-        }
-      
-        //記事権限のユーザーを探す
-        $articleUsers = $roles->find(7)->user;
-        $articleUserNames = array();
-        if (count($articleUsers) > 0) {
-            foreach ($articleUsers as $user) {
-                $articleUserNames[] = array(
-                    'label' => $user->name,
-                    'value' => $user->id
-                );
-            }
-        }
-
-       return view('article.assign', compact('outlineUserNames', 'articleUserNames'));
+       return view('article.assign');
     }
 
     /**
@@ -139,6 +112,16 @@ class ArticleController extends Controller
         ]);
 
         $outline->update($request->except(['_token', 'title', 'submit']));
+        return redirect()->back()->with('message', '内容が保存されました！');
+    }
+
+    public function reassign(Request $request, $id)
+    {
+        $outlineAssignment = OutlineAssignment::where('article_id', '=', $id)
+            ->update([ 'outline_user_id' => $request->outline_user_id]);
+        $articleAssignment = ArticleAssignment::where('article_id', '=', $id)
+            ->update([ 'article_user_id' => $request->article_user_id]);
+
         return redirect()->back()->with('message', '内容が保存されました！');
     }
 

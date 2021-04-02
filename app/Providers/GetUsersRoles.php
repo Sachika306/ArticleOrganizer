@@ -45,6 +45,8 @@ class GetUsersRoles extends ServiceProvider
             $view -> with('statuses', $statuses);
         });
 
+        View::composer ('*', 'App\Http\Composers\AssignComposer'); // jqueryのオートコンプリート用に、アウトライン担当者と記事担当者の配列を渡す。
+
     }
 
 }

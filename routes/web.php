@@ -25,6 +25,7 @@ Route::middleware('auth', 'can:admin-user')->group(function () {
     // article
     Route::get('/article/assign', 'App\Http\Controllers\ArticleController@assign');
     Route::post('/article/store', 'App\Http\Controllers\ArticleController@store');
+    Route::post('/article/reassign/{id}', 'App\Http\Controllers\ArticleController@reassign');
     Route::post('/article/destroy/{id}', 'App\Http\Controllers\ArticleController@destroy');
     Route::post('/outline/decline/{id}', 'App\Http\Controllers\Status\OutlineStatusController@decline');
     Route::post('/outline/approve/{id}', 'App\Http\Controllers\Status\OutlineStatusController@approve');
