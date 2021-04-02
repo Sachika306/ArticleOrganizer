@@ -27,7 +27,7 @@ class OutlineAssignmentFactory extends Factory
     {
         return [
             'outline_user_id' => RoleUser::where('role_id', '=', '7')->pluck('user_id')->random(),
-            'outline_deadline' => $this->faker->date($format = 'Y-m-d')
+            'outline_deadline' => $this->faker->dateTimeBetween('0 days', '+30 days')->format('Y-m-d')
         ];
     }
 }

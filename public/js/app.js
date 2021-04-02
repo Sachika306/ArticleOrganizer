@@ -1970,11 +1970,12 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
   \***************************************/
 /***/ (() => {
 
+//　アウトライン作成・編集画面で文字数を自動合計する
 function calculateAverage() {
   $('#MyOutline').each(function () {
     var totalPoints = 0;
     $(this).find('.txtCal').each(function () {
-      totalPoints += parseInt($(this).val()); //<==== a catch  in here !! read below
+      totalPoints += parseInt($(this).val());
     });
     $('.totalchars').val(totalPoints);
   });
@@ -2042,7 +2043,6 @@ $("#outline_user_name").autocomplete({
 }).focus(function () {
   $(this).autocomplete('search', $(this).val());
 });
-console.log(outlineUserNames);
 $("#article_user_name").autocomplete({
   source: articleUserNames,
   minLength: 0,

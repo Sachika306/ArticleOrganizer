@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class StatusesTableSeeder extends Seeder
 {
@@ -14,44 +15,23 @@ class StatusesTableSeeder extends Seeder
      */
     public function run()
     {
-        $param = [
-            'name' => '未着手'
-        ];
-        DB::table('statuses')->insert($param);
+        $statuses = ([
+            '未着手',
+            'アウトライン作成中',
+            'アウトライン修正中',
+            'アウトライン確認中',
+            '記事作成中',
+            '記事修正中',
+            '記事確認中',
+            '納品完了'
+        ]);
 
-        $param = [
-            'name' => 'アウトライン作成中'
-        ];
-        DB::table('statuses')->insert($param);
-
-        $param = [
-            'name' => 'アウトライン修正中'
-        ];
-        DB::table('statuses')->insert($param);
-
-        $param = [
-            'name' => 'アウトライン確認中'
-        ];
-        DB::table('statuses')->insert($param);
-
-        $param = [
-            'name' => '記事作成中'
-        ];
-        DB::table('statuses')->insert($param);
-
-        $param = [
-            'name' => '記事修正中'
-        ];
-        DB::table('statuses')->insert($param);
-
-        $param = [
-            'name' => '記事確認中'
-        ];
-        DB::table('statuses')->insert($param);
-
-        $param = [
-            'name' => '納品完了'
-        ];
-        DB::table('statuses')->insert($param);
+        foreach($statuses as $status) {
+            DB::table('statuses')->insert([
+                'name' => $status,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+        }
     }
 }

@@ -67,10 +67,25 @@
 </div>
 @endif
 
+<div class="m-4 min-vh-100">
 @yield('content')
+</div>
 
-<div class="w-100 p-3 fixed-bottom" style="background-color: #eee;">
-@yield('footer')
+@if(Auth::user()->email == 'guest@example.com' && Auth::user()->name =='山田 大郎')
+<div class="" style="position: absolute; position:fixed; bottom: 5%; right: 5%; opacity: 0.9;">
+  <div class="d-flex">
+    <form method="post" action="">
+      <button type="button" class="btn btn-info p-3">権限を記事担当者に変更</button>
+    </form>
+  </div>
+</div>
+@endif
+
+
+<div class="justify-content d-flex align-self my-auto">
+  <div class="w-100 p-5" style="background-color: #eee;">
+    @yield('footer')
+  </div>
 </div>
 
 <script type="text/javascript">

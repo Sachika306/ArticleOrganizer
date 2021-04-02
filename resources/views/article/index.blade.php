@@ -12,17 +12,20 @@
   </div>
 
   <div class="d-flex card-body justify-content-between w-100 mx-auto">
-    <form method="GET" action="{{ url('article/sort') }}" class="w-50 d-flex">
-      <select class="col-8 mr-3 custom-select" name="status_id">
-              <option value="0">すべての記事</option>
-            @foreach($statuses as $status)
-              <option name="{{ $status->id }}" value="{{ $status->id }}">{{ $status->name }}</option>
-            @endforeach
-      </select>
-      <div class="">
-        <a href="/article/assign">
-            <button type="submit" class="btn btn-secondary">表示</button>
-        </a>
+    <form method="GET" action="{{ url('article/sort') }}" class="w-75">
+      <div class="d-flex">
+        <select class="mr-1 custom-select " name="status_id">
+                <option value="0">すべての記事</option>
+              @foreach($statuses as $status)
+                <option name="{{ $status->id }}" value="{{ $status->id }}">{{ $status->name }}</option>
+              @endforeach
+        </select>
+      
+        <div class="col-5">
+          <a href="/article/assign">
+              <button type="submit" class="btn btn-secondary">表示</button>
+          </a>
+        </div>
       </div>
     </form>
     
@@ -43,10 +46,10 @@
           <th scope="col">ステータス</th>
           <th scope="col">タイトル</th>
           <th scope="col">アウトライン納期</th>
-          <th scope="col">アウトライン担当者</th>
+          <th scope="col">アウトライン担当</th>
           <th scope="col">記事納期</th>
           <th scope="col">記事担当</th>
-          <th scope="col">編集</th>
+          <th scope="col">詳細</th>
           @can('admin-user')
           <th scope="col">削除</th>
           @endcan

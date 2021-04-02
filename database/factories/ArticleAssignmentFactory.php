@@ -15,6 +15,7 @@ class ArticleAssignmentFactory extends Factory
      * @var string
      */
     protected $model = ArticleAssignment::class;
+    protected $outlineAssignment = OutlineAssignment::class;
     protected $article = Article::class;
     protected $roleuser = RoleUser::class;
 
@@ -27,8 +28,7 @@ class ArticleAssignmentFactory extends Factory
     {
         return [
             // 'article_id'はArticleTableSeederで生成
-            'article_user_id' => RoleUser::where('role_id', '=', '4')->pluck('user_id')->random(),
-            'article_deadline' => $this->faker->date($format = 'Y-m-d')
+            'article_user_id' => RoleUser::where('role_id', '=', '4')->pluck('user_id')->random()
         ];
     }
 }

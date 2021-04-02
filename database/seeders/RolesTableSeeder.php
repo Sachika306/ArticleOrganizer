@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class RolesTableSeeder extends Seeder
 {
@@ -14,37 +15,23 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
-        $param = [
-            'name' => '管理者'
-        ];
-        DB::table('roles')->insert($param);
+        $roles = ([
+            '管理者',
+            '',
+            '',
+            '記事担当者',
+            '',
+            '',
+            'アウトライン担当者'
+        ]);
 
-        $param = [
-            'name' => ''
-        ];
-        DB::table('roles')->insert($param);
+        foreach($roles as $role) {
+            DB::table('roles')->insert([
+                'name' => $role,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+        }
 
-        $param = [
-            'name' => ''
-        ];
-        DB::table('roles')->insert($param);
-        $param = [
-            'name' => '記事担当者'
-        ];
-        DB::table('roles')->insert($param);
-        $param = [
-            'name' => ''
-        ];
-        DB::table('roles')->insert($param);
-
-        $param = [
-            'name' => ''
-        ];
-        DB::table('roles')->insert($param);
-
-        $param = [
-            'name' => 'アウトライン担当者'
-        ];
-        DB::table('roles')->insert($param);
     }
 }

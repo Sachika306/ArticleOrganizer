@@ -50,10 +50,15 @@
 
                         <div class="form-group row mb-4">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('ログイン') }}
-                                </button>
-
+                                <div class="flex-d">
+                                    <button type="submit" class="btn btn-primary">
+                                        {{ __('ログイン') }}
+                                    </button>
+                                    <form method="post" action="{{ route('login.guest') }}">
+                                        @csrf
+                                        <button type="submit">ゲストログイン</button>
+                                    </form>
+                                </div>
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     {{ __('パスワードを忘れた場合はこちらから') }}
                                 </a>

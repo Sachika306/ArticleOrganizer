@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use App\Http\Providers\AuthServiceProvider;
+use Carbon\Carbon;
 
 
 /*
@@ -76,10 +77,10 @@ Route::middleware('auth', 'can:all-users')->group(function () {
 
 // ログイン不要・公開済みの記事表示用
 Route::get('/aaa', function () {
-    $user = User::find(3);
-    $outlineAssignment = OutlineAssignment::all();
-    $articleAssignment = ArticleAssignment::all();
-echo $user->roles;
+    
+    $user = OutlineAssignment::where('article_id', '=', 1)->first()->outline_deadline;
+    Carbon::parse($user)->addWeek(2);
+    echo $user;
 });
 Route::get('/', 'App\Http\Controllers\PostController@index');
 Route::get('/post/{id}', 'App\Http\Controllers\PostController@show');
@@ -92,14 +93,18 @@ Route::post('/login', 'App\Http\Controllers\Auth\LoginController@postAuth');
 Route::get('/logout', 'App\Http\Controllers\Auth\LoginController@logout');
 
 
-//　member auth
+//　ゲストログイン機能
+Route::post('/login/guest', 'App\Http\Controllers\Auth\LoginController@loginGuest')
+    ->name('login.guest');
+
+
+//　Authの設定
 Auth::routes([
     'register' => false,
     'verify' => true
 ]);
 
-
-// verification
+// 認証機能
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
 })->middleware('auth')->name('verification.notice');
