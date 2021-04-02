@@ -54,23 +54,22 @@
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('ログイン') }}
                                     </button>
-                                    <form method="post" action="{{ route('login.guest') }}">
-                                        @csrf
-                                        <button type="submit">ゲストログイン</button>
-                                    </form>
                                 </div>
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     {{ __('パスワードを忘れた場合はこちらから') }}
                                 </a>
                             </div>
                         </div>
-
-
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<form method="post" action="{{ route('login.guest') }}" style="position: absolute; position:fixed; bottom: 5%; right: 5%; opacity: 0.9;">
+    @csrf
+    <button type="submit" class="btn btn-success">ゲストログイン</button>
+</form>
 @endsection
 
