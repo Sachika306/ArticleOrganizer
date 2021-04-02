@@ -41,6 +41,11 @@ class AuthServiceProvider extends ServiceProvider
             return ($user->roles->first()->id == 7 || $user->roles->first()->id == 1);
         });
 
+        // 管理権限以外のみ許可
+        Gate::define('outline-and-article-user', function (User $user) {
+            return ($user->roles->first()->id < 1);
+        });
+
         //　全ユーザーに許可
         Gate::define('all-users', function (User $user) {
             return ($user->roles->first()->id >= 0);
