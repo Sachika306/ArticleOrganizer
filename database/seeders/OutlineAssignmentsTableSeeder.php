@@ -14,6 +14,5 @@ class OutlineAssignmentsTableSeeder extends Seeder
      */
     public function run()
     {      
-
     }
 }

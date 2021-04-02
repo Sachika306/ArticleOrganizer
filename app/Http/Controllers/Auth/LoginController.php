@@ -72,4 +72,15 @@ class LoginController extends Controller
         return redirect('/login');
     }
 
+    public function loginGuest() {
+        $name = '山田 大郎';
+        $password = 'guestpass';
+
+        if(Auth::attempt(['name' => $name, 'password' => $password])) {
+            return redirect('/dashboard');
+        }
+        return redirect('/login');
+    }
+
+
 }

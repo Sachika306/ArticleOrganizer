@@ -14,7 +14,6 @@ class ArticleAssignmentsTableSeeder extends Seeder
      */
     public function run()
     {
-       // \App\Models\ArticleAssignment::factory()->count(5)->create()->each();   
     }
 }
 

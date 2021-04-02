@@ -16,7 +16,7 @@ class CreateOutlinesTable extends Migration
         Schema::create('outlines', function (Blueprint $table) {
             $table->id();
             $table->integer('article_id');
-            $table->string('persona')->nullable();
+            $table->text('persona')->nullable();
             $table->string('lead_title')->nullable();
             $table->integer('lead_chars')->nullable();
             $table->string('lead')->nullable();
