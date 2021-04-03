@@ -77,8 +77,12 @@ Route::middleware('auth', 'can:all-users')->group(function () {
 
 // ログイン不要・公開済みの記事表示用
 Route::get('/aaa', function () {
-    $user = User::find(1);
-    echo $user->password;
+    echo $articles = Article::where('status_id', '=', 8);
+    foreach($articles as $article) {
+        echo $article;
+    }
+
+
 });
 Route::get('/', 'App\Http\Controllers\PostController@index');
 Route::get('/post/{id}', 'App\Http\Controllers\PostController@show');

@@ -121,20 +121,24 @@ class MemberController extends Controller
         $roleuser = RoleUser::where('user_id', '=', $id);
         $outlineAssignment = OutlineAssignment::all();
         $articleAssignment = ArticleAssignment::all();
+        $ongoingOutlines =  $outlineAssignment->where('outline_user_id', $user->id);
+        $ongoingArticles =  $articleAssignment->where('article_user_id', $user->id);
 
         if ($user->roles->first->id->pivot->role_id == 4 || $user->roles->first->id->pivot->role_id == 7) {
-            if ($articleAssignment->where('article_user_id', $user->id)->count() > 0  || $outlineAssignment->where('outline_user_id', $user->id)->count() > 0 ) {
-                return back()->with('message_error', '担当中のタスクがあるため、メンバーは削除できません。メンバー詳細画面で進行中のタスクを確認して、他の担当者に割り当ててから削除してください。');
-            } else {
-                $user->delete();
-                $roleuser->delete();
-                return redirect('/member')->with('message', 'メンバーは削除されました。'); 
-            }
-        } else {
-            $user->delete();
-            $roleuser->delete();
-            return redirect('/member')->with('message', 'メンバーは削除されました。'); 
+            if ( $ongoingOutlines->count() > 0  || $ongoingArticles->count() > 0 ) {
+                if (Article::where('status', '!==', 8)->OutlineAssignment->count() > 0) {
+                    dd()
+                    return back()->with('message_error', '担当中のタスクがあるため、メンバーは削除できません。メンバー詳細画面で進行中のタスクを確認して、他の担当者に割り当ててから削除してください。');
+                } else {
+
+                }
+            } 
         }
+
+        $user->delete();
+        $roleuser->delete();
+        return redirect('/member')->with('message', 'メンバーは削除されました。'); 
+
 
     }
 }
