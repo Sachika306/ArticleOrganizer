@@ -24,21 +24,21 @@ use Carbon\Carbon;
 // ログイン必要・管理者権限でアクセス可能
 Route::middleware('auth', 'can:admin-user')->group(function () {
     // article
-    Route::get('/article/assign', 'App\Http\Controllers\ArticleController@assign');
-    Route::post('/article/store', 'App\Http\Controllers\ArticleController@store');
-    Route::post('/article/reassign/{id}', 'App\Http\Controllers\ArticleController@reassign');
-    Route::post('/article/destroy/{id}', 'App\Http\Controllers\ArticleController@destroy');
+    Route::get('/article/assign', 'App\Http\Controllers\Article\ArticleController@assign');
+    Route::post('/article/store', 'App\Http\Controllers\Article\ArticleController@store');
+    Route::post('/article/reassign/{id}', 'App\Http\Controllers\Article\ArticleController@reassign');
+    Route::post('/article/destroy/{id}', 'App\Http\Controllers\Article\ArticleController@destroy');
     Route::post('/outline/decline/{id}', 'App\Http\Controllers\Status\OutlineStatusController@decline');
     Route::post('/outline/approve/{id}', 'App\Http\Controllers\Status\OutlineStatusController@approve');
     Route::post('/article/decline/{id}', 'App\Http\Controllers\Status\ArticleStatusController@decline');
     Route::post('/article/approve/{id}', 'App\Http\Controllers\Status\ArticleStatusController@approve');
-    Route::post('/article/publish/{id}', 'App\Http\Controllers\ArticlePublishController@publish');
-    Route::post('/article/withhold/{id}', 'App\Http\Controllers\ArticlePublishController@withhold');
+    Route::post('/article/publish/{id}', 'App\Http\Controllers\Article\ArticlePublishController@publish');
+    Route::post('/article/withhold/{id}', 'App\Http\Controllers\Article\ArticlePublishController@withhold');
     // member
-    Route::get('/member', 'App\Http\Controllers\MemberController@index');
-    Route::get('/member/show/{id}', 'App\Http\Controllers\MemberController@show');
-    Route::get('/member/edit/{id}', 'App\Http\Controllers\MemberController@edit');
-    Route::post('/member/destroy/{id}', 'App\Http\Controllers\MemberController@destroy');
+    Route::get('/member', 'App\Http\Controllers\Member\MemberController@index');
+    Route::get('/member/show/{id}', 'App\Http\Controllers\Member\MemberController@show');
+    Route::get('/member/edit/{id}', 'App\Http\Controllers\Member\MemberController@edit');
+    Route::post('/member/destroy/{id}', 'App\Http\Controllers\Member\MemberController@destroy');
 });
 //Route::middleware('can:admin-user')->group(function () {
     Route::get('/register', 'App\Http\Controllers\Auth\RegisterController@getRegister')
@@ -49,29 +49,29 @@ Route::middleware('auth', 'can:admin-user')->group(function () {
 
 // ログイン必要・記事担当者権限でアクセス可能
 Route::middleware('auth', 'can:article-user')->group(function () {
-    Route::get('/article/edit/{id}', 'App\Http\Controllers\ArticleController@contentEdit');
-    Route::post('/article/update/{id}', 'App\Http\Controllers\ArticleController@contentUpdate');
+    Route::get('/article/edit/{id}', 'App\Http\Controllers\Article\ArticleController@contentEdit');
+    Route::post('/article/update/{id}', 'App\Http\Controllers\Article\ArticleController@contentUpdate');
     Route::post('/article/submit/{id}', 'App\Http\Controllers\Status\ArticleStatusController@submit');
 });
 
 
 // ログイン必要・アウトライン担当者権限でアクセス可能
 Route::middleware('auth', 'can:outline-user')->group(function () {
-    Route::get('/outline/edit/{id}', 'App\Http\Controllers\ArticleController@outlineEdit');
-    Route::post('/outline/update/{id}', 'App\Http\Controllers\ArticleController@outlineUpdate');
+    Route::get('/outline/edit/{id}', 'App\Http\Controllers\Outline\OutlineController@outlineEdit');
+    Route::post('/outline/update/{id}', 'App\Http\Controllers\Outline\OutlineController@outlineUpdate');
     Route::post('/article/submit/{id}', 'App\Http\Controllers\Status\OutlineStatusController@submit');
 });
 
 // ログイン必要・すべての権限でアクセス可能
 Route::middleware('auth', 'can:all-users')->group(function () {
-    Route::get('/article', 'App\Http\Controllers\ArticleController@index')->name('article');
-    Route::get('/article/show/{id}', 'App\Http\Controllers\ArticleController@show');
-    Route::get('/article/preview/{id}', 'App\Http\Controllers\ArticleController@preview');
-    Route::get('/article/outline/{id}', 'App\Http\Controllers\ArticleController@outline');
+    Route::get('/article', 'App\Http\Controllers\Article\ArticleController@index')->name('article');
+    Route::get('/article/show/{id}', 'App\Http\Controllers\Article\ArticleController@show');
+    Route::get('/article/preview/{id}', 'App\Http\Controllers\Article\ArticleController@preview');
+    Route::get('/article/outline/{id}', 'App\Http\Controllers\Outline\OutlineController@preview');
     Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
-    Route::get('/member/setting', 'App\Http\Controllers\MemberController@setting');
-    Route::post('/member/setting/update', 'App\Http\Controllers\MemberController@settingupdate');
-    Route::get('/article/sort', 'App\Http\Controllers\ArticleFilterController@sort')->name('sortarticle');
+    Route::get('/member/setting', 'App\Http\Controllers\Member\MemberController@setting');
+    Route::post('/member/setting/update', 'App\Http\Controllers\Member\MemberController@settingupdate');
+    Route::get('/article/sort', 'App\Http\Controllers\Article\ArticleFilterController@sort')->name('sortarticle');
 });
 
 

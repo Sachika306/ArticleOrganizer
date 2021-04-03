@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Article;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{View, Auth};
 use App\Models\{User, Article, Role, Status, Thumbnail, RoleUser, OutlineAssignment, ArticleAssignment, Outline};
 use App\Http\Requests\{ArticleCreateRequest, ArticleUpdateRequest, OutlineUpdateRequest};
+use App\Http\Controllers\Controller;
 
 class ArticleController extends Controller
 {
@@ -18,6 +19,18 @@ class ArticleController extends Controller
     { 
         $articles = Article::paginate(15);
         return view ('article.index')->with('articles', $articles);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $article = Article::find($id);
+        return view('article.show', compact('article'));
     }
 
     /**
@@ -46,15 +59,18 @@ class ArticleController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function destroy($id)
     {
-        $article = Article::find($id);
-        return view('article.show', compact('article'));
+        //
+        $article = Article::find($id)->delete();
+        $outline = OutlineAssignment::where('article_id', '=', $id)->delete();
+        $article = OutlineAssignment::where('article_id', '=', $id)->delete();
+        return back();
     }
 
     /**
@@ -66,13 +82,7 @@ class ArticleController extends Controller
     public function contentEdit($id)
     {
         $article = Article::find($id);
-        return view('article.contentEdit', compact('article'));
-    }
-
-    public function outlineEdit($id)
-    {
-        $article = Article::find($id);
-        return view('article.outlineEdit', compact('article'));
+        return view('article.content_edit', compact('article'));
     }
 
     /**
@@ -102,18 +112,6 @@ class ArticleController extends Controller
         return redirect()->back()->with('message', '内容が保存されました！');
     }
 
-    public function outlineUpdate(OutlineUpdateRequest $request, $id)
-    {
-        $article = Article::find($id);
-        $outline = Outline::where('article_id', '=', $id);
-
-        $article->update([
-            'title' => $request->title
-        ]);
-
-        $outline->update($request->except(['_token', 'title', 'submit']));
-        return redirect()->back()->with('message', '内容が保存されました！');
-    }
 
     public function reassign(Request $request, $id)
     {
@@ -125,39 +123,9 @@ class ArticleController extends Controller
         return redirect()->back()->with('message', '内容が保存されました！');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-        $article = Article::find($id)->delete();
-        $outline = OutlineAssignment::where('article_id', '=', $id)->delete();
-        $article = OutlineAssignment::where('article_id', '=', $id)->delete();
-        return back();
-    }
-
-    /**
-     * 
-     * Preview article
-     * 
-     */
     public function preview($id){
         $article = Article::find($id);
         return view('post.show', compact('article'));
     }
 
-    /**
-     * 
-     * Preview Outline
-     * 
-     */
-    public function outline($id){
-        $article = Article::find($id);
-        $outline = Outline::find($id);
-        return view('article.outline', compact('article', 'outline')); 
-    }
 }
