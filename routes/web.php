@@ -59,7 +59,7 @@ Route::middleware('auth', 'can:article-user')->group(function () {
 Route::middleware('auth', 'can:outline-user')->group(function () {
     Route::get('/outline/edit/{id}', 'App\Http\Controllers\Outline\OutlineController@outlineEdit');
     Route::post('/outline/update/{id}', 'App\Http\Controllers\Outline\OutlineController@outlineUpdate');
-    Route::post('/article/submit/{id}', 'App\Http\Controllers\Status\OutlineStatusController@submit');
+    Route::post('/outline/submit/{id}', 'App\Http\Controllers\Status\OutlineStatusController@submit');
 });
 
 // ログイン必要・すべての権限でアクセス可能
@@ -95,7 +95,12 @@ Route::get('/logout', 'App\Http\Controllers\Auth\LoginController@logout');
 //　ゲストログイン機能
 Route::post('/login/guest', 'App\Http\Controllers\Auth\LoginController@loginGuest')
     ->name('login.guest');
-
+Route::middleware('auth', 'can:guest-user')->group(function () {
+    Route::post('/update/guest', 'App\Http\Controllers\Member\MemberController@updateGuest')
+    ->name('update.guest');
+    Route::post('/article/submit/{id}', 'App\Http\Controllers\Status\ArticleStatusController@submit');
+    Route::post('/outline/submit/{id}', 'App\Http\Controllers\Status\OutlineStatusController@submit');
+});
 
 //　Authの設定
 Auth::routes([

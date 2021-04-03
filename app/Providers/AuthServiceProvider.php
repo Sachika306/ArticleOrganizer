@@ -50,6 +50,11 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('all-users', function (User $user) {
             return ($user->roles->first()->id >= 0);
           });
+          
+        //　ゲストユーザーに許可
+        Gate::define('guest-user', function (User $user) {
+            return ($user->email = 'guest@example.com');
+          });
       }
     
 }

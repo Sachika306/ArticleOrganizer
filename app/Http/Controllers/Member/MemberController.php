@@ -102,6 +102,12 @@ class MemberController extends Controller
         return view('');
     }
 
+    public function updateGuest(Request $request)
+    {
+        RoleUser::where('user_id', '=', Auth::user()->id)->first()->update(['role_id' => $request->role_id]);
+        return back()->with('message', '権限を変更しました。');
+    }
+
     /**
      * Remove the specified resource from storage.
      *
