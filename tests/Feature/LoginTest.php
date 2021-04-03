@@ -57,16 +57,4 @@ class LoginTest extends ExampleTest
         ]);
         $this->assertGuest();
     }
-            /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-    public function test_view()
-    {
-        $user = User::find(1); 
-        $response = $this->actingAs($user)
-        ->assertOk()
-        ->assertSeeText('メールアドレス');
-    }
 }
