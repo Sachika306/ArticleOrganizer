@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Member;
 use App\Models\{User, RoleUser, Article, OutlineAssignment, ArticleAssignment};
 use Illuminate\Http\Request;
 use App\Http\Requests\{RegisterRequest, MemberSettingRequest};
 use Illuminate\Support\Facades\Auth;
 use App\Requests\MemberDestroyRequest;
+use App\Http\Controllers\Controller;
 
 class MemberController extends Controller
 {
@@ -82,9 +83,9 @@ class MemberController extends Controller
     public function settingupdate(MemberSettingRequest $request)
     {
         //
-        $form = $request->all();
-        $form['name'] = $form['last_name'].' '.$form['first_name'];
-        User::find(Auth::user()->id)->fill($form)->save();
+        $update = $request->all();
+        $update['name'] = $update['last_name'].' '.$update['first_name'];
+        User::find(Auth::user()->id)->fill($update)->save();
         return redirect('/member/setting')->with('message', '設定変更が完了しました。');
     }
 
