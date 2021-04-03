@@ -89,7 +89,8 @@ Route::get('/post/{id}', 'App\Http\Controllers\PostController@show');
 //　ログインページ
 Route::get('/login', 'App\Http\Controllers\Auth\LoginController@getAuth')
     ->name('login');
-Route::post('/login', 'App\Http\Controllers\Auth\LoginController@postAuth');
+Route::post('/login', 'App\Http\Controllers\Auth\LoginController@postAuth')
+    ->name('loginPost');
 Route::get('/logout', 'App\Http\Controllers\Auth\LoginController@logout');
 
 
