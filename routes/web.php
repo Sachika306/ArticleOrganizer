@@ -70,7 +70,7 @@ Route::middleware('auth', 'can:all-users')->group(function () {
     Route::get('/article/outline/{id}', 'App\Http\Controllers\Outline\OutlineController@preview');
     Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
     Route::get('/member/setting', 'App\Http\Controllers\Member\MemberController@setting')->name('setting');
-    Route::post('/member/setting/update', 'App\Http\Controllers\Member\MemberController@settingupdate');
+    Route::post('/member/setting/update', 'App\Http\Controllers\Member\MemberController@settingupdate')->name('member.setting.update');
     Route::get('/article/sort', 'App\Http\Controllers\Article\ArticleFilterController@sort')->name('sortarticle');
 });
 
