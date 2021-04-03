@@ -14,14 +14,14 @@
   <div class="d-flex card-body justify-content-between w-100 mx-auto">
     <form method="GET" action="{{ url('article/sort') }}" class="w-75">
       <div class="d-flex">
-        <select class="mr-1 custom-select " name="status_id">
+        <select class="custom-select w-50 mr-1" name="status_id">
                 <option value="0">すべての記事</option>
               @foreach($statuses as $status)
                 <option name="{{ $status->id }}" value="{{ $status->id }}">{{ $status->name }}</option>
               @endforeach
         </select>
       
-        <div class="col-5">
+        <div class="">
           <a href="/article/assign">
               <button type="submit" class="btn btn-secondary">表示</button>
           </a>
@@ -30,7 +30,7 @@
     </form>
     
     @can('admin-user')
-    <div>
+    <div class="">
         <a href="/article/assign">
             <button type="button" class="btn btn-primary">新規登録</button>
         </a>

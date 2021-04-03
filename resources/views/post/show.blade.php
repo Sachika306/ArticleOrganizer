@@ -5,9 +5,9 @@
 <div class="card w-75 mx-auto">
   <div class="card-body">
     
-    @if(url('/article/preview/'.$article->id))
+    @if($article->publish_flg !== 1)
     <div class="alert alert-success" role="alert">
-      <p>これはプレビュー画面です。<a href="/article/show/{{ $article->id }}">戻る</a></p>
+      <p>これはプレビュー画面です。</p>
     </div>
     @endif
 

@@ -21,6 +21,7 @@ class OutlineController extends Controller
     {
         $article = Article::find($id);
         $outline = Outline::where('article_id', '=', $id);
+        ($article->status_id == 1) ? $article->update(['status_id' => 2]) : '' ;
 
         $article->update([
             'title' => $request->title
