@@ -69,18 +69,16 @@ Route::middleware('auth', 'can:all-users')->group(function () {
     Route::get('/article/preview/{id}', 'App\Http\Controllers\Article\ArticleController@preview');
     Route::get('/article/outline/{id}', 'App\Http\Controllers\Outline\OutlineController@preview');
     Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
-    Route::get('/member/setting', 'App\Http\Controllers\Member\MemberController@setting');
-    Route::post('/member/setting/update', 'App\Http\Controllers\Member\MemberController@settingupdate');
+    Route::get('/member/setting', 'App\Http\Controllers\Member\MemberController@setting')->name('setting');
+    Route::post('/member/setting/update', 'App\Http\Controllers\Member\MemberController@settingupdate')->name('member.setting.update');
     Route::get('/article/sort', 'App\Http\Controllers\Article\ArticleFilterController@sort')->name('sortarticle');
 });
 
 
 // ログイン不要・公開済みの記事表示用
 Route::get('/aaa', function () {
-    
-    $user = OutlineAssignment::where('article_id', '=', 1)->first()->outline_deadline;
-    Carbon::parse($user)->addWeek(2);
-    echo $user;
+    $user = User::find(1);
+    echo $user->password;
 });
 Route::get('/', 'App\Http\Controllers\PostController@index');
 Route::get('/post/{id}', 'App\Http\Controllers\PostController@show');
@@ -89,7 +87,8 @@ Route::get('/post/{id}', 'App\Http\Controllers\PostController@show');
 //　ログインページ
 Route::get('/login', 'App\Http\Controllers\Auth\LoginController@getAuth')
     ->name('login');
-Route::post('/login', 'App\Http\Controllers\Auth\LoginController@postAuth');
+Route::post('/login/post', 'App\Http\Controllers\Auth\LoginController@postAuth')
+    ->name('login.post');
 Route::get('/logout', 'App\Http\Controllers\Auth\LoginController@logout');
 
 
