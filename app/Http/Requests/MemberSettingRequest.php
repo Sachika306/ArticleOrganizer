@@ -25,9 +25,9 @@ class MemberSettingRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => ['max:20'],
-            'last_name' => ['max:20'],
-            'email' => ['email:strict,dns,spoof', 'unique:users,email,'.$this->id],
+            'first_name' => ['required', 'max:20'],
+            'last_name' => ['required', 'max:20'],
+            'email' => ['required', 'email:strict,dns,spoof', 'unique:users,email,'.$this->id],
         ];
     }
 }

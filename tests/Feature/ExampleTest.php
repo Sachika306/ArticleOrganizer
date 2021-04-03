@@ -4,9 +4,18 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use App\Models\User; 
+use Artisan;
 
 class ExampleTest extends TestCase
 {
+    
+    public function setUp(): void
+    {
+        parent::setUp(); // If you define your own setUp method within a test class, be sure to call parent::setUp.
+        $this->seed();
+    }
+
     /**
      * A basic test example.
      *
@@ -14,9 +23,14 @@ class ExampleTest extends TestCase
      */
     public function testBasicTest()
     {
-        $response = $this->get('/')->assertStatus(200);
-        $response = $this->get('/')->assertOk();
-
-        $response->assertStatus(200);
+        $request = $this->get('/');
+        $request->assertOk();
     }
+
+    public function tearDown(): void
+    {
+        Artisan::call('migrate:refresh');
+    }
+
+
 }
