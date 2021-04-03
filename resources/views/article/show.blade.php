@@ -54,9 +54,16 @@
                 </a>
               @endif
             @endcan
-            <a href="/article/preview/{{ $article->id }}">
-              <button type="button" class="btn btn-secondary mr-1">プレビュー</button>
-            </a>
+
+            @if($article->publish_flg == 1)
+              <a href="/post/{{ $article->id }}" target="_blank">
+                <button type="button" class="btn btn-primary mr-1">公開URL</button>
+              </a>
+            @else
+              <a href="/article/preview/{{ $article->id }}" target="_blank">
+                <button type="button" class="btn btn-secondary mr-1">プレビュー</button>
+              </a>
+            @endif
           </div>
         </div>
       </div>
@@ -69,6 +76,13 @@
                       {{ $article->status->name }}
                   </div>
               </span>
+                @if($article->publish_flg == 1)
+                  <span class="text-light">
+                      <div class="badge bg-info text-wrap p-2" style="width: 80px;">
+                      公開済み
+                      </div>
+                  </span>
+                @endif
               <hr>
           </div>
 
@@ -115,33 +129,35 @@
                   @csrf
 
                   <div class="d-sm-flex mb-2">
-                    <div class="col-sm-2 text-sm-right align-self-center">
-                      <label for="outline_user_name align-middle">アウトライン担当</label>
-                    </div>
-                    <input id="outline_user_name" type="text" class="form-control mb-2 col {{ $errors->has('outline_user_id') ? ' is-invalid' : '' }}" placeholder="山田大郎" name="outline_user_name" value="{{ $users->find($article->outlineassignment->outline_user_id)->name }}">
-                      <input type="hidden" name="outline_user_id" value="{{ $users->find($article->outlineassignment->outline_user_id)->id }}" id="outline_user_id">              
-                      @if ($errors->has('article_user_id'))
-                          <span class="invalid-feedback">
-                              <strong>{{ $errors->first('outline_user_id') }}</strong>
-                          </span>
-                      @endif
+                      <div class="col-sm-2 text-sm-right align-self-center">
+                        <label for="outline_user_name align-middle">アウトライン担当</label>
+                      </div>
+                      
+                      <input id="outline_user_name" type="text" class="form-control mb-2 col {{ $errors->has('outline_user_id') ? ' is-invalid' : '' }}" placeholder="山田大郎" name="outline_user_name" value="{{ $users->find($article->outlineassignment->outline_user_id)->name }}" {{ Gate::allows('admin-user') ?  : 'readonly' }}>
+                        <input type="hidden" name="outline_user_id" value="{{ $users->find($article->outlineassignment->outline_user_id)->id }}" id="outline_user_id">              
+                        @if ($errors->has('article_user_id'))
+                            <span class="invalid-feedback">
+                                <strong>{{ $errors->first('outline_user_id') }}</strong>
+                            </span>
+                        @endif
                   </div>
 
                   <div class="d-sm-flex mb-2">
-                    <div class="col-sm-2 text-sm-right align-self-center">
-                      <label for="article_user_name text">記事担当</label>
+                      <div class="col-sm-2 text-sm-right align-self-center">
+                        <label for="article_user_name text">記事担当</label>
+                      </div>
+                      <input id="article_user_name" type="text" class="form-control mb-2 col {{ $errors->has('article_user_id') ? ' is-invalid' : '' }}" placeholder="山田大郎" name="article_user_name" value="{{ $users->find($article->articleassignment->article_user_id)->name }}" {{ Gate::allows('admin-user') ?  : 'readonly' }}>
+                          <input type="hidden" name="article_user_id" value="{{ $users->find($article->articleassignment->article_user_id)->id }}" id="article_user_id">              
+                          @if ($errors->has('article_user_id'))
+                              <span class="invalid-feedback">
+                                  <strong>{{ $errors->first('article_user_id') }}</strong>
+                              </span>
+                        @endif
                     </div>
-                    <input id="article_user_name" type="text" class="form-control mb-2 col {{ $errors->has('article_user_id') ? ' is-invalid' : '' }}" placeholder="山田大郎" name="article_user_name" value="{{ $users->find($article->articleassignment->article_user_id)->name }}">
-                        <input type="hidden" name="article_user_id" value="{{ $users->find($article->articleassignment->article_user_id)->id }}" id="article_user_id">              
-                        @if ($errors->has('article_user_id'))
-                            <span class="invalid-feedback">
-                                <strong>{{ $errors->first('article_user_id') }}</strong>
-                            </span>
-                      @endif
-                  </div>
                   
+                  @can('admin-user')
                   <button type="button" name="submitBtn" class="btn btn-primary float-right" onclick="submit();">担当者変更</button>
-                  
+                  @endcan
                 </form>
               
               
@@ -155,14 +171,15 @@
           </a>
           @can('admin-user')
           @elsecan('article-user')
-            @if($article->status_id < 7)
-            <form method="post" action="/article/submit/{{ $article->id }}" class="submit">
-              <button type="button" class="btn btn-success mr-1">記事申請</button>
+            @if($article->status_id == 5 || $article->status_id == 6 )
+            <form method="post" action="/article/submit/{{ $article->id }}" id="submit">
+              @csrf
+              <button type="submit" class="btn btn-success mr-1">記事申請</button>
             </form>
             @endif
           @elsecan('outline-user')
-            @if($article->status_id < 4)
-            <form method="post" action="/article/submit/{{ $article->id }}" class="submit">
+            @if($article->status_id == 2 || $article->status_id == 3)
+            <form method="post" action="/outline/submit/{{ $article->id }}" id="submit">
               @csrf
               <button type="submit" class="btn btn-success mr-1">アウトライン申請</button>
             </form>

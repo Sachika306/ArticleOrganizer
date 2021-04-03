@@ -34,7 +34,7 @@ $('#withhold').submit(function (e) {
   }
 });
 
-$('.submit').submit(function (e) {
+$('#submit').submit(function (e) {
   if (!confirm('内容を提出しますか？')) {
       return false;
   }

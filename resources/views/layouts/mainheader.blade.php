@@ -71,17 +71,25 @@
 @yield('content')
 </div>
 
-@isset(Auth::user()->email)
-@if(Auth::user()->email == 'guest@example.com' && Auth::user()->name =='山田 大郎')
-<div class="" style="position: absolute; position:fixed; bottom: 5%; right: 5%; opacity: 0.9;">
-  <div class="d-flex">
-    <form method="post" action="">
-      <button type="button" class="btn btn-info p-3">権限を記事担当者に変更</button>
-    </form>
+@can('guest-user')
+<div class="mxーauto bg-light p-3 border" style="position: absolute; position:fixed; bottom: 5%; right: 3%; opacity: 0.95;"> 
+      <form method="post" class="d-flex" action="{{ route('update.guest') }}">
+        @csrf
+          <select class="mr-1 custom-select col {{ $errors->has('role_id') ? ' is-invalid' : '' }}" name="role_id">
+              <option value="{{ Auth::user()->roles->first()->id }}">{{ Auth::user()->roles->first()->name }}</option>
+                @foreach($roles as $role => $value)
+                    @if($value->name !== "" && $value->id !== Auth::user()->roles->first()->id)
+                        <option value="{{ $value->id }}">{{ $value->name }}</option>
+                    @endif
+                @endforeach
+          </select>
+          <button type="submit" class="btn btn-success">表示切替</button>
+      </form>
+      <small class="">※ゲストユーザーの権限を切り替えられます。</small>
   </div>
+  
 </div>
-@endisset
-@endif
+@endcan
 
 
 <div class="justify-content d-flex align-self my-auto">
