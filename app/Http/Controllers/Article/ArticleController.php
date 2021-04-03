@@ -69,7 +69,7 @@ class ArticleController extends Controller
         //
         $article = Article::find($id)->delete();
         $outline = OutlineAssignment::where('article_id', '=', $id)->delete();
-        $article = OutlineAssignment::where('article_id', '=', $id)->delete();
+        $article = ArticleAssignment::where('article_id', '=', $id)->delete();
         return back();
     }
 
