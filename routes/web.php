@@ -109,8 +109,7 @@ Route::middleware('auth', 'can:guest-user')->group(function () {
 
 // ログイン不要・公開済みの記事表示用
 Route::get('/aaa', function () {
-    $user = User::find(1);
-    echo $user->password;
+
 });
 Route::namespace('App\Http\Controllers')->group(function() {
     Route::get('/', 'PostController@index');
