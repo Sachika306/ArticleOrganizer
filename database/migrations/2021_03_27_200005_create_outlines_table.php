@@ -17,9 +17,8 @@ class CreateOutlinesTable extends Migration
             $table->id();
             $table->integer('article_id');
             $table->text('persona')->nullable();
-            $table->string('lead_title')->nullable();
+            $table->string('lead_kw')->nullable();
             $table->integer('lead_chars')->nullable();
-            $table->string('lead')->nullable();
             $table->string('part1_title')->nullable();
             $table->integer('part1_chars')->nullable();
             $table->text('part1_summary')->nullable();

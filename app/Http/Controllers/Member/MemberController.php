@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Member;
+
 use App\Models\{User, RoleUser, Article, OutlineAssignment, ArticleAssignment};
 use Illuminate\Http\Request;
 use App\Http\Requests\{RegisterRequest, MemberSettingRequest};

@@ -16,7 +16,7 @@ class ArticlesTableSeeder extends Seeder
      */
     public function run()
     {
-       \App\Models\Article::factory()->count(10)->create()->each(
+       \App\Models\Article::factory()->count(20)->create()->each(
             function($article) {
                 OutlineAssignment::factory()->create(['article_id' => $article->id]);
                 $outlineDeadline = OutlineAssignment::where('article_id', '=', $article->id)->first()->outline_deadline; // アウトラインの納期を取得
@@ -24,38 +24,51 @@ class ArticlesTableSeeder extends Seeder
                 ArticleAssignment::factory()->create([
                     'article_id' => $article->id, 
                     'article_deadline' => Carbon::parse($outlineDeadline)->addWeek(2) // アウトラインの納期＋2週間の日付を記事納期にする
-                    ]);
+                ]);
 
                 Thumbnail::factory()->create(['article_id' => $article->id]);
                 Outline::create(['article_id' => $article->id]);
             }
         );
 
+        // 記事用の固定ダミーデーターをJSONから取得
+        $url = public_path().'/data/dummyArticleData.json';
+        $json = file_get_contents($url);
+        $data = json_decode($json);
+        foreach ($data as $obj) {
 
-        $statuses = array(
-            1 => array(
-                'title' => 'るるぶトラベルとは？ユーザー・施設へのサービスが充実、掲載方法やメリットを解説', 
-                'content' => 'Some ,name', 
-                ), 
-            2 => array(
-                'title' => '中国では個人旅行がトレンドに？中国FIT旅行者の特徴・いまできる中国へのインバウンド対策', 
-                'content' => 'aaa',
-                ), 
-            3 => array(
-                'title' => '洗肺ってなに？読み方や意味は？訪日中国人のインバウンド誘致に期待', 
-                'content' => 'Some ,name', 
-                ), 
-            4 => array(
-                'title' => '愛知県で年間10万人の観光客が来る佐久島！', 
-                'content' => 'Some ,name', 
-                ), 
-        );
-
-        for($id = 1; $id < 5; $id++) {
-            \App\Models\Article::find($id)->update([
-                'title' => $statuses[$id]['title'],
-                'content' => $statuses[$id]['content'],
+            // 記事に固定のコンテンツを挿入
+            \App\Models\Article::find($obj->id)->update([
+                'title' => $obj->title,
+                'content' => $obj->content,
+                'status_id' => $obj->status_id,
+                'publish_flg' => $obj->publish_flg,
+            ]);
+            // サムネイルのfile_nameに固定値を挿入
+            \App\Models\Thumbnail::where('article_id', '=', $obj->id)->update([
+                'file_name' => $obj->file_name,
+            ]);
+            // アウトラインに固定値を挿入
+            $totalChars = $obj->lead_chars + $obj->part1_chars + $obj->part2_chars + $obj->part3_chars;
+            \App\Models\Outline::where('article_id', '=', $obj->id)->update([
+                'lead_kw' => $obj->lead_kw,
+                'lead_chars' => $obj->lead_chars,
+                'persona' => $obj->persona,
+                'part1_title' => $obj->part1_title,
+                'part1_summary' => $obj->part1_summary,
+                'part1_chars' => $obj->part1_chars,
+                'part2_title' => $obj->part2_title,
+                'part2_summary' => $obj->part2_summary,
+                'part2_chars' => $obj->part2_chars,
+                'part3_title' => $obj->part3_title,
+                'part3_summary' => $obj->part3_summary,
+                'part3_chars' => $obj->part3_chars,
+                'conclusion_title' => $obj->conclusion_title,
+                'conclusion_chars' => $obj->conclusion_chars,
+                'conclusion' => $obj->conclusion,
+                'total_chars' => $totalChars
             ]);
         }
+        
     }
 }
