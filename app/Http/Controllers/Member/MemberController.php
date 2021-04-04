@@ -139,15 +139,14 @@ class MemberController extends Controller
                         $status = Article::find($article)->status_id;
                         if ($status !== 8) {
                             return back()->with('message_error', '担当中のタスクがあるため、メンバーは削除できません。メンバー詳細画面で進行中のタスクを確認して、他の担当者に割り当ててから削除してください。');
+                        }
                     }
-                }
-            } 
+                } 
+            }
         }
-
         $user->delete();
         $roleuser->delete();
         return redirect('/member')->with('message', 'メンバーは削除されました。'); 
 
-        }
     }
 }
