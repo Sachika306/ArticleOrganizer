@@ -21,10 +21,9 @@
             <h2>リード文</h2>
             <hr>
             <div class="d-flex d-inline-block mb-1">
-                <h3 class="form-control  col-10 mr-2">{{$outline->lead_title}}</h3>
+                <h3 class="form-control  col-10 mr-2">{{$outline->lead_kw}}</h3>
                 <p class="form-control">{{ $outline->lead_chars }}文字</p>
             </div>
-            <textarea name="" class="form-control" id="" cols="30" rows="10" readonly>{{ $outline->lead }}</textarea>
         </div>
 
         <div class="card-body">
@@ -69,10 +68,10 @@
         <div class="card-body">
             <h2>文字数</h2>
             <hr>
-            <p class="form-control">{{ $outline->conclusion_chars }}文字</p>
+            <p class="form-control">{{ $outline->total_chars }}文字</p>
         </div>
         <div class="card-body">
-          <a href="{{ url('/') }}">
+          <a href="{{ route('article.show.id', ['id' => $article->id] ) }}">
             <button type="button" class="btn btn-secondary">一覧に戻る</button>
           </a>
         </div>

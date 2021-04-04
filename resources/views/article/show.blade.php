@@ -104,11 +104,7 @@
           <div class="mb-5">
             <h3 class="display-6">アウトライン</h3>
             <div class="form-control" style="height:auto;">
-            @isset($article->outline->persona)
              {{ $article->outline->persona }}<a href="/article/outline/{{ $article->id }}">アウトラインプレビュー</a>
-            @else
-              <p>アウトラインはまだ設定されていません。</p>
-            @endisset
             </div>
           </div>
 
@@ -155,9 +151,11 @@
                         @endif
                     </div>
                   
-                  @can('admin-user')
-                  <button type="button" name="submitBtn" class="btn btn-primary float-right" onclick="submit();">担当者変更</button>
-                  @endcan
+                  @if($article->status_id < 8 )
+                    @can('admin-user')
+                    <button type="button" name="submitBtn" class="btn btn-primary float-right" onclick="submit();">担当者変更</button>
+                    @endcan
+                  @endif
                 </form>
               
               
