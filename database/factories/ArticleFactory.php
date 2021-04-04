@@ -33,7 +33,7 @@ class ArticleFactory extends Factory
                 '自営業者が効率的に集客する方法｜注意するポイントや活用したいサービス紹介',
                 'フレームワークとは？ビジネスに役立つ13選｜使う状況や分析方法を紹介'
                 ]),
-            'status_id' => rand(1, 4)
+            'status_id' => rand(1, 2)
             ];
         }
 }
