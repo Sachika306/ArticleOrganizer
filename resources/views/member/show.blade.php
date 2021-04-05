@@ -36,12 +36,16 @@
       <h2 class="display-6">担当中の案件</h2>
         <ul>
         @foreach($outlineAssignments as $outlineAssignment)
-          <li><a href="/article/show/{{ $outlineAssignment->article_id }}" target="_blank">{{ $articles->find($outlineAssignment->article_id)->title }}</a>（アウトライン担当）</li>
+         @if($articles->find($outlineAssignment->article_id)->status_id < 4)
+            <li><a href="/article/show/{{ $outlineAssignment->article_id }}" target="_blank">{{ $articles->find($outlineAssignment->article_id)->title }}</a>（アウトライン担当）</li>
+          @endif
         @endforeach
         </ul>
         <ul>
         @foreach($articleAssignments as $articleAssignment)
+          @if($articles->find($articleAssignment->article_id)->status_id < 8)
           <li><a href="/article/show/{{ $articleAssignment->article_id }}" target="_blank">{{ $articles->find($articleAssignment->article_id)->title }}</a>（記事担当）</li>
+          @endif        
         @endforeach
         </ul>
     @endif

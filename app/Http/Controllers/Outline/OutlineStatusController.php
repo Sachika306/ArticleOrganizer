@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Status;
+namespace App\Http\Controllers\Outline;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;

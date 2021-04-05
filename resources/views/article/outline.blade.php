@@ -18,12 +18,13 @@
         </div>
 
         <div class="card-body">
-            <h2>リード文</h2>
+            <h2>リード文のキーワード・文字数</h2>
             <hr>
             <div class="d-flex d-inline-block mb-1">
                 <h3 class="form-control  col-10 mr-2">{{$outline->lead_kw}}</h3>
                 <p class="form-control">{{ $outline->lead_chars }}文字</p>
             </div>
+            <small>※上記キーワードを含んで、指定の文字数で導入文を書いてください。</small>
         </div>
 
         <div class="card-body">
@@ -66,7 +67,7 @@
             <textarea name="" class="form-control" id="" cols="30" rows="10" readonly>{{ $outline->conclusion }}</textarea>
         </div>
         <div class="card-body">
-            <h2>文字数</h2>
+            <h2>本記事の合計文字数</h2>
             <hr>
             <p class="form-control">{{ $outline->total_chars }}文字</p>
         </div>

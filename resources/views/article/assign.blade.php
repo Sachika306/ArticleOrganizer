@@ -30,7 +30,7 @@
                             <label for="outline_user_name" class="col-sm-4 col-form-label text-md-right">{{ __('アウトライン担当者') }}</label>
                             <div class="col-md-6">
                                 <input id="outline_user_name" type="text" class="form-control{{ $errors->has('outline_user_id') ? ' is-invalid' : '' }}" placeholder="山田大郎" name="outline_user_name" value="{{ old('outline_user_name') }}">
-                                <input type="hidden" name="outline_user_id" value="" id="outline_user_id">
+                                <input type="hidden" name="outline_user_id" value="{{ old('article_user_id') }}" id="outline_user_id">
                                 
                                 @if ($errors->has('outline_user_id'))
                                     <span class="invalid-feedback">
@@ -56,7 +56,7 @@
                             <label for="article_user_name" class="col-sm-4 col-form-label text-md-right">{{ __('記事担当者') }}</label>
                             <div class="col-md-6">
                                 <input id="article_user_name" type="text" class="form-control{{ $errors->has('article_user_id') ? ' is-invalid' : '' }}" placeholder="山田大郎" name="article_user_name" value="{{ old('article_user_name') }}">
-                                <input type="hidden" name="article_user_id" value="" id="article_user_id">
+                                <input type="hidden" name="article_user_id" value="{{ old('article_user_id') }}" id="article_user_id">
                                 
                                 @if ($errors->has('article_user_id'))
                                     <span class="invalid-feedback">
@@ -80,8 +80,9 @@
                             </div>
                         </div>
 
-                      <button type="button" name="submitBtn" class="btn btn-primary" onclick="submit();">送信</button>
-                      <a href="/article"><button type="button" class="btn btn-secondary" onclick="submit();">一覧に戻る</button></a>
+                        <a href="/article"><button type="button" class="btn btn-secondary" onclick="submit();">一覧に戻る</button></a>
+                      <button type="button" name="submitBtn" class="btn btn-primary" onclick="submit();">登録する</button>
+                      
                   </form>
                 </div>
             </div>

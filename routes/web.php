@@ -29,14 +29,17 @@ Route::middleware('auth', 'can:admin-user')->group(function () {
         Route::post('/article/store', 'ArticleController@store');
         Route::post('/article/reassign/{id}', 'ArticleController@reassign');
         Route::post('/article/destroy/{id}', 'ArticleController@destroy');
+        Route::post('/article/publish/{id}', 'ArticlePublishController@publish');
+        Route::post('/article/withhold/{id}', 'ArticlePublishController@withhold');
+        Route::post('/article/decline/{id}', 'ArticleStatusController@decline');
+        Route::post('/article/approve/{id}', 'ArticleStatusController@approve');
+        Route::post('/article/decline/{id}', 'ArticleStatusController@decline');
+        Route::post('/article/approve/{id}', 'ArticleStatusController@approve');
+    });
+    // 記事承認周りの機能
+    Route::namespace('App\Http\Controllers\Outline')->group(function() {
         Route::post('/outline/decline/{id}', 'OutlineStatusController@decline');
         Route::post('/outline/approve/{id}', 'OutlineStatusController@approve');
-        Route::post('/article/decline/{id}', 'ArticleStatusController@decline');
-        Route::post('/article/approve/{id}', 'ArticleStatusController@approve');
-        Route::post('/article/decline/{id}', 'ArticleStatusController@decline');
-        Route::post('/article/approve/{id}', 'ArticleStatusController@approve');
-        Route::post('/article/publish/{id}', 'ArticlePublishController@publish');
-        Route::post('/article/withhold/{id}', 'Article\ArticlePublishController@withhold');
     });
     // メンバー周りの機能
     Route::namespace('App\Http\Controllers\Member')->group(function() {
@@ -60,8 +63,6 @@ Route::middleware('auth', 'can:article-user')->group(function () {
     Route::namespace('App\Http\Controllers\Article')->group(function () {
         Route::get('/article/edit/{id}', 'ArticleController@contentEdit');
         Route::post('/article/update/{id}', 'ArticleController@contentUpdate');
-    });
-    Route::namespace('App\Http\Controllers\Status')->group(function () {
         Route::post('/article/submit/{id}', 'ArticleStatusController@submit');
     });
 });
@@ -72,8 +73,6 @@ Route::middleware('auth', 'can:outline-user')->group(function () {
     Route::namespace('App\Http\Controllers\Outline')->group(function () {
         Route::get('/outline/edit/{id}', 'OutlineController@outlineEdit');
         Route::post('/outline/update/{id}', 'OutlineController@outlineUpdate');
-    });
-    Route::namespace('App\Http\Controllers\Status')->group(function () {
         Route::post('/outline/submit/{id}', 'OutlineStatusController@submit');
     });
 });
@@ -83,8 +82,9 @@ Route::middleware('auth', 'can:all-users')->group(function () {
     Route::namespace('App\Http\Controllers\Article')->group(function() {
         Route::get('/article', 'ArticleController@index')->name('article');
         Route::get('/article/show/{id}', 'ArticleController@show')->name('article.show.id');
-        Route::get('/article/preview/{id}', 'Article\ArticleController@preview');
+        Route::get('/article/preview/{id}', 'ArticleController@preview');
         Route::get('/article/sort', 'ArticleFilterController@sort')->name('sortarticle');
+        Route::post('/article/search', 'ArticleFilterController@search')->name('search');
     });
     Route::namespace('App\Http\Controllers\Outline')->group(function() {
         Route::get('/article/outline/{id}', 'OutlineController@preview');
@@ -101,8 +101,10 @@ Route::middleware('auth', 'can:guest-user')->group(function () {
     Route::namespace('App\Http\Controllers\Member')->group(function() {
         Route::post('/update/guest', 'MemberController@updateGuest')->name('update.guest');
     });
-    Route::namespace('App\Http\Controllers\Status')->group(function() {
+    Route::namespace('App\Http\Controllers\Article')->group(function() {
         Route::post('/article/submit/{id}', 'ArticleStatusController@submit');
+    });
+    Route::namespace('App\Http\Controllers\Outline')->group(function() {
         Route::post('/outline/submit/{id}', 'OutlineStatusController@submit');
     });
 });
