@@ -13,6 +13,7 @@ class Thumbnail extends Model
     }
 
     protected $fillable = [
+        'article_id',
         'file_name'
     ];
 }

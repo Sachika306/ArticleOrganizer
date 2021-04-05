@@ -12,7 +12,7 @@
         <div class="card-body">
             <div class="form-group">
                 <label for="title">タイトル</label>
-                <input type="text" class="form-control {{ $errors->has('title') ? ' is-invalid' : '' }}" id="title" name="title" value="{{ $article->title }}">
+                <input type="text" class="form-control {{ $errors->has('title') ? ' is-invalid' : '' }}" id="title" name="title" value="{{ $article->title }}{{ old('title') }}">
                     @if ($errors->has('title'))
                         <span class="invalid-feedback">
                             <strong>{{ $errors->first('title') }}</strong>
@@ -21,7 +21,7 @@
             </div>
             <div class="form-group">
                 <label for="persona">ペルソナ</label>
-                <textarea rows="7" class="form-control {{ $errors->has('persona') ? ' is-invalid' : '' }}" id="persona" name="persona" value="{{ $article->outline->persona }}">{{ $article->outline->persona }}</textarea>
+                <textarea rows="7" class="form-control {{ $errors->has('persona') ? ' is-invalid' : '' }}" id="persona" name="persona" value="">{{ $article->outline->persona }}{{ old('persona') }}</textarea>
                     @if ($errors->has('persona'))
                         <span class="invalid-feedback">
                             <strong>{{ $errors->first('persona') }}</strong>

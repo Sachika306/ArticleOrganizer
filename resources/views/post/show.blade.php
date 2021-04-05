@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="card w-75 mx-auto">
+<div class="card w-75 mx-auto my-5">
   <div class="card-body">
     
     @if($article->publish_flg !== 1)
@@ -17,11 +17,6 @@
             <hr>
           </div>
         
-          @isset($article->thumbnail->file_name)
-          <div class="form-group mx-auto">
-              <img style="width: 1280px; height: 300px; object-fit: cover; object-position: left top; border-radius: 0.25rem; border: 1px solid #ced4da;" src="{{ asset('/storage/thumbnails/'.$article->thumbnail->file_name) }}"> 
-          </div>
-          @endisset
           <div>
             {!! $article->content !!}
           </div>

@@ -12,7 +12,7 @@ class AssignComposer
     $roles = Role::get();
             
     //アウトライン権限のユーザーを探す
-    $outlineUsers = $roles->find(4)->user;
+    $outlineUsers = $roles->find(7)->user;
     $outlineUserNames = array();
     if (count($outlineUsers) > 0) {
         foreach ($outlineUsers as $user) {
@@ -24,7 +24,7 @@ class AssignComposer
     }
 
     //記事権限のユーザーを探す
-    $articleUsers = $roles->find(7)->user;
+    $articleUsers = $roles->find(4)->user;
     $articleUserNames = array();
     if (count($articleUsers) > 0) {
         foreach ($articleUsers as $user) {

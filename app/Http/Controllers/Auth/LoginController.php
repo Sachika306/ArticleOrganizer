@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-
+use App\Models\{User, RoleUser, Article, OutlineAssignment, ArticleAssignment};
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
@@ -55,7 +55,7 @@ class LoginController extends Controller
 
         if (Auth::attempt(['email'=>$email, 'password'=>$password])) {
             $request->session()->regenerate();
-            return redirect()->intended('/dashboard');
+            return redirect()->intended('/dashboard')->with('info', $info);
         }
 
         return back()->withErrors([
@@ -77,7 +77,7 @@ class LoginController extends Controller
         $password = 'guestpass';
 
         if(Auth::attempt(['name' => $name, 'password' => $password])) {
-            return redirect('/dashboard');
+            return redirect()->intended('/dashboard');
         }
         return redirect('/login');
     }
