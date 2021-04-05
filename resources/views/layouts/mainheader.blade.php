@@ -16,11 +16,12 @@
 <div id="app"></div> 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
   <a class="navbar-brand" href="{{ url('/dashboard') }}">外注記事管理アプリ</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
+  
   @if(Auth::check())
   <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
@@ -34,6 +35,9 @@
               <a class="nav-link" href="{{ url('/article') }}">記事一覧</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="{{ url('/') }}" target="_blank">公開中サイト</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="{{ url('/member/setting') }}">設定</a>
           </li>
           <li class="nav-item">
@@ -42,6 +46,7 @@
         @endcan
       </ul>
   </div>
+
   @endif
 </nav>
 
