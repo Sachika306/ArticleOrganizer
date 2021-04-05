@@ -8,6 +8,7 @@
                 <div class="card-header">{{ __('Dashboard') }}</div>
                 <div class="card-body">
                     <p>こんにちは、{{ Auth::user()->name }}さん</p>
+           
                 </div>
             </div>
         </div>

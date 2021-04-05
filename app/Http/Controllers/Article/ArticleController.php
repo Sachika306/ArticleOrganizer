@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Article;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\{View, Auth};
+use Illuminate\Support\Facades\{View, Auth, DB};
 use App\Models\{User, Article, Role, Status, Thumbnail, RoleUser, OutlineAssignment, ArticleAssignment, Outline};
 use App\Http\Requests\{ArticleCreateRequest, ArticleUpdateRequest, OutlineUpdateRequest};
 use App\Http\Controllers\Controller;
@@ -51,11 +51,14 @@ class ArticleController extends Controller
      */
     public function store(ArticleCreateRequest $request)
     {
-        $article = Article::create($request->all()); // Articleにデータを作る
-        $article->outlineassignment()->create($request->all()); // OutlineAssignmentにデータを作る
-        $article->articleassignment()->create($request->all()); // ArticleAssignmentにデータを作る
-        $article->thumbnail()->create($request->all()); // Thumbnailにデータを作る
-        return redirect('/article');
+            $newArticle = Article::create($request->all());
+                $request_params = $request->all();
+                $request_params['article_id'] = $newArticle->id; // 記事のIDを取得、リクエストの配列に「article_id」として追加する。
+            $newArticle = OutlineAssignment::create($request_params);
+            $newArticle = ArticleAssignment::create($request_params);
+            $newArticle = Thumbnail::create($request_params);
+            $newArticle = Outline::create($request_params);
+            return redirect('/article')->with('message', '新しい記事が登録されました。');
     }
 
     /**

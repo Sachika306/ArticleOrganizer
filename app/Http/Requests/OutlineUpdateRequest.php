@@ -28,9 +28,7 @@ class OutlineUpdateRequest extends FormRequest
             'part1_chars' => ['required'],
             'part2_chars' => ['required'],
             'part3_chars' => ['required'],
-            // 'part4_chars' => ['required'],
-            // 'part5_chars' => ['required'],
-            // 'part6_chars' => ['required'],
+            'conclusion_chars' => ['required']
         ];
     }
 }

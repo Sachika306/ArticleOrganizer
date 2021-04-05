@@ -11,11 +11,21 @@
     </div>
   </div>
 
-  <div class="d-flex card-body justify-content-between w-100 mx-auto">
-    <form method="GET" action="{{ url('article/sort') }}" class="w-75">
+  <div class="d-flex card-body justify-content-between w-100 mx-auto row">
+    <form method="POST" action="{{ route('search') }}" class="w-75 mb-2">
+      @csrf
+      <div class="d-flex">
+          <input type="text" class="form-control w-50 mr-1" value="" name="keyword" placeholder="記事のタイトル・内容で検索">
+          <a href="/article/assign">
+              <button type="submit" class="btn btn-secondary">検索</button>
+          </a>
+      </div>
+    </form>
+
+    <form method="GET" action="{{ url('article/sort') }}" class="w-75 mb-2">
       <div class="d-flex">
         <select class="custom-select w-50 mr-1" name="status_id">
-                <option value="0">すべての記事</option>
+                <option value="0">すべてのステータス</option>
               @foreach($statuses as $status)
                 <option name="{{ $status->id }}" value="{{ $status->id }}">{{ $status->name }}</option>
               @endforeach
