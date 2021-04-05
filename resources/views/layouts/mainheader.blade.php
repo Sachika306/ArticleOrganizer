@@ -16,7 +16,7 @@
 <div id="app"></div> 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="{{ url('/dashboard') }}">記事管理アプリ</a>
+  <a class="navbar-brand" href="{{ url('/dashboard') }}">外注記事管理アプリ</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -85,7 +85,7 @@
           </select>
           <button type="submit" class="btn btn-success">表示切替</button>
       </form>
-      <small class="">※ゲストユーザーの権限を切り替えられます。</small>
+      <small class="">※別の権限での表示を確認できます。</small>
   </div>
   
 </div>

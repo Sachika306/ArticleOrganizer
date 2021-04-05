@@ -104,7 +104,8 @@
           <div class="mb-5">
             <h3 class="display-6">アウトライン</h3>
             <div class="form-control" style="height:auto;">
-             {{ $article->outline->persona }}<a href="/article/outline/{{ $article->id }}">アウトラインプレビュー</a>
+             {{ $article->outline->persona }}
+            <p><a href="/article/outline/{{ $article->id }}">アウトラインプレビュー</a></p>
             </div>
           </div>
 
@@ -128,27 +129,38 @@
                       <div class="col-sm-2 text-sm-right align-self-center">
                         <label for="outline_user_name align-middle">アウトライン担当</label>
                       </div>
-                      
-                      <input id="outline_user_name" type="text" class="form-control mb-2 col {{ $errors->has('outline_user_id') ? ' is-invalid' : '' }}" placeholder="山田大郎" name="outline_user_name" value="{{ $users->find($article->outlineassignment->outline_user_id)->name }}" {{ Gate::allows('admin-user') ?  : 'readonly' }}>
+
+                      @if ($article->status_id == 8)
+                      <p class="form-control">{{ $users->find($article->outlineassignment->outline_user_id)->name }} </p>
+                      @else 
+                      <input id="outline_user_name" type="text" class="form-control mb-2 col {{ $errors->has('outline_user_id') ? ' is-invalid' : '' }}" placeholder="山田大郎" name="outline_user_name" value="{{ $users->find($article->outlineassignment->outline_user_id)->name }}" {{ Gate::allows('admin-user') ? : 'readonly' }}>
                         <input type="hidden" name="outline_user_id" value="{{ $users->find($article->outlineassignment->outline_user_id)->id }}" id="outline_user_id">              
                         @if ($errors->has('article_user_id'))
                             <span class="invalid-feedback">
                                 <strong>{{ $errors->first('outline_user_id') }}</strong>
                             </span>
                         @endif
+                      @endif
+                      
+
                   </div>
 
                   <div class="d-sm-flex mb-2">
                       <div class="col-sm-2 text-sm-right align-self-center">
                         <label for="article_user_name text">記事担当</label>
                       </div>
+
+                      @if ($article->status_id == 8)
+                      <p class="form-control">{{ $users->find($article->articleassignment->article_user_id)->name }} </p>
+                      @else 
                       <input id="article_user_name" type="text" class="form-control mb-2 col {{ $errors->has('article_user_id') ? ' is-invalid' : '' }}" placeholder="山田大郎" name="article_user_name" value="{{ $users->find($article->articleassignment->article_user_id)->name }}" {{ Gate::allows('admin-user') ?  : 'readonly' }}>
                           <input type="hidden" name="article_user_id" value="{{ $users->find($article->articleassignment->article_user_id)->id }}" id="article_user_id">              
                           @if ($errors->has('article_user_id'))
                               <span class="invalid-feedback">
                                   <strong>{{ $errors->first('article_user_id') }}</strong>
                               </span>
-                        @endif
+                          @endif
+                      @endif
                     </div>
                   
                   @if($article->status_id < 8 )

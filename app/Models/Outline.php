@@ -11,4 +11,7 @@ class Outline extends Model
     public function article() {
         return $this->belongsTo()->Article::class;
     }
+    protected $fillable = [
+        'article_id'
+    ];
 }

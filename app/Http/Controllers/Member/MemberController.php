@@ -106,7 +106,7 @@ class MemberController extends Controller
     public function updateGuest(Request $request)
     {
         RoleUser::where('user_id', '=', Auth::user()->id)->first()->update(['role_id' => $request->role_id]);
-        return back()->with('message', '権限を変更しました。');
+        return back()->with('message', '表示を変更しました。');
     }
 
     /**
