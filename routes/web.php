@@ -50,12 +50,12 @@ Route::middleware('auth', 'can:admin-user')->group(function () {
     });
 });
 
-//Route::middleware('can:admin-user')->group(function () {
+Route::middleware('can:admin-user')->group(function () {
     Route::namespace('App\Http\Controllers\Auth')->group(function() {
         Route::get('/register', 'RegisterController@getRegister')->name('register');
         Route::post('/register', 'RegisterController@postRegister');
     });
-//});
+});
 
 
 // ログイン必要・記事担当者権限でアクセス可能
