@@ -90,7 +90,7 @@
             <h3 class="display-6">画像</h3>
             @isset($article->thumbnail->file_name)
             <div class="form-group">
-              <img style="max-height: 500px; max-width: 100%; object-fit: cover; object-position: center; max-width: 100%; border-radius: 0.25rem; border: 1px solid #ced4da;" src="{{ asset('/storage/thumbnails/'.$article->thumbnail->file_name) }}"> 
+              <img style="max-height: 500px; max-width: 100%; object-fit: cover; object-position: center; max-width: 100%; border-radius: 0.25rem; border: 1px solid #ced4da;" src="{{ Storage::url($article->thumbnail->file_name) }}"> 
             </div>
             @else 
             <div class="form-group" style="height: 300px; width: 100%; object-fit: cover; object-position: left top; max-width: 100%; border-radius: 0.25rem; border: 1px solid #ced4da; background-color: gray;">
