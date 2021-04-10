@@ -6,7 +6,7 @@
     <div class="card w-75 mx-auto mb-3">
         <div class="container-fluid">
             <div class="row mx-auto">
-                <div class="w-100 mx-auto my-2" style="min-height: 20vh; background-image: url( {{ asset('/storage/thumbnails/'.$article->thumbnail->file_name) }} ); background-size: cover; background-position: center;">
+                <div class="w-100 mx-auto my-2" style="min-height: 20vh; background-image: url( {{ Storage::url($article->thumbnail->file_name) }} ); background-size: cover; background-position: center;">
                     <div style=" min-height: 20vh; background-color: rgba(0, 0, 0, 0.2);">
                     </div>
                 </div>
