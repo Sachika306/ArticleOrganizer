@@ -49,7 +49,7 @@ class ArticleFilterController extends Controller
 
       }
     public function find(Request $request){
-        $articles = Articles::paginate(12);
+        $articles = Article::paginate(12);
         return view('article.index')->with('articles', $articles);
     }
 }
