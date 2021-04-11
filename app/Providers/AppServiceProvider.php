@@ -27,5 +27,9 @@ class AppServiceProvider extends ServiceProvider
     {
         // ページネーションのCSSをbootstrapにする
         Paginator::useBootstrap();
+        
+        if (request()->isSecure()) {
+            \URL::forceScheme('https');
+        }
     }
 }
