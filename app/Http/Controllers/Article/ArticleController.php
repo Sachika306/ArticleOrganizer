@@ -101,24 +101,16 @@ class ArticleController extends Controller
         $article = Article::find($id);
         $thumbnail = Thumbnail::where('article_id', '=', $id);
 
-        //s3アップロード開始
+        // 画像のファイル名をimage変数に格納
         $image = $request->file('file_name');
-        // config>filesystem>disksの配列の中からs3を探して、putFileで取得した画像をバケットの「」フォルダにアップロード。
+
+        // config>filesystem>disksの配列の中からs3を探して、putFileで取得した画像をバケットの「thumbnails」フォルダにアップロード。
         $path = Storage::disk('s3')->putFile('thumbnails', $image, 'public');
-        // // アップロードした画像のフルパスを取得
-        // $thumbnail->image_path = Storage::disk('s3')->url($path);
 
         // thumbnailのテーブルに、ファイルの名前を保存。
         $thumbnail->update([ 
             'file_name' => basename($path)
         ]);
-        
-        // if ($request->file('file_name') !== null) {
-        //     $path = $request->file('file_name')->store('public/thumbnails'); //画像をpublic/thumbnailsに保存
-            // $thumbnail->update([
-            //     'file_name' => basename($path)
-            // ]);
-        // };
 
         $article->update([
             'content' => $request->content,

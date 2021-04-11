@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\{Article, User, OutlineAssignment, ArticleAssignment};
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\SearchRequest;
 
 class ArticleFilterController extends Controller
 {
@@ -38,8 +39,17 @@ class ArticleFilterController extends Controller
                 
             $articles = $data->paginate(12);
             return view('article.index')->with('articles', $articles);
+        } else {
+            $data = $query->where('title','like','%'.$keyword.'%')
+            ->orWhere('content','like','%'.$keyword.'%');
             
+            $articles = $data->paginate(12);
+            return view('article.index')->with('articles', $articles);
         }
 
       }
+    public function find(Request $request){
+        $articles = Articles::paginate(12);
+        return view('article.index')->with('articles', $articles);
+    }
 }

@@ -85,6 +85,7 @@ Route::middleware('auth', 'can:all-users')->group(function () {
         Route::get('/article/preview/{id}', 'ArticleController@preview');
         Route::get('/article/sort', 'ArticleFilterController@sort')->name('sortarticle');
         Route::post('/article/search', 'ArticleFilterController@search')->name('search');
+        Route::get('/article/search', 'ArticleFilterController@find')->name('find');
     });
     Route::namespace('App\Http\Controllers\Outline')->group(function() {
         Route::get('/article/outline/{id}', 'OutlineController@preview');
@@ -110,9 +111,6 @@ Route::middleware('auth', 'can:guest-user')->group(function () {
 });
 
 // ログイン不要・公開済みの記事表示用
-Route::get('/aaa', function () {
-
-});
 Route::namespace('App\Http\Controllers')->group(function() {
     Route::get('/', 'PostController@index');
     Route::get('/post/{id}', 'PostController@show');
