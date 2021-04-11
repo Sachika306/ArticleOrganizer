@@ -22,8 +22,8 @@
 
 {{-- ヘッダー画像部分 --}}
 <div class="" style="background-image: url('https://articleorganizer.s3-ap-northeast-1.amazonaws.com/header/postindexheader.jpg'); background-size: cover; background-position: center;">
-  <div style="position:relative; height: 50vh; width:100%; background-color: rgba(0, 0, 0, 0.3);">
-    <h1 class="position-absolute mx-auto display-4 text-light" style="font-weight: bold; top: 50%; left: 50%; transform: translateY(-50%) translateX(-50%); -webkit- transform: translateY(-50%) translateX(-50%);">インバウンド情報サイト</h1>
+  <div style="position:relative; height: 50vh; width:80%%; background-color: rgba(0, 0, 0, 0.3); text-align:center;">
+    <h1 class="position-absolute mx-auto display-4 text-light" style="font-weight: bold; top: 50%; left: 50%; transform: translateY(-50%) translateX(-50%); -webkit- transform: translateY(-50%) translateX(-50%); width: 100%; font-size: 3em;">インバウンド情報サイト</h1>
   </div>
 </div>
 
