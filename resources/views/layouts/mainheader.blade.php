@@ -35,10 +35,7 @@
               <a class="nav-link" href="{{ url('/article') }}">記事一覧</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url('/') }}" target="_blank">公開中サイト</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url('/member/setting') }}">設定</a>
+            <a class="nav-link" href="{{ url('/member/setting') }}">設定変更</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ url('/logout') }}">ログアウト</a>

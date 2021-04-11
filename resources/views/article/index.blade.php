@@ -12,14 +12,15 @@
   </div>
 
   <div class="d-flex card-body justify-content-between w-100 mx-auto row">
-    <form method="POST" action="{{ route('search') }}" class="w-75 mb-2">
+    <form method="POST" action="{{ url('/article/search') }}" class="w-75 mb-2">
       @csrf
       <div class="d-flex">
-          <input type="text" class="form-control w-50 mr-1" value="" name="keyword" placeholder="記事のタイトル・内容で検索">
-          <a href="/article/assign">
-              <button type="submit" class="btn btn-secondary">検索</button>
-          </a>
+          <input type="text" class="form-control w-50 mr-1" value="" name="keyword" placeholder="記事に含む語句・タイトルで検索">
+          <button type="submit" class="btn btn-secondary">検索</button>
       </div>
+      <span class="invalid-feedback">
+          <strong>{{ $errors->first('keyword') }}</strong>
+      </span>
     </form>
 
     <form method="GET" action="{{ url('article/sort') }}" class="w-75 mb-2">
@@ -85,7 +86,7 @@
               <td><a href="/article/show/{{ $article->id }}">詳細</a></td>
               @can('admin-user')
                 <td>
-                  <form action="/article/destroy/{{ $article->id }}" class="delete" method="post">
+                  <form action="/article/destroy/{{ $article->id }}" class="delete {{ $article->id <= 6 ? 'specialArticle' : '' }}" method="post">
                   @csrf
                   <button type="submit">削除</button>
                   </form>

@@ -21,6 +21,11 @@ $('.delete').submit(function (e) {
     }
 });
 
+$('.specialArticle').submit(function (e) {
+  alert('記事ID1-6の記事は削除できません。恐れ入りますが削除機能は他の記事でお試しください。');
+  return false;
+});
+
 // アウトライン・記事を承認する際のアラート
 $('#publish').submit(function (e) {
   if (!confirm('記事を公開しますか？')) {

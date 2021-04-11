@@ -33,7 +33,9 @@ class ArticleCreateRequest extends FormRequest
             'outline_user_id' => ['required'],
             'outline_deadline' => ['required', 'date_format:Y-m-d'],
             'article_deadline' => ['required', 'date_format:Y-m-d'],
-            'article_user_id' => ['required']
+            'article_user_id' => ['required'],
+            'outline_user_name' => ['required'],
+            'article_user_name' => ['required']
         ];
     }
 }

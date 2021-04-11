@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\{View, Storage};
 use Illuminate\Support\ServiceProvider;
 use App\Models\{RoleUser, Role, User, Article, Status};
 
@@ -50,7 +50,11 @@ class GetUsersRoles extends ServiceProvider
         View::composer ('*', function($view) {
             $roles = Role::get();
             $view -> with('roles', $roles);
+            // AWSのS3のthumbnailsフォルダのパスを渡す
+            $s3path = Storage::disk('s3')->path('https://articleorganizer.s3-ap-northeast-1.amazonaws.com/thumbnails/');
+            $view -> with('s3path', $s3path);
         });
+
     }
 
 }

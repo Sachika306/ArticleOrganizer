@@ -30,12 +30,18 @@
                             <label for="outline_user_name" class="col-sm-4 col-form-label text-md-right">{{ __('アウトライン担当者') }}</label>
                             <div class="col-md-6">
                                 <input id="outline_user_name" type="text" class="form-control{{ $errors->has('outline_user_id') ? ' is-invalid' : '' }}" placeholder="山田大郎" name="outline_user_name" value="{{ old('outline_user_name') }}">
-                                <input type="hidden" name="outline_user_id" value="{{ old('article_user_id') }}" id="outline_user_id">
+                                <input type="hidden" name="outline_user_id" value="{{ old('outline_user_id') }}" id="outline_user_id">
                                 
                                 @if ($errors->has('outline_user_id'))
                                     <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('outline_user_id') }}</strong>
+                                        <strong>{{ $errors->first('outline_user_id')}}</strong>
                                     </span>
+                                @else 
+                                    @error ('outline_user_name')
+                                        <span class="invalid-feedback">
+                                            <strong>{{ $errors->first('outline_user_name') }}</strong>
+                                        </span>
+                                    @endif
                                 @endif
                             </div>
                         </div>
