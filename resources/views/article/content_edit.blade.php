@@ -36,7 +36,12 @@
         <div class="form-group">
             <label for="exampleFormControlTextarea1">記事本文</label>
             <textarea class="description" name="content">{{ $article->content }}</textarea>
-            <script src="{{ asset('node_modules/tinymce/tinymce.js') }}"></script>
+            @if(config('app.env') == 'local')
+                <script src="{{ asset('node_modules/tinymce/tinymce.js') }}"></script>
+            @endif
+            @if(config('app.env') == 'production')
+                <script src="{{ secure_asset('node_modules/tinymce/tinymce.js') }}"></script>
+            @endif
             <script>
                 tinymce.init({
                     selector:'textarea.description',
