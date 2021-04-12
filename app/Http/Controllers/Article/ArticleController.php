@@ -104,13 +104,15 @@ class ArticleController extends Controller
         // 画像のファイル名をimage変数に格納
         $image = $request->file('file_name');
 
-        // config>filesystem>disksの配列の中からs3を探して、putFileで取得した画像をバケットの「thumbnails」フォルダにアップロード。
+        if ($image != null) {
+        // config>filesystem>disksの配列の中からs3を探して、putFileで取得した画像をバケットのフォルダにアップロード。
         $path = Storage::disk('s3')->putFile('thumbnails', $image, 'public');
 
         // thumbnailのテーブルに、ファイルの名前を保存。
         $thumbnail->update([ 
             'file_name' => basename($path)
         ]);
+        }
 
         $article->update([
             'content' => $request->content,
