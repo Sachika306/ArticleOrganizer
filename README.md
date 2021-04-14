@@ -1,62 +1,93 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## ArticleOrganizer 外注記事管理アプリ
+メンバーに外注記事の担当を割り振って管理したり、記事の作成・編集・投稿したりできるアプリです。
+https://pf.asakotsu.com/
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 使用言語など
+<ul>
+ 	<li><strong>フロントエンド</strong>
+<ul>
+ 	<li>HTML / SCC / Bootstrap</li>
+ 	<li>jQuery</li>
+</ul>
+</li>
+ 	<li><strong>バックエンド</strong>
+<ul>
+ 	<li>PHP 8.0.1</li>
+ 	<li>Laravel 8.31.0</li>
+ 	<li>FakerPHP 1.9.1</li>
+ 	<li>PHPUnit 9.3.3</li>
+</ul>
+</li>
+ 	<li>インフラ
+<ul>
+ 	<li>AWS(EC2, S3, RDS, Route53, CloudWatch, VPC）</li>
+ 	<li>MySQL 8.0.23</li>
+</ul>
+</li>
+ 	<li>その他
+<ul>
+ 	<li>Visual Studio Code</li>
+ 	<li>TablePlus</li>
+</ul>
+</li>
+</ul>
 
-## About Laravel
+## 制作背景
+Webライティングの業務委託をしていて、構成作成〜ライティングまでの各工程の納期や担当者の管理をスプレッドシートで行っている企業が多いことに気づきました。
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+スプレッドシートで案件を管理していると
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<ul>
+    <li>データ量が多くスプレッドシートが重い</li>
+    <li>複数の編集権限者で共有しているので編集ミスが起こりやすい</li>
+</ul>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+こういった問題が起こりがちで、ミスや作業効率の低下原因にもなりえるため
+納期やメンバーを一括で管理し、記事やアウトラインの作成もできるWebアプリを作ろうと考えました。
 
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 主な機能
+<ul>
+ 	<li><strong>ログイン機能</strong>
+<ul>
+ 	<li>ゲストログイン機能</li>
+ 	<li>ログイン機能</li>
+</ul>
+</li>
+ 	<li><strong>メンバー管理機能</strong>
+<ul>
+ 	<li>メンバーの新規登録</li>
+ 	<li>メンバーの一覧・詳細表示機能</li>
+ 	<li>メンバーの削除機能（担当案件を持っているメンバーは削除できないよう制限をかけています）</li>
+</ul>
+</li>
+ 	<li><strong>記事管理機能</strong>
+<ul>
+ 	<li>新しい記事の担当割り振り機能</li>
+ 	<li>アウトラインの作成・編集（アウトライン担当権限アカウントのみ）</li>
+ 	<li>記事の作成・編集（記事担当権限アカウントのみ）</li>
+ 	<li>アイキャッチ画像の設定機能 （AWS S3バケット）</li>
+ 	<li>記事・アウトラインの申請〜承認・戻し機能</li>
+ 	<li>記事の公開・非公開切り替え機能</li>
+ 	<li>プレビュー機能</li>
+ 	<li>検索・絞り込み機能</li>
+ 	<li>削除機能</li>
+</ul>
+</li>
+ 	<li><strong>ページネーション機能</strong>
+<ul>
+ 	<li>記事一覧・メンバー一覧に表示</li>
+</ul>
+</li>
+ 	<li><strong>PHPUnitテスト</strong></li>
+ 	<li><strong>レスポンシブデザイン</strong></li>
+</ul>
+<h2><strong>改善点・後悔</strong></h2>
+一区切りついたので一旦完成にしましたが、課題点は多数あります。
+<ul>
+ 	<li>単体テスト・統合テストを増やす</li>
+ 	<li>DBの関係や命名など、手を動かしてから設計を変更した部分も多く綺麗な仕上がりではない</li>
+ 	<li>変数の付け方、仕様書を定めずに着手してしまった</li>
+ 	<li>GitHub/Gitの使い方（制作中はプルリクなどあまり使えなかった）</li>
+ 	<li>サービスプロバイダなど、どのような仕組みなのか理解を深める</li>
+ 	<li>トランザクション機能の追加（終盤になってから機能のことを知り、一箇所にしか入れていない）</li>
+</ul>
